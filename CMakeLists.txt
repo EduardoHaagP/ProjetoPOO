@@ -19,6 +19,10 @@ set(PROJECT_SOURCES
         mainwindow.ui
         veiculos.h
         veiculos.cpp
+        clientes.h
+        clientes.cpp
+        gerenciadores.h
+        gerenciadores.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -40,6 +44,7 @@ else()
     else()
         add_executable(ProjetoPOO
             ${PROJECT_SOURCES}
+            $
         )
     endif()
 endif()

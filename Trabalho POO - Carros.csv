@@ -1,0 +1,270 @@
+Tipo,Modelo,Ano,Valor (R$),Cor
+Carro,Vectra,2023,80.000,Preto
+Carro,Elantra,2024,90.000,Vermelho
+Carro,Civic,2022,95.000,Cinza
+Carro,Corolla,2023,110.000,Branco
+Carro,Fusion,2022,130.000,Vermelho
+Carro,Tucson,2023,150.000,Branco
+Carro,Focus,2023,85.000,Cinza
+Carro,Sentra,2023,75.000,Azul
+Carro,HR-V,2023,120.000,Preto
+Carro,Jetta,2024,150.000,Vermelho
+Carro,A3,2023,180.000,Vermelho
+Carro,BMW X1,2024,210.000,Azul
+Carro,Mercedes-Benz GLA,2023,220.000,Branco
+Moto,XRE 300,2023,22.000,Cinza
+Moto,CB 500X,2024,28.000,Prata
+Moto,NXR 160,2023,15.000,Vermelho
+Moto,Bros 160,2023,18.000,Vermelho
+Moto,CB 500F,2023,30.000,Branco
+Moto,Yamaha MT-03,2024,30.000,Cinza
+Carro,Compass,2024,160.000,Cinza
+Carro,Ford Kuga,2023,135.000,Preto
+Carro,Chery Tiggo 5X,2023,125.000,Prata
+Carro,Jeep Renegade,2024,170.000,Cinza
+Carro,Mitsubishi ASX,2023,145.000,Azul
+Moto,Harley-Davidson Iron 883,2024,40.000,Prata
+Moto,Ducati Monster 1200,2023,60.000,Azul
+Moto,KTM 390 Duke,2023,24.000,Branco
+Carro,Nissan Kicks,2024,130.000,Branco
+Carro,Honda WR-V,2023,100.000,Prata
+Carro,Renault Kwid,2024,50.000,Prata
+Carro,Chevrolet Onix,2023,70.000,Prata
+Carro,Hyundai HB20,2024,80.000,Prata
+Carro,Ford Fiesta,2023,60.000,Azul
+Carro,Volkswagen Polo,2023,85.000,Preto
+Carro,Fiat Argo,2024,65.000,Branco
+Carro,Toyota Etios,2023,55.000,Preto
+Carro,Volkswagen Golf,2024,120.000,Cinza
+Carro,Audi A4,2023,250.000,Cinza
+Carro,Volvo XC60,2024,220.000,Azul
+Carro,Porsche Cayenne,2023,550.000,Prata
+Moto,Suzuki GSX-S1000F,2024,45.000,Branco
+Moto,BMW G310R,2023,27.000,Azul
+Carro,Chevrolet Tracker,2024,145.000,Cinza
+Carro,BMW 320i,2023,210.000,Vermelho
+Carro,Audi Q3,2024,230.000,Prata
+Carro,Honda Civic Hatch,2023,115.000,Prata
+Carro,Kia Seltos,2024,160.000,Cinza
+Carro,Fiat Toro,2023,130.000,Prata
+Moto,Kawasaki Ninja 400,2023,30.000,Prata
+Moto,Yamaha R1,2024,80.000,Cinza
+Moto,Suzuki Bandit 650,2023,35.000,Prata
+Carro,Land Rover Defender,2024,450.000,Prata
+Carro,Jeep Grand Cherokee,2024,350.000,Preto
+Carro,Chevrolet Prisma,2023,95.000,Vermelho
+Carro,Volkswagen Jetta,2024,130.000,Branco
+Carro,Renault Duster,2022,110.000,Azul
+Carro,Fiat Mobi,2023,40.000,Cinza
+Carro,Toyota Corolla Cross,2023,180.000,Branco
+Carro,Honda CR-V,2024,200.000,Prata
+Carro,Nissan Versa,2023,85.000,Branco
+Carro,Honda Fit,2023,75.000,Preto
+Carro,Ford EcoSport,2024,100.000,Preto
+Carro,Kia Sportage,2023,150.000,Preto
+Carro,Hyundai Creta,2023,155.000,Preto
+Carro,Jeep Compass,2023,145.000,Branco
+Moto,Yamaha Lander 250,2023,20.000,Cinza
+Moto,Honda XRE 300,2024,25.000,Prata
+Moto,BMW F 800 GS,2023,35.000,Branco
+Moto,Honda CB 500R,2023,30.000,Branco
+Moto,Suzuki V-Strom 650,2024,40.000,Prata
+Moto,Harley-Davidson Sportster,2023,50.000,Azul
+Moto,Kawasaki Versys 300,2023,23.000,Azul
+Carro,BMW 320i,2024,250.000,Azul
+Carro,Audi Q5,2023,300.000,Preto
+Carro,Mercedes-Benz C-Class,2024,250.000,Vermelho
+Carro,Subaru Outback,2023,200.000,Azul
+Carro,Peugeot 3008,2024,160.000,Preto
+Carro,Renault Kwid,2023,50.000,Prata
+Carro,Fiat Toro,2023,125.000,Prata
+Carro,Volkswagen T-Cross,2024,140.000,Azul
+Carro,Toyota Hilux,2023,230.000,Vermelho
+Moto,Honda CB 1000R,2024,45.000,Preto
+Moto,Ducati Panigale V2,2023,75.000,Cinza
+Moto,KTM Duke 200,2023,15.000,Branco
+Carro,Nissan Frontier,2023,170.000,Azul
+Carro,Jeep Renegade,2024,160.000,Preto
+Carro,Ford Ranger,2023,180.000,Branco
+Carro,Chevrolet S10,2024,190.000,Prata
+Carro,Toyota RAV4,2024,220.000,Cinza
+Carro,Volkswagen Amarok,2023,210.000,Azul
+Carro,Mitsubishi L200,2023,200.000,Vermelho
+Moto,BMW G 310 GS,2023,25.000,Vermelho
+Moto,Kawasaki Ninja 650,2024,45.000,Vermelho
+Moto,Suzuki Intruder 1800,2023,50.000,Branco
+Moto,Ducati Scrambler 800,2024,45.000,Azul
+Carro,Volkswagen Passat,2023,170.000,Azul
+Carro,Honda HR-V,2023,130.000,Preto
+Carro,Peugeot 208,2024,85.000,Vermelho
+Carro,Chevrolet Tracker,2023,125.000,Vermelho
+Carro,Toyota Etios,2023,55.000,Preto
+Carro,Hyundai HB20,2023,65.000,Azul
+Carro,Fiat Argo,2024,70.000,Cinza
+Carro,Ford Fiesta,2024,60.000,Vermelho
+Carro,Volkswagen Polo,2023,80.000,Cinza
+Carro,Renault Logan,2023,50.000,Preto
+Carro,Fiat Uno,2023,40.000,Azul
+Carro,Nissan March,2023,45.000,Prata
+Moto,Honda NC 750X,2023,45.000,Prata
+Moto,Yamaha Fazer 250,2023,18.000,Cinza
+Moto,Honda CB 500F,2024,28.000,Cinza
+Carro,Volkswagen Gol,2023,50.000,Prata
+Carro,Chevrolet Onix,2023,60.000,Azul
+Carro,Toyota Yaris,2023,85.000,Preto
+Carro,Ford Ka,2024,40.000,Cinza
+Carro,Renault Sandero,2023,55.000,Preto
+Moto,Kawasaki Ninja 300,2024,30.000,Vermelho
+Moto,BMW G 310 R,2023,27.000,Preto
+Carro,Audi A3,2024,150.000,Azul
+Carro,Mercedes-Benz A-Class,2023,200.000,Preto
+Carro,Volvo XC60,2024,250.000,Azul
+Carro,BMW X1,2023,220.000,Preto
+Carro,Peugeot 208,2024,80.000,Azul
+Moto,Triumph Tiger 800,2024,55.000,Azul
+Carro,Toyota Land Cruiser,2024,400.000,Cinza
+Carro,Chevrolet Tracker,2023,135.000,Azul
+Carro,Honda HR-V,2023,120.000,Branco
+Carro,Hyundai i30,2024,110.000,Vermelho
+Carro,Ford Fusion,2023,170.000,Preto
+Carro,Audi Q3,2024,230.000,Preto
+Carro,BMW 320i,2023,220.000,Vermelho
+Carro,Toyota Hilux,2024,230.000,Branco
+Carro,Kia Seltos,2023,160.000,Branco
+Carro,Jeep Grand Cherokee,2023,350.000,Azul
+Carro,Nissan Kicks,2023,140.000,Vermelho
+Carro,Volkswagen Golf,2024,140.000,Vermelho
+Carro,Ford EcoSport,2023,105.000,Cinza
+Carro,Mitsubishi Outlander,2024,185.000,Preto
+Carro,Peugeot 3008,2023,175.000,Cinza
+Carro,Mercedes-Benz GLA,2024,250.000,Azul
+Carro,Chery Tiggo 2 Pro,2023,100.000,Prata
+Moto,Yamaha XT 660,2023,28.000,Cinza
+Moto,Honda CB 500F,2024,29.000,Branco
+Moto,Ducati Scrambler,2024,60.000,Azul
+Moto,Harley-Davidson Street,2023,35.000,Branco
+Moto,Kawasaki Z900,2023,45.000,Preto
+Moto,BMW G310R,2023,28.000,Cinza
+Moto,Suzuki Bandit 650,2024,33.000,Azul
+Moto,Honda XRE 300,2024,25.000,Prata
+Moto,Suzuki V-Strom 1000,2023,48.000,Azul
+Moto,KTM Duke 390,2024,32.000,Branco
+Carro,Volvo XC40,2023,270.000,Preto
+Carro,Audi A4,2023,220.000,Preto
+Carro,Ford Ranger,2024,180.000,Branco
+Carro,Jeep Renegade,2024,170.000,Branco
+Carro,Volkswagen Amarok,2024,210.000,Prata
+Carro,Toyota Corolla,2023,120.000,Prata
+Carro,Honda Civic,2024,140.000,Azul
+Carro,BMW X5,2023,500.000,Cinza
+Carro,Land Rover Discovery,2023,450.000,Cinza
+Carro,Mercedes-Benz GLC,2024,350.000,Cinza
+Carro,Fiat Toro,2023,130.000,Vermelho
+Carro,Renault Kwid,2023,50.000,Preto
+Carro,Hyundai HB20,2023,75.000,Vermelho
+Carro,Volkswagen Polo,2023,85.000,Azul
+Carro,Toyota Etios,2024,65.000,Vermelho
+Carro,Nissan Versa,2023,80.000,Branco
+Carro,Ford Fiesta,2024,70.000,Azul
+Carro,Chevrolet Onix,2024,85.000,Cinza
+Carro,Kia Picanto,2024,55.000,Vermelho
+Moto,Kawasaki Ninja 400,2023,28.000,Preto
+Moto,Ducati Panigale V4,2023,120.000,Vermelho
+Moto,Yamaha YZF-R3,2024,25.000,Preto
+Moto,Harley-Davidson Roadster,2023,55.000,Cinza
+Moto,Honda CBR 1000RR,2024,100.000,Preto
+Moto,KTM RC 390,2023,28.000,Vermelho
+Moto,Triumph Bonneville,2024,55.000,Vermelho
+Moto,Suzuki GSX-R750,2024,60.000,Prata
+Carro,Nissan Frontier,2024,200.000,Azul
+Carro,Toyota RAV4,2023,210.000,Azul
+Carro,BMW 118i,2023,160.000,Azul
+Carro,Renault Duster,2023,110.000,Vermelho
+Carro,Peugeot 208,2024,70.000,Prata
+Carro,Mitsubishi L200,2023,190.000,Azul
+Carro,Chevrolet Cruze,2023,105.000,Preto
+Carro,Volkswagen Tiguan,2023,175.000,Azul
+Carro,Honda Fit,2023,70.000,Preto
+Moto,Honda CB 650R,2024,40.000,Preto
+Moto,Yamaha FZ6,2023,25.000,Vermelho
+Moto,BMW R1250GS,2023,75.000,Azul
+Moto,Kawasaki Ninja 650,2023,35.000,Vermelho
+Moto,Honda Africa Twin,2023,75.000,Branco
+Moto,Harley-Davidson Electra Glide,2024,85.000,Azul
+Carro,Audi Q7,2024,350.000,Preto
+Carro,BMW X3,2023,330.000,Vermelho
+Carro,Volkswagen Tiguan,2023,170.000,Prata
+Carro,Honda CR-V,2024,200.000,Branco
+Carro,Mercedes-Benz A-Class,2024,220.000,Branco
+Carro,Ford Mustang,2023,240.000,Prata
+Carro,Renault Kwid,2023,45.000,Prata
+Carro,Toyota SW4,2023,300.000,Azul
+Carro,Kia Soul,2024,115.000,Prata
+Carro,Hyundai Tucson,2023,155.000,Preto
+Carro,Mitsubishi Eclipse Cross,2023,140.000,Branco
+Carro,Chevrolet Onix Plus,2023,75.000,Vermelho
+Carro,Peugeot 208,2024,80.000,Vermelho
+Carro,Fiat Argo,2024,68.000,Vermelho
+Carro,Volkswagen Nivus,2024,120.000,Preto
+Carro,Nissan March,2023,50.000,Prata
+Moto,Yamaha R6,2024,70.000,Preto
+Moto,Kawasaki Ninja 1000,2023,85.000,Preto
+Moto,Harley-Davidson Fat Boy,2024,120.000,Azul
+Moto,BMW S1000RR,2023,110.000,Branco
+Moto,Suzuki Hayabusa,2024,150.000,Branco
+Moto,Ducati Multistrada V4,2023,120.000,Preto
+Moto,Honda CBR 500R,2024,30.000,Preto
+Moto,Triumph Street Triple,2023,55.000,Branco
+Moto,KTM 1290 Super Duke R,2024,80.000,Prata
+Carro,Land Rover Defender,2024,450.000,Preto
+Carro,BMW 330i,2024,250.000,Preto
+Carro,Ford Ranger,2023,180.000,Preto
+Carro,Jeep Cherokee,2024,220.000,Vermelho
+Carro,Honda Civic,2023,110.000,Preto
+Carro,Volkswagen Passat,2023,160.000,Cinza
+Carro,Chevrolet Tracker,2024,145.000,Azul
+Carro,Mercedes-Benz GLA,2024,240.000,Cinza
+Carro,Toyota Corolla,2023,120.000,Preto
+Carro,Hyundai Creta,2023,160.000,Vermelho
+Carro,BMW X1,2023,220.000,Vermelho
+Carro,Fiat Toro,2024,130.000,Vermelho
+Moto,BMW F 900 R,2024,45.000,Preto
+Moto,Ducati Panigale V2,2023,85.000,Preto
+Moto,KTM 390 Duke,2023,27.000,Branco
+Moto,Yamaha MT-07,2024,35.000,Cinza
+Moto,Suzuki GSX-R1000,2023,90.000,Prata
+Moto,Harley-Davidson Street 500,2023,40.000,Azul
+Moto,Honda NC 750X,2024,45.000,Cinza
+Moto,Kawasaki Z800,2023,40.000,Prata
+Carro,Toyota RAV4,2024,210.000,Vermelho
+Carro,Nissan Kicks,2024,130.000,Preto
+Carro,Renault Duster,2023,120.000,Cinza
+Carro,Peugeot 3008,2023,190.000,Branco
+Carro,Chevrolet Tracker,2023,145.000,Branco
+Carro,Volvo XC60,2024,260.000,Branco
+Carro,Honda HR-V,2023,135.000,Prata
+Carro,BMW X6,2024,400.000,Preto
+Carro,Jeep Renegade,2023,160.000,Branco
+Carro,Hyundai HB20,2024,80.000,Branco
+Carro,Fiat Argo,2023,70.000,Preto
+Carro,Ford Ecosport,2024,100.000,Vermelho
+Carro,Nissan Versa,2024,95.000,Azul
+Carro,Volkswagen Gol,2023,50.000,Azul
+Moto,Kawasaki Ninja 400,2024,30.000,Prata
+Moto,Yamaha XTZ 250,2023,18.000,Prata
+Moto,Honda XRE 300,2023,25.000,Branco
+Moto,BMW G 310 GS,2023,28.000,Cinza
+Moto,Yamaha Fazer 250,2023,20.000,Cinza
+Moto,Suzuki V-Strom 650,2023,35.000,Preto
+Moto,Ducati Scrambler 800,2024,40.000,Vermelho
+Moto,Harley-Davidson Iron 883,2024,45.000,Vermelho
+Carro,Volkswagen T-Cross,2023,130.000,Branco
+Carro,Chevrolet Onix,2023,70.000,Prata
+Carro,Toyota Etios,2023,60.000,Branco
+Carro,Fiat Uno,2023,40.000,Cinza
+Carro,Hyundai i30,2024,100.000,Preto
+Carro,Audi A3,2023,170.000,Preto
+Carro,Nissan Frontier,2023,195.000,Vermelho
+Carro,Land Rover Range Rover,2024,650.000,Vermelho
+Carro,Porsche Macan,2023,500.000,Preto
+Carro,Mercedes-Benz E-Class,2023,380.000,Cinza
