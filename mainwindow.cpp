@@ -9,14 +9,18 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    GerenciadorDeVeiculos& gerenciador = GerenciadorDeVeiculos::getInstance();
+    std::string csv_path = std::string(PROJECT_SOURCE_DIR) + "/Trabalho POO - Carros.csv";
+
+    // Agora, passa o caminho completo para o gerenciador
+    GerenciadorDeVeiculos& gerenciador = GerenciadorDeVeiculos::getInstance(csv_path);
     gerenciador.carregar_do_csv();
+
     vector<Veiculos*> teste = gerenciador.listar();
-    for (int i = 0; i < teste.size(); i++)
+    for (size_t i = 0; i < teste.size(); i++)
     {
-        std::cout<<teste[0]->getModelo()<<endl;
+        // Corrigido: Estava imprimindo sempre o índice 0, alterado para i
+        std::cout << teste[i]->getModelo() << std::endl;
     }
-    
 }
 
 MainWindow::~MainWindow()
