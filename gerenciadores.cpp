@@ -150,22 +150,77 @@ vector<Veiculos*> GerenciadorDeVeiculos::listar() {
 vector<Veiculos*> GerenciadorDeVeiculos::buscar(string termo_busca) {
     vector<Veiculos*> resposta;
     
-    // Converter termo de busca para minúsculas para busca case-insensitive
-    std::string termo_lower = termo_busca;
-    std::transform(termo_lower.begin(), termo_lower.end(), termo_lower.begin(), ::tolower);
+    // Função helper para converter para minúsculas manualmente
+    auto to_lower = [](const std::string& str) {
+        std::string result = str;
+        for (char& c : result) {
+            c = std::tolower(c);
+        }
+        return result;
+    };
+    
+    std::string termo_lower = to_lower(termo_busca);
     
     for (size_t i = 0; i < this->veiculos.size(); i++) {
         std::string modelo = this->veiculos[i]->getModelo();
+        std::string modelo_lower = to_lower(modelo);
         
-        // Converter modelo para minúsculas para busca case-insensitive
-        std::string modelo_lower = modelo;
-        std::transform(modelo_lower.begin(), modelo_lower.end(), modelo_lower.begin(), ::tolower);
-        
-        // Buscar por substring (agora encontra "Fusion" em "Ford Fusion")
+        // Buscar por substring
         if (modelo_lower.find(termo_lower) != std::string::npos) {
             resposta.push_back(this->veiculos[i]);
         }
     }
     
     return resposta;
+}
+
+// NOVO: Remover veículo por índice
+bool GerenciadorDeVeiculos::remover(int indice) {
+    if (indice < 0 || indice >= (int)this->veiculos.size()) {
+        std::cerr << "Erro: Índice " << indice << " inválido!" << std::endl;
+        return false;
+    }
+    
+    // Deletar o objeto da memória
+    delete this->veiculos[indice];
+    
+    // Remover do vetor
+    this->veiculos.erase(this->veiculos.begin() + indice);
+    
+    std::cout << "Veículo removido com sucesso! Índice: " << indice << std::endl;
+    return true;
+}
+
+// NOVO: Remover veículo por modelo (remove o primeiro encontrado)
+bool GerenciadorDeVeiculos::remover_por_modelo(string modelo) {
+    auto to_lower = [](const std::string& str) {
+        std::string result = str;
+        for (char& c : result) {
+            c = std::tolower(c);
+        }
+        return result;
+    };
+    
+    std::string modelo_lower = to_lower(modelo);
+    
+    for (size_t i = 0; i < this->veiculos.size(); i++) {
+        std::string veiculo_modelo = to_lower(this->veiculos[i]->getModelo());
+        
+        if (veiculo_modelo == modelo_lower) {
+            // Encontrou, remover
+            delete this->veiculos[i];
+            this->veiculos.erase(this->veiculos.begin() + i);
+            
+            std::cout << "Veículo removido com sucesso! Modelo: " << modelo << std::endl;
+            return true;
+        }
+    }
+    
+    std::cerr << "Erro: Veículo com modelo '" << modelo << "' não encontrado!" << std::endl;
+    return false;
+}
+
+// NOVO: Obter total de veículos
+int GerenciadorDeVeiculos::getTotalVeiculos() {
+    return this->veiculos.size();
 }

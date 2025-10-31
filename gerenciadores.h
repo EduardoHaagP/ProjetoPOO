@@ -31,8 +31,11 @@ class GerenciadorDeVeiculos: public Gerenciadores{
         void carregar_do_csv() override;
         void salvar_no_csv() override;
         vector<Veiculos*> listar();
-        vector<Veiculos*>    buscar(string modelo_carro);
+        vector<Veiculos*> buscar(string modelo_carro);
         void adicionar(Veiculos* novo_veiculo);
+        bool remover(int indice); // NOVO: Remover por índice
+        bool remover_por_modelo(string modelo); // NOVO: Remover por modelo
+        int getTotalVeiculos(); // NOVO: Obter total de veículos
         
 };
 

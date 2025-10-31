@@ -1,9 +1,7 @@
 Tipo,Modelo,Ano,Valor (R$),Cor
-Carro,Vectra,2023,80.00,Preto
 Carro,Elantra,2024,90.00,Vermelho
 Carro,Civic,2022,95.00,Cinza
 Carro,Corolla,2023,110.00,Branco
-Carro,Fusion,2022,130.00,Vermelho
 Carro,Tucson,2023,150.00,Branco
 Carro,Focus,2023,85.00,Cinza
 Carro,Sentra,2023,75.00,Azul
@@ -273,3 +271,6 @@ Moto,Honda CB 650R,2024,45000.00,Vermelho
 Carro,Tesla Model 3,2024,350000.00,Branco
 Moto,Honda CB 650R,2024,45000.00,Vermelho
 Carro,Ford Fusion Hybrid,2024,180000.00,Azul
+Carro,Ford Fusion Hybrid,2024,180000.00,Azul
+Carro,Tesla Model S,2024,450000.00,Vermelho
+Moto,Yamaha MT-09,2024,55000.00,Azul
