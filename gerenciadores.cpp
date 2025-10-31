@@ -770,12 +770,10 @@ GereniciadorDeVendas &GereniciadorDeVendas::getInstance(const string &arquivo)
     return instancia;
 }
 
-void GereniciadorDeVendas::carregar_do_csv()
-{
+void GereniciadorDeVendas::carregar_do_csv() {
     std::ifstream arquivo(this->nome_arquivo);
 
-    if (!arquivo.is_open())
-    {
+    if (!arquivo.is_open()) {
         std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
         return;
     }
@@ -784,18 +782,14 @@ void GereniciadorDeVendas::carregar_do_csv()
     int linha_num = 0;
 
     // Pular cabeçalho
-    if (std::getline(arquivo, linha))
-    {
+    if (std::getline(arquivo, linha)) {
         linha_num++;
     }
 
-    while (std::getline(arquivo, linha))
-    {
+    while (std::getline(arquivo, linha)) {
         linha_num++;
 
-        // Ignorar linhas vazias
-        if (linha.empty() || linha.find_first_not_of(" \t\r\n") == std::string::npos)
-        {
+        if (linha.empty() || linha.find_first_not_of(" \t\r\n") == std::string::npos) {
             continue;
         }
 
@@ -803,60 +797,52 @@ void GereniciadorDeVendas::carregar_do_csv()
         std::string campo;
         std::vector<std::string> dados;
 
-        while (std::getline(ss, campo, ','))
-        {
-            // Remover espaços em branco
+        while (std::getline(ss, campo, ',')) {
             campo.erase(0, campo.find_first_not_of(" \t\r\n"));
             campo.erase(campo.find_last_not_of(" \t\r\n") + 1);
             dados.push_back(campo);
         }
 
-        // Validar dados (esperamos 12 campos: 1Tipo, 2vendedor, 3CPF vendedor, 4Modelo, 5Ano, 6Valor Pago, 7Valor Entrada, 8Cor, 8Cliente, 10CPF/CNPJ Cliente, 11Politica de Desconto, 12Forma de Pagamento, Status da Venda)
-        if (dados.size() >= 6)
-        {
-            try
-            {
+        // ATUALIZADO: Agora espera 13 campos (com Data)
+        if (dados.size() >= 13) {
+            try {
                 GerenciadorDeClientes &gerenciadorClientes = GerenciadorDeClientes::getInstance();
                 GerenciadorDeVendedores &gerenciadorVendedores = GerenciadorDeVendedores::getInstance();
-                Clientes *Cliente_venda = gerenciadorClientes.buscarPorCpf(dados[5]);
-                Vendedor *Vendedor_venda = gerenciadorVendedores.buscarPorCpf(dados[6]);
-                PoliticaDesconto *desconto_venda = FabricaPoliticasDesconto::criarPolitica(dados[9]);
+                
+                Clientes* Cliente_venda = gerenciadorClientes.buscarPorCpf(dados[9]); // CPF Cliente
+                Vendedor* Vendedor_venda = gerenciadorVendedores.buscarPorCpf(dados[2]); // CPF Vendedor
+                PoliticaDesconto* desconto_venda = FabricaPoliticasDesconto::criarPolitica(dados[10]);
+                
+                float valor_final = std::stof(dados[5]);
                 float valor_entrada = std::stof(dados[6]);
                 string forma_de_pagamento = dados[11];
                 string status_vendas = dados[12];
-
-                float valor_base = std::stof(dados[5]);
-                float percentual = desconto_venda->getPercentual();
-                if (percentual > 0)
-                {
-                    valor_base = valor_base / (1 - percentual / 100.0); // Cálculo correto do valor base
+                
+                // NOVO: Carregar data usando DataUtils
+                Data data_venda = DataUtils::fromString(dados[13]);
+                
+                Veiculos* Veiculo_venda = nullptr;
+                if (dados[0] == "Moto") {
+                    Veiculo_venda = new Moto(dados[3], std::stoi(dados[4]), valor_final, dados[7]);
+                } else if (dados[0] == "Carro") {
+                    Veiculo_venda = new Carro(dados[3], std::stoi(dados[4]), valor_final, dados[7]);
                 }
-
-                Veiculos *Veiculo_venda = nullptr;
-                if (dados[0] == "Moto")
-                {
-                    Veiculo_venda = new Moto(dados[3], std::stoi(dados[4]), std::stof(dados[5]), dados[6]);
-                }
-                else if (dados[0] == "Carro")
-                {
-                    Veiculo_venda = new Carro(dados[3], std::stoi(dados[4]), std::stof(dados[5]), dados[6]);
-                }
-
-                Vendas *nova_Venda = new Vendas(Vendedor_venda, Cliente_venda, Veiculo_venda, valor_base, desconto_venda, valor_entrada, forma_de_pagamento, status_vendas);
+                
+                // NOVO: Passar data para o construtor
+                Vendas *nova_Venda = new Vendas(Vendedor_venda, Cliente_venda, Veiculo_venda, 
+                                               valor_final, desconto_venda, valor_entrada, 
+                                               forma_de_pagamento, status_vendas, data_venda);
                 this->vendas.push_back(nova_Venda);
+                
+            } catch (const std::exception &e) {
+                std::cerr << "Erro ao criar venda na linha " << linha_num << ": " << e.what() << std::endl;
             }
-            catch (const std::exception &e)
-            {
-                std::cerr << "Erro ao criar vendedor na linha " << linha_num << ": " << e.what() << std::endl;
-            }
-        }
-        else
-        {
+        } else {
             std::cerr << "Linha " << linha_num << " com número incorreto de campos: " << dados.size() << std::endl;
         }
     }
     arquivo.close();
-    std::cout << "Carregamento de vendedores concluído. Total: " << vendas.size() << " vendedores" << std::endl;
+    std::cout << "Carregamento de vendas concluído. Total: " << vendas.size() << " vendas" << std::endl;
 }
 
 void GereniciadorDeVendas::salvar_no_csv()
@@ -902,6 +888,38 @@ void GereniciadorDeVendas::adicionar(Vendas *nova_venda)
 {
     this->vendas.push_back(nova_venda);
 }
+
+bool GereniciadorDeVendas::verificarConsistenciaDados() {
+    GerenciadorDeClientes &gerenciadorClientes = GerenciadorDeClientes::getInstance();
+    GerenciadorDeVendedores &gerenciadorVendedores = GerenciadorDeVendedores::getInstance();
+    
+    bool consistente = true;
+    
+    for (const auto &venda : this->vendas) {
+        // Verificar se cliente existe
+        Clientes* cliente = gerenciadorClientes.buscarPorCpf(venda->getCliente()->getCpf());
+        if (cliente == nullptr) {
+            std::cerr << "ERRO: Cliente não encontrado - CPF: " << venda->getCliente()->getCpf() << std::endl;
+            consistente = false;
+        }
+        
+        // Verificar se vendedor existe
+        Vendedor* vendedor = gerenciadorVendedores.buscarPorCpf(venda->getVendedor()->getCpf());
+        if (vendedor == nullptr) {
+            std::cerr << "ERRO: Vendedor não encontrado - CPF: " << venda->getVendedor()->getCpf() << std::endl;
+            consistente = false;
+        }
+    }
+    
+    if (consistente) {
+        std::cout << "✓ Todos os dados estão consistentes!" << std::endl;
+    } else {
+        std::cout << "✗ Foram encontrados erros de consistência nos dados!" << std::endl;
+    }
+    
+    return consistente;
+}
+
 
 int GereniciadorDeVendas::getTotalVendas()
 {

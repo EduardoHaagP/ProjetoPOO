@@ -7,12 +7,39 @@
 #include "vendedor.h"
 #include "descontos.h"
 
-typedef struct Data
+class Data
 {
+private:
     int dia;
     int mes;
     int ano;
+
+public:
+    // Construtores
+    Data() : dia(0), mes(0), ano(0) {}
+    Data(int d, int m, int a) : dia(d), mes(m), ano(a) {}
+    
+    // Getters
+    int getDia() const { return dia; }
+    int getMes() const { return mes; }
+    int getAno() const { return ano; }
+    
+    // Setters
+    void setDia(int d) { dia = d; }
+    void setMes(int m) { mes = m; }
+    void setAno(int a) { ano = a; }
+    
+    // Método para formatar data como string
+    std::string toString() const {
+        return std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(ano);
+    }
 };
+
+// Namespace para funções auxiliares (apenas DECLARAÇÃO no .h)
+namespace DataUtils {
+    // DECLARAÇÃO da função (sem implementação)
+    Data fromString(const std::string& dataStr);
+}
 
 class Vendas
 {
@@ -28,9 +55,15 @@ private:
     float valor_entrada;
     string forma_pagamento;
     string status_venda;
+    
 public:
     Vendas();
-    Vendas(Vendedor* vendedor, Clientes* cliente, Veiculos* veiculo, float valorBase, PoliticaDesconto* politicaDesconto, float valorEntrada, string formaPagamento, string statusVenda);
+    Vendas(Vendedor* vendedor, Clientes* cliente, Veiculos* veiculo, 
+           float valorBase, PoliticaDesconto* politicaDesconto, 
+           float valorEntrada, string formaPagamento, string statusVenda, 
+           Data dataVenda);
+    
+    // Getters
     Vendedor* getVendedor();
     Clientes* getCliente();
     Veiculos* getVeiculo();
@@ -40,6 +73,10 @@ public:
     string getFormaPagamento();
     string getStatusVenda();
     PoliticaDesconto* getPoliticaDesconto();
+    Data getDataVenda();
+    string getDataVendaString();
+    
+    // Setters
     void setVendedor(Vendedor* vendedor);
     void setCliente(Clientes* cliente);
     void setVeiculo(Veiculos* veiculo);
@@ -49,7 +86,8 @@ public:
     void setFormaPagamento(string forma);
     void setStatusVenda(string status);
     void setPoliticaDesconto(PoliticaDesconto* politica);
-
+    void setDataVenda(Data data);
+    void setDataVendaFromString(const std::string& dataStr);
 };
 
 #endif // VENDAS_H

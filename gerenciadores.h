@@ -102,9 +102,6 @@ public:
     vector<Vendas *> buscarPorVeiculo(string termo_busca);
     void adicionar(Vendas *nova_venda);
     int getTotalVendas();
-
-    // MÉTODOS DE AUTENTICAÇÃO (agora no gerenciador)
-    Vendas* autenticar(string email, string senha);
-    bool verificarEmailDisponivel(string email);
+    bool verificarConsistenciaDados();
 };
 #endif // GERENCIADORES_H
