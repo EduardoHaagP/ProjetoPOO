@@ -447,3 +447,219 @@ bool GerenciadorDeClientes::remover_por_cpf(string cpf_procurado) {
 int GerenciadorDeClientes::getTotalCliente() {
     return this->clientes.size();
 }
+
+GerenciadorDeVendedores::GerenciadorDeVendedores(const string &arquivo) {
+    this->nome_arquivo = arquivo;
+}
+
+// Método Singleton
+GerenciadorDeVendedores& GerenciadorDeVendedores::getInstance(const string& arquivo) {
+    static GerenciadorDeVendedores instancia(arquivo);
+    return instancia;
+}
+
+void GerenciadorDeVendedores::carregar_do_csv() {
+    std::ifstream arquivo(this->nome_arquivo);
+
+    if (!arquivo.is_open()) {
+        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        return;
+    }
+
+    std::string linha;
+    int linha_num = 0;
+
+    // Pular cabeçalho
+    if (std::getline(arquivo, linha)) {
+        linha_num++;
+    }
+
+    while (std::getline(arquivo, linha)) {
+        linha_num++;
+
+        // Ignorar linhas vazias
+        if (linha.empty() || linha.find_first_not_of(" \t\r\n") == std::string::npos) {
+            continue;
+        }
+
+        std::stringstream ss(linha);
+        std::string campo;
+        std::vector<std::string> dados;
+
+        while (std::getline(ss, campo, ',')) {
+            // Remover espaços em branco
+            campo.erase(0, campo.find_first_not_of(" \t\r\n"));
+            campo.erase(campo.find_last_not_of(" \t\r\n") + 1);
+            dados.push_back(campo);
+        }
+
+        // Validar dados (esperamos 6 campos: Nome, CPF, Telefone, Endereço, Email, Senha)
+        if (dados.size() >= 6) {
+            try {
+                Vendedor* novoVendedor = new Vendedor(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5]);
+                
+                this->vendedores.push_back(novoVendedor);
+                
+                std::cout << "Vendedor carregado: " << dados[0] << ", CPF: " << dados[1] 
+                          << ", Email: " << dados[4] << std::endl;
+            }
+            catch (const std::exception &e) {
+                std::cerr << "Erro ao criar vendedor na linha " << linha_num << ": " << e.what() << std::endl;
+            }
+        } else {
+            std::cerr << "Linha " << linha_num << " com número incorreto de campos: " << dados.size() << std::endl;
+        }
+    }
+    arquivo.close();
+    std::cout << "Carregamento de vendedores concluído. Total: " << vendedores.size() << " vendedores" << std::endl;
+}
+
+void GerenciadorDeVendedores::salvar_no_csv() {
+    std::ofstream arquivo(this->nome_arquivo);
+
+    if (!arquivo.is_open()) {
+        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        return;
+    }
+
+    // Escreve cabeçalho
+    arquivo << "Nome,Cpf,Telefone,Endereco,Email,Senha\n";
+
+    // Escreve cada vendedor
+    for (size_t i = 0; i < this->vendedores.size(); i++) {
+        arquivo << vendedores[i]->getNome() << ","
+                << vendedores[i]->getCpf() << ","
+                << vendedores[i]->getTelefone() << ","
+                << vendedores[i]->getEndereco() << ","
+                << vendedores[i]->getEmail() << ","
+                << vendedores[i]->getSenha() << "\n";
+    }
+
+    arquivo.close();
+    std::cout << "Arquivo salvo com sucesso: " << this->nome_arquivo
+              << ". Total de vendedores: " << vendedores.size() << std::endl;
+}
+
+vector<Vendedor*> GerenciadorDeVendedores::listar() {
+    return this->vendedores;
+}
+
+vector<Vendedor*> GerenciadorDeVendedores::buscar(string termo_busca) {
+    vector<Vendedor*> resposta;
+    
+    // Função helper para converter para minúsculas
+    auto to_lower = [](const std::string& str) {
+        std::string result = str;
+        for (char& c : result) {
+            c = std::tolower(c);
+        }
+        return result;
+    };
+    
+    std::string termo_lower = to_lower(termo_busca);
+    
+    for (size_t i = 0; i < this->vendedores.size(); i++) {
+        std::string nome = to_lower(this->vendedores[i]->getNome());
+        std::string cpf = to_lower(this->vendedores[i]->getCpf());
+        std::string email = to_lower(this->vendedores[i]->getEmail());
+        
+        // Buscar por substring no nome, CPF ou email
+        if (nome.find(termo_lower) != std::string::npos || 
+            cpf.find(termo_lower) != std::string::npos ||
+            email.find(termo_lower) != std::string::npos) {
+            resposta.push_back(this->vendedores[i]);
+        }
+    }
+    
+    return resposta;
+}
+
+void GerenciadorDeVendedores::adicionar(Vendedor* novo_vendedor) {
+    // Verificar se CPF já existe
+    for (size_t i = 0; i < this->vendedores.size(); i++) {
+        if (this->vendedores[i]->getCpf() == novo_vendedor->getCpf()) {
+            std::cerr << "Erro: Vendedor com CPF " << novo_vendedor->getCpf() 
+                      << " já existe!" << std::endl;
+            return;
+        }
+    }
+    
+    // Verificar se email já existe
+    for (size_t i = 0; i < this->vendedores.size(); i++) {
+        if (this->vendedores[i]->getEmail() == novo_vendedor->getEmail()) {
+            std::cerr << "Erro: Email " << novo_vendedor->getEmail() 
+                      << " já está em uso!" << std::endl;
+            return;
+        }
+    }
+    
+    this->vendedores.push_back(novo_vendedor);
+    std::cout << "Vendedor adicionado com sucesso: " << novo_vendedor->getNome() 
+              << " - Email: " << novo_vendedor->getEmail() << std::endl;
+}
+
+bool GerenciadorDeVendedores::remover(int indice) {
+    if (indice < 0 || indice >= (int)this->vendedores.size()) {
+        std::cerr << "Erro: Índice " << indice << " inválido!" << std::endl;
+        return false;
+    }
+    
+    std::string nome_removido = this->vendedores[indice]->getNome();
+    
+    // Deletar o objeto da memória
+    delete this->vendedores[indice];
+    
+    // Remover do vetor
+    this->vendedores.erase(this->vendedores.begin() + indice);
+    
+    std::cout << "Vendedor removido com sucesso! Nome: " << nome_removido << std::endl;
+    return true;
+}
+
+bool GerenciadorDeVendedores::remover_por_cpf(string cpf_procurado) {
+    for (size_t i = 0; i < this->vendedores.size(); i++) {
+        if (this->vendedores[i]->getCpf() == cpf_procurado) {
+            std::string nome_removido = this->vendedores[i]->getNome();
+            
+            // Encontrou, remover
+            delete this->vendedores[i];
+            this->vendedores.erase(this->vendedores.begin() + i);
+            
+            std::cout << "Vendedor removido com sucesso! CPF: " << cpf_procurado 
+                      << " - Nome: " << nome_removido << std::endl;
+            return true;
+        }
+    }
+    
+    std::cerr << "Erro: Vendedor com CPF '" << cpf_procurado << "' não encontrado!" << std::endl;
+    return false;
+}
+
+int GerenciadorDeVendedores::getTotalVendedor() {
+    return this->vendedores.size();
+}
+
+// MÉTODO DE AUTENTICAÇÃO (agora no gerenciador)
+Vendedor* GerenciadorDeVendedores::autenticar(string email, string senha) {
+    for (size_t i = 0; i < this->vendedores.size(); i++) {
+        if (this->vendedores[i]->getEmail() == email && 
+            this->vendedores[i]->getSenha() == senha) {
+            std::cout << "Autenticação bem-sucedida! Vendedor: " 
+                      << this->vendedores[i]->getNome() << std::endl;
+            return this->vendedores[i];
+        }
+    }
+    
+    std::cerr << "Falha na autenticação! Email ou senha incorretos." << std::endl;
+    return nullptr;
+}
+
+// VERIFICAR SE EMAIL ESTÁ DISPONÍVEL (agora no gerenciador)
+bool GerenciadorDeVendedores::verificarEmailDisponivel(string email) {
+    for (size_t i = 0; i < this->vendedores.size(); i++) {
+        if (this->vendedores[i]->getEmail() == email) {
+            return false; // Email já existe
+        }
+    }
+    return true; // Email disponível
+}

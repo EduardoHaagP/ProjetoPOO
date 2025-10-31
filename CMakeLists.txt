@@ -23,6 +23,10 @@ set(PROJECT_SOURCES
         clientes.cpp
         gerenciadores.h
         gerenciadores.cpp
+        venda.h
+        venda.cpp
+        vendedor.h
+        vendedor.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

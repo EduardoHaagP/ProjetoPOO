@@ -4,6 +4,7 @@
 #include <vector>
 #include "veiculos.h"
 #include "clientes.h"
+#include "vendedor.h"
 using namespace std;
 
 class Gerenciadores
@@ -36,7 +37,7 @@ class GerenciadorDeVeiculos: public Gerenciadores{
 class GerenciadorDeClientes: public Gerenciadores{
     private:
         // Implementação como Singleton também
-        GerenciadorDeClientes(const string &arquivo = "clientes.csv");
+        GerenciadorDeClientes(const string &arquivo = "Trabalho POO - Clientes.csv");
         GerenciadorDeClientes(const GerenciadorDeClientes&) = delete;
         GerenciadorDeClientes& operator=(const GerenciadorDeClientes&) = delete;
         std::vector<Clientes*> clientes;
@@ -53,4 +54,26 @@ class GerenciadorDeClientes: public Gerenciadores{
         int getTotalCliente();
 };
 
+class GerenciadorDeVendedores: public Gerenciadores{
+    private:
+        GerenciadorDeVendedores(const string &arquivo = "Trabalho POO - Vendedores.csv");
+        GerenciadorDeVendedores(const GerenciadorDeVendedores&) = delete;
+        GerenciadorDeVendedores& operator=(const GerenciadorDeVendedores&) = delete;
+        std::vector<Vendedor*> vendedores;
+    
+    public:
+        static GerenciadorDeVendedores& getInstance(const string& arquivo = "vendedores.csv");
+        void carregar_do_csv() override;
+        void salvar_no_csv() override;
+        vector<Vendedor*> listar();
+        vector<Vendedor*> buscar(string termo_busca);
+        void adicionar(Vendedor* novo_vendedor);
+        bool remover(int indice);
+        bool remover_por_cpf(string cpf_procurado);
+        int getTotalVendedor();
+        
+        // MÉTODOS DE AUTENTICAÇÃO (agora no gerenciador)
+        Vendedor* autenticar(string email, string senha);
+        bool verificarEmailDisponivel(string email);
+};
 #endif // GERENCIADORES_H
