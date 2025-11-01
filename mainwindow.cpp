@@ -7,12 +7,15 @@
 #include <QMessageBox>
 #include <QDebug>
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    
+
+    setWindowTitle("Drive Tech");
+    /*
     std::string csv_clientes_path = std::string(PROJECT_SOURCE_DIR) + "/clientes.csv";
     
     qDebug() << "=== TESTES DO SISTEMA DE CLIENTES ===";
@@ -179,9 +182,22 @@ MainWindow::MainWindow(QWidget *parent)
     QMessageBox::information(this, "Teste do Sistema de Clientes", resumo);
     
     qDebug() << "\n=== TODOS OS TESTES DE CLIENTES CONCLUÍDOS ===";
+    */
 }
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+// Tela inicial -> Tela Login
+void MainWindow::on_botLogin_clicked()
+{
+    telaLogin = new TelaLogin(this);
+
+    telaLogin->setWindowTitle("Login...");
+    telaLogin->show();
+    this->hide();
+}
+

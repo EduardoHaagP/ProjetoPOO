@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+// include para Tela Login
+#include "telalogin.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -15,7 +18,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+
+    void on_botLogin_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+    // declarando classe login
+    TelaLogin *telaLogin;
 };
 #endif // MAINWINDOW_H
