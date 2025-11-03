@@ -135,7 +135,7 @@
     <enum>QLineEdit::Normal</enum>
    </property>
    <property name="placeholderText">
-    <string>  Usuário :</string>
+    <string>  Email :</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="inpSenha">
@@ -756,19 +756,6 @@
    </property>
    <property name="wordWrap">
     <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="botVoltar_2">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>390</y>
-     <width>91</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Voltar</string>
    </property>
   </widget>
  </widget>

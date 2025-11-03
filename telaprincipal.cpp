@@ -7,6 +7,12 @@
 TelaPrincipal::TelaPrincipal(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::TelaPrincipal)
+
+    // ponteiros comecam como nulos para evitar varias copias
+    , telaCadastroCliente(nullptr)
+    , telaConsultaEstoque(nullptr)
+    , telaListagemVendas(nullptr)
+    , telaResgistroVendas(nullptr)
 {
     ui->setupUi(this);
 }
@@ -33,6 +39,24 @@ void TelaPrincipal::on_botCadastroCliente_clicked()
     telaCadastroCliente = new TelaCadastroCliente(this);
     telaCadastroCliente->setWindowTitle("Cadastro de Clientes");
     telaCadastroCliente->show();
+
+    // verifica se existe a tela
+    if (telaCadastroCliente == nullptr) {
+        // tela principal como pai
+        telaCadastroCliente = new TelaCadastroCliente(this);
+        telaCadastroCliente->setWindowTitle("Cadastro de Clientes");
+
+        // 2. Conecta um lambda para resetar o ponteiro quando a janela for fechada
+        // Isso impede que você tente usar um ponteiro para uma janela que já foi fechada
+        connect(telaCadastroCliente, &TelaCadastroCliente::finished,
+                this, [this](){
+                    this->telaCadastroCliente = nullptr;
+                });
+    }
+
+
+    telaCadastroCliente->show();            // mostra a tela
+    telaCadastroCliente->activateWindow();  // traz a tela para o topo
 }
 
 

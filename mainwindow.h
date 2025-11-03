@@ -3,8 +3,11 @@
 
 #include <QMainWindow>
 
-// include para Tela Login
-#include "telalogin.h"
+#include "telacadastrocliente.h"
+#include "telaconsultaestoque.h"
+#include "telalistagemvendas.h"
+#include "telaresgistrovendas.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,13 +22,31 @@ public:
     ~MainWindow();
 
 private slots:
+    // tela inicial botoes
+    void on_botEntrar_clicked();
 
-    void on_botLogin_clicked();
+    // tela login
+    void on_botOk_clicked();
+
+
+
+    //tela principal botoes
+    void on_botSair_clicked();
+    void on_botCadastroCliente_clicked();
+
+    void on_botVenda_clicked();
+
+    void on_botListaVendas_clicked();
+
+    void on_botEstoque_clicked();
 
 private:
     Ui::MainWindow *ui;
 
-    // declarando classe login
-    TelaLogin *telaLogin;
+    TelaCadastroCliente *telaCadastroCliente;
+    TelaConsultaEstoque *telaConsultaEstoque;
+    TelaListagemVendas *telaListagemVendas;
+    TelaResgistroVendas *telaResgistroVendas;
+
 };
 #endif // MAINWINDOW_H

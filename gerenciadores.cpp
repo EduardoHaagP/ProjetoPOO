@@ -804,7 +804,7 @@ void GereniciadorDeVendas::carregar_do_csv() {
         }
 
         // ATUALIZADO: Agora espera 13 campos (com Data)
-        if (dados.size() >= 13) {
+        if (dados.size() >= 14) {
             try {
                 GerenciadorDeClientes &gerenciadorClientes = GerenciadorDeClientes::getInstance();
                 GerenciadorDeVendedores &gerenciadorVendedores = GerenciadorDeVendedores::getInstance();

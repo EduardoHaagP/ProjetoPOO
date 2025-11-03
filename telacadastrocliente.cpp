@@ -17,11 +17,6 @@ TelaCadastroCliente::~TelaCadastroCliente()
 
 void TelaCadastroCliente::on_botVoltar_clicked()
 {
-    TelaPrincipal *telaPrincipal = qobject_cast<TelaPrincipal*>(parent());
-    // verifica
-    if (telaPrincipal) {
-        telaPrincipal->show();
-    }
     this->close();
 }
 

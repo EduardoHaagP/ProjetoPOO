@@ -35,8 +35,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(ProjetoPOO
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        telalogin.h telalogin.cpp telalogin.ui
-        telaprincipal.h telaprincipal.cpp telaprincipal.ui
+
+
         telacadastrocliente.h telacadastrocliente.cpp telacadastrocliente.ui
         telalistagemvendas.h telalistagemvendas.cpp telalistagemvendas.ui
         telaconsultaestoque.h telaconsultaestoque.cpp telaconsultaestoque.ui

@@ -8,6 +8,19 @@
 #include "vendas.h"
 using namespace std;
 
+// adiciona a definição para pegar o caminho do CMake
+// PROJECT_SOURCE_DIR é definido em CMakeLists.txt
+#ifndef PROJECT_SOURCE_DIR
+#define PROJECT_SOURCE_DIR "." // fallback caso não seja definido
+#endif
+
+// func auxiliar pra construir o caminho completo
+inline std::string getCaminhoDoProjeto(const std::string& relativePath) {
+    return std::string(PROJECT_SOURCE_DIR) + "/" + relativePath;
+}
+
+
+
 class Gerenciadores
 {
 protected:
@@ -21,13 +34,13 @@ public:
 class GerenciadorDeVeiculos : public Gerenciadores
 {
 private:
-    GerenciadorDeVeiculos(const string &arquivo = "Trabalho POO - Carros.csv");
+    GerenciadorDeVeiculos(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Carros.csv"));
     GerenciadorDeVeiculos(const GerenciadorDeVeiculos &) = delete;
     GerenciadorDeVeiculos &operator=(const GerenciadorDeVeiculos &) = delete;
     std::vector<Veiculos *> veiculos;
 
 public:
-    static GerenciadorDeVeiculos &getInstance(const string &arquivo = "Trabalho POO - Carros.csv");
+    static GerenciadorDeVeiculos &getInstance(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Carros.csv"));
     void carregar_do_csv() override;
     void salvar_no_csv() override;
     vector<Veiculos *> listar();
@@ -41,20 +54,19 @@ public:
 class GerenciadorDeClientes : public Gerenciadores
 {
 private:
-    // Implementação como Singleton também
-    GerenciadorDeClientes(const string &arquivo = "Trabalho POO - Clientes.csv");
+    GerenciadorDeClientes(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Clientes.csv"));
     GerenciadorDeClientes(const GerenciadorDeClientes &) = delete;
     GerenciadorDeClientes &operator=(const GerenciadorDeClientes &) = delete;
     std::vector<Clientes *> clientes;
 
 public:
-    static GerenciadorDeClientes &getInstance(const string &arquivo = "Trabalho POO - Clientes.csv");
+    static GerenciadorDeClientes &getInstance(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Clientes.csv"));
     void carregar_do_csv() override;
     void salvar_no_csv() override;
     vector<Clientes *> listar();
     vector<Clientes *> buscar(string termo_busca);
     Clientes* buscarPorCpf(string cpf_busca);
-    void adicionar(Clientes *novo_cliente); // CORRIGIDO: recebe ponteiro
+    void adicionar(Clientes *novo_cliente); // recebe ponteiro
     bool remover(int indice);
     bool remover_por_cpf(string cpf_procurado);
     int getTotalCliente();
@@ -63,13 +75,13 @@ public:
 class GerenciadorDeVendedores : public Gerenciadores
 {
 private:
-    GerenciadorDeVendedores(const string &arquivo = "Trabalho POO - Vendedores.csv");
+    GerenciadorDeVendedores(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Vendedores.csv"));
     GerenciadorDeVendedores(const GerenciadorDeVendedores &) = delete;
     GerenciadorDeVendedores &operator=(const GerenciadorDeVendedores &) = delete;
     std::vector<Vendedor *> vendedores;
 
 public:
-    static GerenciadorDeVendedores &getInstance(const string &arquivo = "Trabalho POO - Vendedores.csv");
+    static GerenciadorDeVendedores &getInstance(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Vendedores.csv"));
     void carregar_do_csv() override;
     void salvar_no_csv() override;
     vector<Vendedor *> listar();
@@ -80,7 +92,6 @@ public:
     int getTotalVendedor();
     Vendedor* buscarPorCpf(string cpf_busca);
 
-    // MÉTODOS DE AUTENTICAÇÃO (agora no gerenciador)
     bool autenticar(string email, string senha, Vendedor** vendedor_autenticado);
     bool verificarEmailDisponivel(string email);
 };
@@ -88,13 +99,13 @@ public:
 class GereniciadorDeVendas : public Gerenciadores
 {
 private:
-    GereniciadorDeVendas(const string &arquivo = "Trabalho POO - Vendas.csv");
+    GereniciadorDeVendas(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Vendas.csv"));
     GereniciadorDeVendas(const GereniciadorDeVendas &) = delete;
     GereniciadorDeVendas &operator=(const GereniciadorDeVendas &) = delete;
     std::vector<Vendas *> vendas;
 
 public:
-    static GereniciadorDeVendas &getInstance(const string &arquivo = "Trabalho POO - Vendas.csv");
+    static GereniciadorDeVendas &getInstance(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Vendas.csv"));
     void carregar_do_csv() override;
     void salvar_no_csv() override;
     vector<Vendas *> listar();
