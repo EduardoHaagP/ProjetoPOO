@@ -3,18 +3,17 @@
 #include <stdexcept>
 #include <sstream>
 #include <iomanip>
-#include <iostream>
-#include <algorithm> // ADICIONAR ESTE INCLUDE
-#include <cctype>    // ADICIONAR PARA ::tolower
+#include <QDebug>
+#include <algorithm>
+#include <cctype>
 #include <cmath>
+#include <iostream>
 
-// Definição do construtor
 GerenciadorDeVeiculos::GerenciadorDeVeiculos(const string &arquivo)
 {
     this->nome_arquivo = arquivo;
 }
 
-// Definição do método estático getInstance
 GerenciadorDeVeiculos &GerenciadorDeVeiculos::getInstance(const string &arquivo)
 {
     static GerenciadorDeVeiculos instancia(arquivo);
@@ -45,14 +44,13 @@ void GerenciadorDeVeiculos::carregar_do_csv()
 
     if (!arquivo.is_open())
     {
-        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        qWarning() << "Erro: não foi possível abrir " << this->nome_arquivo.c_str();
         return;
     }
 
     std::string linha;
     int linha_num = 0;
 
-    // Pular cabeçalho
     if (std::getline(arquivo, linha))
     {
         linha_num++;
@@ -62,7 +60,6 @@ void GerenciadorDeVeiculos::carregar_do_csv()
     {
         linha_num++;
 
-        // Ignorar linhas vazias
         if (trim(linha).empty())
         {
             continue;
@@ -77,7 +74,6 @@ void GerenciadorDeVeiculos::carregar_do_csv()
             dados.push_back(trim(campo));
         }
 
-        // Validar dados - agora com tratamento adequado
         if (dados.size() >= 5)
         {
             try
@@ -97,43 +93,43 @@ void GerenciadorDeVeiculos::carregar_do_csv()
                 }
                 else
                 {
-                    std::cerr << "Tipo de veículo desconhecido: " << tipo
-                              << " na linha " << linha_num << std::endl;
+                    qWarning() << "Tipo de veículo desconhecido: " << tipo.c_str()
+                               << " na linha " << linha_num;
                     continue;
                 }
 
                 if (novoVeiculo != nullptr)
                 {
                     veiculos.push_back(novoVeiculo);
-                    std::cout << "Veículo carregado: " << tipo << ", "
-                              << dados[1] << ", " << dados[2] << std::endl;
+                    qDebug() << "Veículo carregado: " << tipo.c_str() << ", "
+                             << dados[1].c_str() << ", " << dados[2].c_str();
                 }
             }
             catch (const std::invalid_argument &e)
             {
-                std::cerr << "Erro ao converter dados numéricos na linha "
-                          << linha_num << ": " << e.what() << std::endl;
+                qWarning() << "Erro ao converter dados numéricos na linha "
+                           << linha_num << ": " << e.what();
             }
             catch (const std::out_of_range &e)
             {
-                std::cerr << "Número fora do intervalo válido na linha "
-                          << linha_num << ": " << e.what() << std::endl;
+                qWarning() << "Número fora do intervalo válido na linha "
+                           << linha_num << ": " << e.what();
             }
             catch (const std::exception &e)
             {
-                std::cerr << "Erro ao criar veículo na linha "
-                          << linha_num << ": " << e.what() << std::endl;
+                qWarning() << "Erro ao criar veículo na linha "
+                           << linha_num << ": " << e.what();
             }
         }
         else
         {
-            std::cerr << "Linha " << linha_num
-                      << " com número incorreto de campos: " << dados.size() << std::endl;
+            qWarning() << "Linha " << linha_num
+                       << " com número incorreto de campos: " << dados.size();
         }
     }
     arquivo.close();
-    std::cout << "Carregamento concluído. Total de veículos: "
-              << veiculos.size() << std::endl;
+    qDebug() << "Carregamento concluído. Total de veículos: "
+             << veiculos.size();
 }
 
 void GerenciadorDeVeiculos::salvar_no_csv()
@@ -142,17 +138,14 @@ void GerenciadorDeVeiculos::salvar_no_csv()
 
     if (!arquivo.is_open())
     {
-        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        qWarning() << "Erro: não foi possível abrir " << this->nome_arquivo.c_str();
         return;
     }
 
-    // Escreve cabeçalho
     arquivo << "Tipo,Modelo,Ano,Valor (R$),Cor\n";
 
-    // Escreve cada veículo
     for (const auto &veiculo : this->veiculos)
     {
-        // CORREÇÃO: Usar "Moto" e "Carro" em vez de "moto" e "carro"
         std::string tipo = veiculo->motoOuCarro();
         if (tipo == "moto")
             tipo = "Moto";
@@ -167,8 +160,8 @@ void GerenciadorDeVeiculos::salvar_no_csv()
     }
 
     arquivo.close();
-    std::cout << "Arquivo salvo com sucesso: " << this->nome_arquivo
-              << ". Total de veículos: " << veiculos.size() << std::endl;
+    qDebug() << "Arquivo salvo com sucesso: " << this->nome_arquivo.c_str()
+             << ". Total de veículos: " << veiculos.size();
 }
 
 vector<Veiculos *> GerenciadorDeVeiculos::listar()
@@ -180,7 +173,6 @@ vector<Veiculos *> GerenciadorDeVeiculos::buscar(string termo_busca)
 {
     vector<Veiculos *> resposta;
 
-    // Função helper para converter para minúsculas manualmente
     auto to_lower = [](const std::string &str)
     {
         std::string result = str;
@@ -198,7 +190,6 @@ vector<Veiculos *> GerenciadorDeVeiculos::buscar(string termo_busca)
         std::string modelo = this->veiculos[i]->getModelo();
         std::string modelo_lower = to_lower(modelo);
 
-        // Buscar por substring
         if (modelo_lower.find(termo_lower) != std::string::npos)
         {
             resposta.push_back(this->veiculos[i]);
@@ -208,26 +199,21 @@ vector<Veiculos *> GerenciadorDeVeiculos::buscar(string termo_busca)
     return resposta;
 }
 
-// NOVO: Remover veículo por índice
 bool GerenciadorDeVeiculos::remover(int indice)
 {
     if (indice < 0 || indice >= (int)this->veiculos.size())
     {
-        std::cerr << "Erro: Índice " << indice << " inválido!" << std::endl;
+        qWarning() << "Erro: Índice " << indice << " inválido!";
         return false;
     }
 
-    // Deletar o objeto da memória
     delete this->veiculos[indice];
-
-    // Remover do vetor
     this->veiculos.erase(this->veiculos.begin() + indice);
 
-    std::cout << "Veículo removido com sucesso! Índice: " << indice << std::endl;
+    qDebug() << "Veículo removido com sucesso! Índice: " << indice;
     return true;
 }
 
-// NOVO: Remover veículo por modelo (remove o primeiro encontrado)
 bool GerenciadorDeVeiculos::remover_por_modelo(string modelo)
 {
     auto to_lower = [](const std::string &str)
@@ -248,20 +234,18 @@ bool GerenciadorDeVeiculos::remover_por_modelo(string modelo)
 
         if (veiculo_modelo == modelo_lower)
         {
-            // Encontrou, remover
             delete this->veiculos[i];
             this->veiculos.erase(this->veiculos.begin() + i);
 
-            std::cout << "Veículo removido com sucesso! Modelo: " << modelo << std::endl;
+            qDebug() << "Veículo removido com sucesso! Modelo: " << modelo.c_str();
             return true;
         }
     }
 
-    std::cerr << "Erro: Veículo com modelo '" << modelo << "' não encontrado!" << std::endl;
+    qWarning() << "Erro: Veículo com modelo '" << modelo.c_str() << "' não encontrado!";
     return false;
 }
 
-// NOVO: Obter total de veículos
 int GerenciadorDeVeiculos::getTotalVeiculos()
 {
     return this->veiculos.size();
@@ -272,7 +256,6 @@ GerenciadorDeClientes::GerenciadorDeClientes(const string &arquivo)
     this->nome_arquivo = arquivo;
 }
 
-// Método Singleton
 GerenciadorDeClientes &GerenciadorDeClientes::getInstance(const string &arquivo)
 {
     static GerenciadorDeClientes instancia(arquivo);
@@ -285,14 +268,13 @@ void GerenciadorDeClientes::carregar_do_csv()
 
     if (!arquivo.is_open())
     {
-        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        qWarning() << "Erro: não foi possível abrir " << this->nome_arquivo.c_str();
         return;
     }
 
     std::string linha;
     int linha_num = 0;
 
-    // Pular cabeçalho
     if (std::getline(arquivo, linha))
     {
         linha_num++;
@@ -302,7 +284,6 @@ void GerenciadorDeClientes::carregar_do_csv()
     {
         linha_num++;
 
-        // Ignorar linhas vazias
         if (linha.empty() || linha.find_first_not_of(" \t\r\n") == std::string::npos)
         {
             continue;
@@ -314,36 +295,32 @@ void GerenciadorDeClientes::carregar_do_csv()
 
         while (std::getline(ss, campo, ','))
         {
-            // Remover espaços em branco
             campo.erase(0, campo.find_first_not_of(" \t\r\n"));
             campo.erase(campo.find_last_not_of(" \t\r\n") + 1);
             dados.push_back(campo);
         }
 
-        // Validar dados (esperamos 4 campos: Nome, CPF, Telefone, Endereço)
         if (dados.size() >= 4)
         {
             try
             {
                 Clientes *novoCliente = new Clientes(dados[0], dados[1], dados[2], dados[3]);
+                this->clientes.push_back(novoCliente);
 
-                // CORREÇÃO: push_back do PONTEIRO, não do objeto
-                this->clientes.push_back(novoCliente); // SEM asterisco aqui!
-
-                std::cout << "Cliente carregado: " << dados[0] << ", CPF: " << dados[1] << std::endl;
+                qDebug() << "Cliente carregado: " << dados[0].c_str() << ", CPF: " << dados[1].c_str();
             }
             catch (const std::exception &e)
             {
-                std::cerr << "Erro ao criar cliente na linha " << linha_num << ": " << e.what() << std::endl;
+                qWarning() << "Erro ao criar cliente na linha " << linha_num << ": " << e.what();
             }
         }
         else
         {
-            std::cerr << "Linha " << linha_num << " com número incorreto de campos: " << dados.size() << std::endl;
+            qWarning() << "Linha " << linha_num << " com número incorreto de campos: " << dados.size();
         }
     }
     arquivo.close();
-    std::cout << "Carregamento de clientes concluído. Total: " << clientes.size() << " clientes" << std::endl;
+    qDebug() << "Carregamento de clientes concluído. Total: " << clientes.size() << " clientes";
 }
 
 void GerenciadorDeClientes::salvar_no_csv()
@@ -352,14 +329,12 @@ void GerenciadorDeClientes::salvar_no_csv()
 
     if (!arquivo.is_open())
     {
-        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        qWarning() << "Erro: não foi possível abrir " << this->nome_arquivo.c_str();
         return;
     }
 
-    // Escreve cabeçalho
     arquivo << "Nome,Cpf,Telefone,Endereco\n";
 
-    // Escreve cada cliente
     for (size_t i = 0; i < this->clientes.size(); i++)
     {
         arquivo << clientes[i]->getNome() << ","
@@ -369,8 +344,8 @@ void GerenciadorDeClientes::salvar_no_csv()
     }
 
     arquivo.close();
-    std::cout << "Arquivo salvo com sucesso: " << this->nome_arquivo
-              << ". Total de clientes: " << clientes.size() << std::endl;
+    qDebug() << "Arquivo salvo com sucesso: " << this->nome_arquivo.c_str()
+             << ". Total de clientes: " << clientes.size();
 }
 
 vector<Clientes *> GerenciadorDeClientes::listar()
@@ -382,7 +357,6 @@ vector<Clientes *> GerenciadorDeClientes::buscar(string termo_busca)
 {
     vector<Clientes *> resposta;
 
-    // Função helper para converter para minúsculas
     auto to_lower = [](const std::string &str)
     {
         std::string result = str;
@@ -400,7 +374,6 @@ vector<Clientes *> GerenciadorDeClientes::buscar(string termo_busca)
         std::string nome = to_lower(this->clientes[i]->getNome());
         std::string cpf = to_lower(this->clientes[i]->getCpf());
 
-        // Buscar por substring no nome ou CPF
         if (nome.find(termo_lower) != std::string::npos ||
             cpf.find(termo_lower) != std::string::npos)
         {
@@ -413,39 +386,33 @@ vector<Clientes *> GerenciadorDeClientes::buscar(string termo_busca)
 
 void GerenciadorDeClientes::adicionar(Clientes *novo_cliente)
 {
-    // Verificar se CPF já existe
     for (size_t i = 0; i < this->clientes.size(); i++)
     {
         if (this->clientes[i]->getCpf() == novo_cliente->getCpf())
         {
-            std::cerr << "Erro: Cliente com CPF " << novo_cliente->getCpf()
-                      << " já existe!" << std::endl;
+            qWarning() << "Erro: Cliente com CPF " << novo_cliente->getCpf().c_str()
+            << " já existe!";
             return;
         }
     }
 
-    // CORREÇÃO: push_back do PONTEIRO
-    this->clientes.push_back(novo_cliente); // SEM asterisco aqui!
-    std::cout << "Cliente adicionado com sucesso: " << novo_cliente->getNome() << std::endl;
+    this->clientes.push_back(novo_cliente);
+    qDebug() << "Cliente adicionado com sucesso: " << novo_cliente->getNome().c_str();
 }
 
 bool GerenciadorDeClientes::remover(int indice)
 {
     if (indice < 0 || indice >= (int)this->clientes.size())
     {
-        std::cerr << "Erro: Índice " << indice << " inválido!" << std::endl;
+        qWarning() << "Erro: Índice " << indice << " inválido!";
         return false;
     }
 
     std::string nome_removido = this->clientes[indice]->getNome();
-
-    // Deletar o objeto da memória
     delete this->clientes[indice];
-
-    // Remover do vetor
     this->clientes.erase(this->clientes.begin() + indice);
 
-    std::cout << "Cliente removido com sucesso! Nome: " << nome_removido << std::endl;
+    qDebug() << "Cliente removido com sucesso! Nome: " << nome_removido.c_str();
     return true;
 }
 
@@ -456,18 +423,16 @@ bool GerenciadorDeClientes::remover_por_cpf(string cpf_procurado)
         if (this->clientes[i]->getCpf() == cpf_procurado)
         {
             std::string nome_removido = this->clientes[i]->getNome();
-
-            // Encontrou, remover
             delete this->clientes[i];
             this->clientes.erase(this->clientes.begin() + i);
 
-            std::cout << "Cliente removido com sucesso! CPF: " << cpf_procurado
-                      << " - Nome: " << nome_removido << std::endl;
+            qDebug() << "Cliente removido com sucesso! CPF: " << cpf_procurado.c_str()
+                     << " - Nome: " << nome_removido.c_str();
             return true;
         }
     }
 
-    std::cerr << "Erro: Cliente com CPF '" << cpf_procurado << "' não encontrado!" << std::endl;
+    qWarning() << "Erro: Cliente com CPF '" << cpf_procurado.c_str() << "' não encontrado!";
     return false;
 }
 
@@ -477,10 +442,10 @@ Clientes *GerenciadorDeClientes::buscarPorCpf(string cpf_busca)
     {
         if (this->clientes[i]->getCpf() == cpf_busca)
         {
-            return this->clientes[i]; // Retorna o cliente encontrado
+            return this->clientes[i];
         }
     }
-    return nullptr; // Retorna nullptr se não encontrar
+    return nullptr;
 }
 int GerenciadorDeClientes::getTotalCliente()
 {
@@ -497,22 +462,19 @@ GerenciadorDeVendedores::GerenciadorDeVendedores(const string &arquivo)
     this->nome_arquivo = arquivo;
 }
 
-// Método Singleton
-
 void GerenciadorDeVendedores::carregar_do_csv()
 {
     std::ifstream arquivo(this->nome_arquivo);
 
     if (!arquivo.is_open())
     {
-        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        qWarning() << "Erro: não foi possível abrir " << this->nome_arquivo.c_str();
         return;
     }
 
     std::string linha;
     int linha_num = 0;
 
-    // Pular cabeçalho
     if (std::getline(arquivo, linha))
     {
         linha_num++;
@@ -522,7 +484,6 @@ void GerenciadorDeVendedores::carregar_do_csv()
     {
         linha_num++;
 
-        // Ignorar linhas vazias
         if (linha.empty() || linha.find_first_not_of(" \t\r\n") == std::string::npos)
         {
             continue;
@@ -534,36 +495,33 @@ void GerenciadorDeVendedores::carregar_do_csv()
 
         while (std::getline(ss, campo, ','))
         {
-            // Remover espaços em branco
             campo.erase(0, campo.find_first_not_of(" \t\r\n"));
             campo.erase(campo.find_last_not_of(" \t\r\n") + 1);
             dados.push_back(campo);
         }
 
-        // Validar dados (esperamos 6 campos: Nome, CPF, Telefone, Endereço, Email, Senha)
         if (dados.size() >= 6)
         {
             try
             {
                 Vendedor *novoVendedor = new Vendedor(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5]);
-
                 this->vendedores.push_back(novoVendedor);
 
-                std::cout << "Vendedor carregado: " << dados[0] << ", CPF: " << dados[1]
-                          << ", Email: " << dados[4] << std::endl;
+                qDebug() << "Vendedor carregado: " << dados[0].c_str() << ", CPF: " << dados[1].c_str()
+                         << ", Email: " << dados[4].c_str();
             }
             catch (const std::exception &e)
             {
-                std::cerr << "Erro ao criar vendedor na linha " << linha_num << ": " << e.what() << std::endl;
+                qWarning() << "Erro ao criar vendedor na linha " << linha_num << ": " << e.what();
             }
         }
         else
         {
-            std::cerr << "Linha " << linha_num << " com número incorreto de campos: " << dados.size() << std::endl;
+            qWarning() << "Linha " << linha_num << " com número incorreto de campos: " << dados.size();
         }
     }
     arquivo.close();
-    std::cout << "Carregamento de vendedores concluído. Total: " << vendedores.size() << " vendedores" << std::endl;
+    qDebug() << "Carregamento de vendedores concluído. Total: " << vendedores.size() << " vendedores";
 }
 
 void GerenciadorDeVendedores::salvar_no_csv()
@@ -572,14 +530,12 @@ void GerenciadorDeVendedores::salvar_no_csv()
 
     if (!arquivo.is_open())
     {
-        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        qWarning() << "Erro: não foi possível abrir " << this->nome_arquivo.c_str();
         return;
     }
 
-    // Escreve cabeçalho
     arquivo << "Nome,Cpf,Telefone,Endereco,Email,Senha\n";
 
-    // Escreve cada vendedor
     for (size_t i = 0; i < this->vendedores.size(); i++)
     {
         arquivo << vendedores[i]->getNome() << ","
@@ -591,8 +547,8 @@ void GerenciadorDeVendedores::salvar_no_csv()
     }
 
     arquivo.close();
-    std::cout << "Arquivo salvo com sucesso: " << this->nome_arquivo
-              << ". Total de vendedores: " << vendedores.size() << std::endl;
+    qDebug() << "Arquivo salvo com sucesso: " << this->nome_arquivo.c_str()
+             << ". Total de vendedores: " << vendedores.size();
 }
 
 vector<Vendedor *> GerenciadorDeVendedores::listar()
@@ -604,7 +560,6 @@ vector<Vendedor *> GerenciadorDeVendedores::buscar(string termo_busca)
 {
     vector<Vendedor *> resposta;
 
-    // Função helper para converter para minúsculas
     auto to_lower = [](const std::string &str)
     {
         std::string result = str;
@@ -623,7 +578,6 @@ vector<Vendedor *> GerenciadorDeVendedores::buscar(string termo_busca)
         std::string cpf = to_lower(this->vendedores[i]->getCpf());
         std::string email = to_lower(this->vendedores[i]->getEmail());
 
-        // Buscar por substring no nome, CPF ou email
         if (nome.find(termo_lower) != std::string::npos ||
             cpf.find(termo_lower) != std::string::npos ||
             email.find(termo_lower) != std::string::npos)
@@ -637,50 +591,44 @@ vector<Vendedor *> GerenciadorDeVendedores::buscar(string termo_busca)
 
 void GerenciadorDeVendedores::adicionar(Vendedor *novo_vendedor)
 {
-    // Verificar se CPF já existe
     for (size_t i = 0; i < this->vendedores.size(); i++)
     {
         if (this->vendedores[i]->getCpf() == novo_vendedor->getCpf())
         {
-            std::cerr << "Erro: Vendedor com CPF " << novo_vendedor->getCpf()
-                      << " já existe!" << std::endl;
+            qWarning() << "Erro: Vendedor com CPF " << novo_vendedor->getCpf().c_str()
+            << " já existe!";
             return;
         }
     }
 
-    // Verificar se email já existe
     for (size_t i = 0; i < this->vendedores.size(); i++)
     {
         if (this->vendedores[i]->getEmail() == novo_vendedor->getEmail())
         {
-            std::cerr << "Erro: Email " << novo_vendedor->getEmail()
-                      << " já está em uso!" << std::endl;
+            qWarning() << "Erro: Email " << novo_vendedor->getEmail().c_str()
+            << " já está em uso!";
             return;
         }
     }
 
     this->vendedores.push_back(novo_vendedor);
-    std::cout << "Vendedor adicionado com sucesso: " << novo_vendedor->getNome()
-              << " - Email: " << novo_vendedor->getEmail() << std::endl;
+    qDebug() << "Vendedor adicionado com sucesso: " << novo_vendedor->getNome().c_str()
+             << " - Email: " << novo_vendedor->getEmail().c_str();
 }
 
 bool GerenciadorDeVendedores::remover(int indice)
 {
     if (indice < 0 || indice >= (int)this->vendedores.size())
     {
-        std::cerr << "Erro: Índice " << indice << " inválido!" << std::endl;
+        qWarning() << "Erro: Índice " << indice << " inválido!";
         return false;
     }
 
     std::string nome_removido = this->vendedores[indice]->getNome();
-
-    // Deletar o objeto da memória
     delete this->vendedores[indice];
-
-    // Remover do vetor
     this->vendedores.erase(this->vendedores.begin() + indice);
 
-    std::cout << "Vendedor removido com sucesso! Nome: " << nome_removido << std::endl;
+    qDebug() << "Vendedor removido com sucesso! Nome: " << nome_removido.c_str();
     return true;
 }
 
@@ -691,18 +639,16 @@ bool GerenciadorDeVendedores::remover_por_cpf(string cpf_procurado)
         if (this->vendedores[i]->getCpf() == cpf_procurado)
         {
             std::string nome_removido = this->vendedores[i]->getNome();
-
-            // Encontrou, remover
             delete this->vendedores[i];
             this->vendedores.erase(this->vendedores.begin() + i);
 
-            std::cout << "Vendedor removido com sucesso! CPF: " << cpf_procurado
-                      << " - Nome: " << nome_removido << std::endl;
+            qDebug() << "Vendedor removido com sucesso! CPF: " << cpf_procurado.c_str()
+                     << " - Nome: " << nome_removido.c_str();
             return true;
         }
     }
 
-    std::cerr << "Erro: Vendedor com CPF '" << cpf_procurado << "' não encontrado!" << std::endl;
+    qWarning() << "Erro: Vendedor com CPF '" << cpf_procurado.c_str() << "' não encontrado!";
     return false;
 }
 
@@ -711,7 +657,6 @@ int GerenciadorDeVendedores::getTotalVendedor()
     return this->vendedores.size();
 }
 
-// MÉTODO DE AUTENTICAÇÃO (agora no gerenciador)
 bool GerenciadorDeVendedores::autenticar(string email, string senha, Vendedor **vendedor_autenticado)
 {
     for (size_t i = 0; i < this->vendedores.size(); i++)
@@ -719,18 +664,15 @@ bool GerenciadorDeVendedores::autenticar(string email, string senha, Vendedor **
         if (this->vendedores[i]->getEmail() == email &&
             this->vendedores[i]->getSenha() == senha)
         {
-
-            // Autenticação bem-sucedida
-            *vendedor_autenticado = this->vendedores[i]; // Atribui o vendedor encontrado
-            std::cout << "Autenticação bem-sucedida! Vendedor: "
-                      << this->vendedores[i]->getNome() << std::endl;
+            *vendedor_autenticado = this->vendedores[i];
+            qDebug() << "Autenticação bem-sucedida! Vendedor: "
+                     << this->vendedores[i]->getNome().c_str();
             return true;
         }
     }
 
-    // Autenticação falhou
-    *vendedor_autenticado = nullptr; // Garante que o ponteiro seja nulo
-    std::cerr << "Falha na autenticação! Email ou senha incorretos." << std::endl;
+    *vendedor_autenticado = nullptr;
+    qWarning() << "Falha na autenticação! Email ou senha incorretos.";
     return false;
 }
 
@@ -740,30 +682,29 @@ Vendedor *GerenciadorDeVendedores::buscarPorCpf(string cpf_busca)
     {
         if (this->vendedores[i]->getCpf() == cpf_busca)
         {
-            return this->vendedores[i]; // Retorna o vendedor encontrado
+            return this->vendedores[i];
         }
     }
-    return nullptr; // Retorna nullptr se não encontrar
+    return nullptr;
 }
 
-// VERIFICAR SE EMAIL ESTÁ DISPONÍVEL (agora no gerenciador)
 bool GerenciadorDeVendedores::verificarEmailDisponivel(string email)
 {
     for (size_t i = 0; i < this->vendedores.size(); i++)
     {
         if (this->vendedores[i]->getEmail() == email)
         {
-            return false; // Email já existe
+            return false;
         }
     }
-    return true; // Email disponível
+    return true;
 }
 
 GereniciadorDeVendas::GereniciadorDeVendas(const string &arquivo)
 {
     this->nome_arquivo = arquivo;
 }
-// Método Singleton
+
 GereniciadorDeVendas &GereniciadorDeVendas::getInstance(const string &arquivo)
 {
     static GereniciadorDeVendas instancia(arquivo);
@@ -774,14 +715,13 @@ void GereniciadorDeVendas::carregar_do_csv() {
     std::ifstream arquivo(this->nome_arquivo);
 
     if (!arquivo.is_open()) {
-        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        qWarning() << "Erro: não foi possível abrir " << this->nome_arquivo.c_str();
         return;
     }
 
     std::string linha;
     int linha_num = 0;
 
-    // Pular cabeçalho
     if (std::getline(arquivo, linha)) {
         linha_num++;
     }
@@ -803,46 +743,43 @@ void GereniciadorDeVendas::carregar_do_csv() {
             dados.push_back(campo);
         }
 
-        // ATUALIZADO: Agora espera 13 campos (com Data)
         if (dados.size() >= 14) {
             try {
                 GerenciadorDeClientes &gerenciadorClientes = GerenciadorDeClientes::getInstance();
                 GerenciadorDeVendedores &gerenciadorVendedores = GerenciadorDeVendedores::getInstance();
-                
-                Clientes* Cliente_venda = gerenciadorClientes.buscarPorCpf(dados[9]); // CPF Cliente
-                Vendedor* Vendedor_venda = gerenciadorVendedores.buscarPorCpf(dados[2]); // CPF Vendedor
+
+                Clientes* Cliente_venda = gerenciadorClientes.buscarPorCpf(dados[9]);
+                Vendedor* Vendedor_venda = gerenciadorVendedores.buscarPorCpf(dados[2]);
                 PoliticaDesconto* desconto_venda = FabricaPoliticasDesconto::criarPolitica(dados[10]);
-                
+
                 float valor_final = std::stof(dados[5]);
                 float valor_entrada = std::stof(dados[6]);
                 string forma_de_pagamento = dados[11];
                 string status_vendas = dados[12];
-                
-                // NOVO: Carregar data usando DataUtils
+
                 Data data_venda = DataUtils::fromString(dados[13]);
-                
+
                 Veiculos* Veiculo_venda = nullptr;
                 if (dados[0] == "Moto") {
                     Veiculo_venda = new Moto(dados[3], std::stoi(dados[4]), valor_final, dados[7]);
                 } else if (dados[0] == "Carro") {
                     Veiculo_venda = new Carro(dados[3], std::stoi(dados[4]), valor_final, dados[7]);
                 }
-                
-                // NOVO: Passar data para o construtor
-                Vendas *nova_Venda = new Vendas(Vendedor_venda, Cliente_venda, Veiculo_venda, 
-                                               valor_final, desconto_venda, valor_entrada, 
-                                               forma_de_pagamento, status_vendas, data_venda);
+
+                Vendas *nova_Venda = new Vendas(Vendedor_venda, Cliente_venda, Veiculo_venda,
+                                                valor_final, desconto_venda, valor_entrada,
+                                                forma_de_pagamento, status_vendas, data_venda);
                 this->vendas.push_back(nova_Venda);
-                
+
             } catch (const std::exception &e) {
-                std::cerr << "Erro ao criar venda na linha " << linha_num << ": " << e.what() << std::endl;
+                qWarning() << "Erro ao criar venda na linha " << linha_num << ": " << e.what();
             }
         } else {
-            std::cerr << "Linha " << linha_num << " com número incorreto de campos: " << dados.size() << std::endl;
+            qWarning() << "Linha " << linha_num << " com número incorreto de campos: " << dados.size();
         }
     }
     arquivo.close();
-    std::cout << "Carregamento de vendas concluído. Total: " << vendas.size() << " vendas" << std::endl;
+    qDebug() << "Carregamento de vendas concluído. Total: " << vendas.size() << " vendas";
 }
 
 void GereniciadorDeVendas::salvar_no_csv()
@@ -850,14 +787,12 @@ void GereniciadorDeVendas::salvar_no_csv()
     std::ofstream arquivo(this->nome_arquivo);
     if (!arquivo.is_open())
     {
-        std::cerr << "Erro: não foi possível abrir " << this->nome_arquivo << std::endl;
+        qWarning() << "Erro: não foi possível abrir " << this->nome_arquivo.c_str();
         return;
     }
 
-    // Escreve cabeçalho
     arquivo << "Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,CPF Cliente,Politica Desconto,Forma Pagamento,Status Venda\n";
 
-    // Escreve cada venda
     for (const auto &venda : this->vendas)
     {
         arquivo << venda->getVeiculo()->motoOuCarro() << ","
@@ -876,7 +811,7 @@ void GereniciadorDeVendas::salvar_no_csv()
     }
 
     arquivo.close();
-    std::cout << "Vendas salvas com sucesso: " << this->nome_arquivo << std::endl;
+    qDebug() << "Vendas salvas com sucesso: " << this->nome_arquivo.c_str();
 }
 
 vector<Vendas *> GereniciadorDeVendas::listar()
@@ -892,31 +827,29 @@ void GereniciadorDeVendas::adicionar(Vendas *nova_venda)
 bool GereniciadorDeVendas::verificarConsistenciaDados() {
     GerenciadorDeClientes &gerenciadorClientes = GerenciadorDeClientes::getInstance();
     GerenciadorDeVendedores &gerenciadorVendedores = GerenciadorDeVendedores::getInstance();
-    
+
     bool consistente = true;
-    
+
     for (const auto &venda : this->vendas) {
-        // Verificar se cliente existe
         Clientes* cliente = gerenciadorClientes.buscarPorCpf(venda->getCliente()->getCpf());
         if (cliente == nullptr) {
-            std::cerr << "ERRO: Cliente não encontrado - CPF: " << venda->getCliente()->getCpf() << std::endl;
+            qWarning() << "ERRO: Cliente não encontrado - CPF: " << venda->getCliente()->getCpf().c_str();
             consistente = false;
         }
-        
-        // Verificar se vendedor existe
+
         Vendedor* vendedor = gerenciadorVendedores.buscarPorCpf(venda->getVendedor()->getCpf());
         if (vendedor == nullptr) {
-            std::cerr << "ERRO: Vendedor não encontrado - CPF: " << venda->getVendedor()->getCpf() << std::endl;
+            qWarning() << "ERRO: Vendedor não encontrado - CPF: " << venda->getVendedor()->getCpf().c_str();
             consistente = false;
         }
     }
-    
+
     if (consistente) {
-        std::cout << "✓ Todos os dados estão consistentes!" << std::endl;
+        qDebug() << "✓ Todos os dados estão consistentes!";
     } else {
-        std::cout << "✗ Foram encontrados erros de consistência nos dados!" << std::endl;
+        qDebug() << "✗ Foram encontrados erros de consistência nos dados!";
     }
-    
+
     return consistente;
 }
 
