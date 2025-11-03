@@ -19,6 +19,16 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // se o texto mudar, limpa o txtErro
+    connect(ui->inpUsuario, &QLineEdit::textChanged, this, [this](){
+        ui->txtErro->setText("");
+    });
+
+    // se o texto mudar limpa o txtErro
+    connect(ui->inpSenha, &QLineEdit::textChanged, this, [this](){
+        ui->txtErro->setText("");
+    });
+
     setWindowTitle("Drive Tech - Concessionaria");
 
     ui->stackedWidget->setCurrentIndex(0);
@@ -39,21 +49,37 @@ void MainWindow::on_botEntrar_clicked()
 
 void MainWindow::on_botOk_clicked()
 {
+
+    ui->txtErro->setText("");
+
     std::string inpEmail = ui->inpUsuario->text().toStdString();
     std::string inpSenha = ui->inpSenha->text().toStdString();
 
     Vendedor *vendedorLogado = nullptr;
 
-    bool verifEmail = GerenciadorDeVendedores::getInstance().verificarEmailDisponivel(inpEmail);
+    bool emailExiste = !GerenciadorDeVendedores::getInstance().verificarEmailDisponivel(inpEmail);
     bool verifLogin = false;
 
-    if (verifEmail){
+    //campos vazios
+    if (inpEmail.empty() || inpSenha.empty()) {
+        ui->txtErro->setText("Email e senha devem ser preenchidos");
+        return; // Para a execução aqui
+    }
+
+    //verifica email
+    if (emailExiste){
         ui->txtErro->setText("");
+        Vendedor *vendedorLogado = nullptr;
+
         verifLogin = GerenciadorDeVendedores::getInstance().autenticar(inpEmail, inpSenha, &vendedorLogado);
 
         if(verifLogin){
             ui->txtErro->setText("");
             ui->stackedWidget->setCurrentIndex(2);
+
+            //limpa os inputs
+            ui->inpUsuario->clear();
+            ui->inpSenha->clear();
             return;
 
         }else{
