@@ -66,10 +66,10 @@ public:
     void salvar_no_csv() override;
     vector<Clientes *> listar();
     vector<Clientes *> buscar(string termo_busca);
-    Clientes* buscarPorCpf(string cpf_busca);
+    Clientes* buscarPorDocumento(string doc_busca);
     void adicionar(Clientes *novo_cliente); // recebe ponteiro
     bool remover(int indice);
-    bool remover_por_cpf(string cpf_procurado);
+    bool remover_por_documento(string doc_procurado);
     int getTotalCliente();
 };
 

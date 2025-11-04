@@ -300,14 +300,28 @@ void GerenciadorDeClientes::carregar_do_csv()
             dados.push_back(campo);
         }
 
-        if (dados.size() >= 4)
+        if (dados.size() >= 5)
         {
             try
             {
-                Clientes *novoCliente = new Clientes(dados[0], dados[1], dados[2], dados[3]);
-                this->clientes.push_back(novoCliente);
+                std::string nome = dados[0];
+                std::string documento = dados[1];
+                std::string telefone = dados[2];
+                std::string endereco = dados[3];
+                std::string tipo = dados[4];
 
-                qDebug() << "Cliente carregado: " << dados[0].c_str() << ", CPF: " << dados[1].c_str();
+                Clientes *novoCliente = nullptr;
+                if (tipo == "PF") {
+                    novoCliente = new PessoaFisica(nome, documento, telefone, endereco);
+                } else if (tipo == "PJ") {
+                    novoCliente = new PessoaJuridica(nome, documento, telefone, endereco);
+                } else {
+                    qWarning() << "Tipo de cliente desconhecido na linha " << linha_num << ": " << tipo.c_str();
+                    continue;
+                }
+
+                this->clientes.push_back(novoCliente);
+                qDebug() << "Cliente carregado: " << nome.c_str() << ", Tipo: " << tipo.c_str();
             }
             catch (const std::exception &e)
             {
@@ -333,14 +347,15 @@ void GerenciadorDeClientes::salvar_no_csv()
         return;
     }
 
-    arquivo << "Nome,Cpf,Telefone,Endereco\n";
+    arquivo << "Nome,Documento,Telefone,Endereco,Tipo\n";
 
-    for (size_t i = 0; i < this->clientes.size(); i++)
+    for (const auto &cliente : this->clientes)
     {
-        arquivo << clientes[i]->getNome() << ","
-                << clientes[i]->getCpf() << ","
-                << clientes[i]->getTelefone() << ","
-                << clientes[i]->getEndereco() << "\n";
+        arquivo << cliente->getNome() << ","
+                << cliente->getDocumento() << ","
+                << cliente->getTelefone() << ","
+                << cliente->getEndereco() << ","
+                << cliente->getTipoCliente() << "\n";
     }
 
     arquivo.close();
@@ -372,10 +387,10 @@ vector<Clientes *> GerenciadorDeClientes::buscar(string termo_busca)
     for (size_t i = 0; i < this->clientes.size(); i++)
     {
         std::string nome = to_lower(this->clientes[i]->getNome());
-        std::string cpf = to_lower(this->clientes[i]->getCpf());
+        std::string doc = to_lower(this->clientes[i]->getDocumento());
 
         if (nome.find(termo_lower) != std::string::npos ||
-            cpf.find(termo_lower) != std::string::npos)
+            doc.find(termo_lower) != std::string::npos)
         {
             resposta.push_back(this->clientes[i]);
         }
@@ -388,10 +403,11 @@ void GerenciadorDeClientes::adicionar(Clientes *novo_cliente)
 {
     for (size_t i = 0; i < this->clientes.size(); i++)
     {
-        if (this->clientes[i]->getCpf() == novo_cliente->getCpf())
+        if (this->clientes[i]->getDocumento() == novo_cliente->getDocumento())
         {
-            qWarning() << "Erro: Cliente com CPF " << novo_cliente->getCpf().c_str()
+            qWarning() << "Erro: Cliente com documento " << novo_cliente->getDocumento().c_str()
             << " já existe!";
+            delete novo_cliente;
             return;
         }
     }
@@ -416,37 +432,38 @@ bool GerenciadorDeClientes::remover(int indice)
     return true;
 }
 
-bool GerenciadorDeClientes::remover_por_cpf(string cpf_procurado)
+bool GerenciadorDeClientes::remover_por_documento(string doc_procurado)
 {
     for (size_t i = 0; i < this->clientes.size(); i++)
     {
-        if (this->clientes[i]->getCpf() == cpf_procurado)
+        if (this->clientes[i]->getDocumento() == doc_procurado)
         {
             std::string nome_removido = this->clientes[i]->getNome();
             delete this->clientes[i];
             this->clientes.erase(this->clientes.begin() + i);
 
-            qDebug() << "Cliente removido com sucesso! CPF: " << cpf_procurado.c_str()
+            qDebug() << "Cliente removido com sucesso! Documento: " << doc_procurado.c_str()
                      << " - Nome: " << nome_removido.c_str();
             return true;
         }
     }
 
-    qWarning() << "Erro: Cliente com CPF '" << cpf_procurado.c_str() << "' não encontrado!";
+    qWarning() << "Erro: Cliente com documento '" << doc_procurado.c_str() << "' não encontrado!";
     return false;
 }
 
-Clientes *GerenciadorDeClientes::buscarPorCpf(string cpf_busca)
+Clientes *GerenciadorDeClientes::buscarPorDocumento(string doc_busca)
 {
     for (size_t i = 0; i < this->clientes.size(); i++)
     {
-        if (this->clientes[i]->getCpf() == cpf_busca)
+        if (this->clientes[i]->getDocumento() == doc_busca)
         {
             return this->clientes[i];
         }
     }
     return nullptr;
 }
+
 int GerenciadorDeClientes::getTotalCliente()
 {
     return this->clientes.size();
@@ -748,8 +765,8 @@ void GereniciadorDeVendas::carregar_do_csv() {
                 GerenciadorDeClientes &gerenciadorClientes = GerenciadorDeClientes::getInstance();
                 GerenciadorDeVendedores &gerenciadorVendedores = GerenciadorDeVendedores::getInstance();
 
-                Clientes* Cliente_venda = gerenciadorClientes.buscarPorCpf(dados[9]);
-                Vendedor* Vendedor_venda = gerenciadorVendedores.buscarPorCpf(dados[2]);
+                Clientes* Cliente_venda = gerenciadorClientes.buscarPorDocumento(dados[9]); // cpf/cnpj cliente
+                Vendedor* Vendedor_venda = gerenciadorVendedores.buscarPorCpf(dados[2]); // cpf vendedor
                 PoliticaDesconto* desconto_venda = FabricaPoliticasDesconto::criarPolitica(dados[10]);
 
                 float valor_final = std::stof(dados[5]);
@@ -791,23 +808,35 @@ void GereniciadorDeVendas::salvar_no_csv()
         return;
     }
 
-    arquivo << "Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,CPF Cliente,Politica Desconto,Forma Pagamento,Status Venda\n";
+    arquivo << "Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,Documento Cliente,Politica Desconto,Forma Pagamento,Status Venda,Data\n";
 
     for (const auto &venda : this->vendas)
     {
-        arquivo << venda->getVeiculo()->motoOuCarro() << ","
-                << venda->getVendedor()->getNome() << ","
-                << venda->getVendedor()->getCpf() << ","
-                << venda->getVeiculo()->getModelo() << ","
-                << venda->getVeiculo()->getAno() << ","
+        //ponteiros não são nulos antes de usar
+        string nomeCliente = (venda->getCliente()) ? venda->getCliente()->getNome() : "N/A";
+        string docCliente = (venda->getCliente()) ? venda->getCliente()->getDocumento() : "N/A";
+        string nomeVendedor = (venda->getVendedor()) ? venda->getVendedor()->getNome() : "N/A";
+        string cpfVendedor = (venda->getVendedor()) ? venda->getVendedor()->getCpf() : "N/A";
+        string modeloVeiculo = (venda->getVeiculo()) ? venda->getVeiculo()->getModelo() : "N/A";
+        string tipoVeiculo = (venda->getVeiculo()) ? venda->getVeiculo()->motoOuCarro() : "N/A";
+        string corVeiculo = (venda->getVeiculo()) ? venda->getVeiculo()->getCor() : "N/A";
+        int anoVeiculo = (venda->getVeiculo()) ? venda->getVeiculo()->getAno() : 0;
+        string nomePolitica = (venda->getPoliticaDesconto()) ? venda->getPoliticaDesconto()->getNome() : "N/A";
+
+        arquivo << tipoVeiculo << ","
+                << nomeVendedor << ","
+                << cpfVendedor << ","
+                << modeloVeiculo << ","
+                << anoVeiculo << ","
                 << venda->getValorFinal() << ","
                 << venda->getValorEntrada() << ","
-                << venda->getVeiculo()->getCor() << ","
-                << venda->getCliente()->getNome() << ","
-                << venda->getCliente()->getCpf() << ","
-                << venda->getPoliticaDesconto()->getNome() << ","
+                << corVeiculo << ","
+                << nomeCliente << ","
+                << docCliente << "," // <-- ATUALIZADO
+                << nomePolitica << ","
                 << venda->getFormaPagamento() << ","
-                << venda->getStatusVenda() << "\n";
+                << venda->getStatusVenda() << ","
+                << venda->getDataVendaString() << "\n";
     }
 
     arquivo.close();
@@ -831,16 +860,26 @@ bool GereniciadorDeVendas::verificarConsistenciaDados() {
     bool consistente = true;
 
     for (const auto &venda : this->vendas) {
-        Clientes* cliente = gerenciadorClientes.buscarPorCpf(venda->getCliente()->getCpf());
-        if (cliente == nullptr) {
-            qWarning() << "ERRO: Cliente não encontrado - CPF: " << venda->getCliente()->getCpf().c_str();
+        if (!venda->getCliente()) {
+            qWarning() << "ERRO: Venda registrada sem cliente!";
             consistente = false;
+        } else {
+            Clientes* cliente = gerenciadorClientes.buscarPorDocumento(venda->getCliente()->getDocumento());
+            if (cliente == nullptr) {
+                qWarning() << "ERRO: Cliente não encontrado - Documento: " << venda->getCliente()->getDocumento().c_str();
+                consistente = false;
+            }
         }
 
-        Vendedor* vendedor = gerenciadorVendedores.buscarPorCpf(venda->getVendedor()->getCpf());
-        if (vendedor == nullptr) {
-            qWarning() << "ERRO: Vendedor não encontrado - CPF: " << venda->getVendedor()->getCpf().c_str();
+        if (!venda->getVendedor()) {
+            qWarning() << "ERRO: Venda registrada sem vendedor!";
             consistente = false;
+        } else {
+            Vendedor* vendedor = gerenciadorVendedores.buscarPorCpf(venda->getVendedor()->getCpf());
+            if (vendedor == nullptr) {
+                qWarning() << "ERRO: Vendedor não encontrado - CPF: " << venda->getVendedor()->getCpf().c_str();
+                consistente = false;
+            }
         }
     }
 
