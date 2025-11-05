@@ -12,7 +12,7 @@ QApplication::setStyle("Fusion");
     GerenciadorDeVendedores::getInstance().carregar_do_csv();
     GerenciadorDeClientes::getInstance().carregar_do_csv();
     GerenciadorDeVeiculos::getInstance().carregar_do_csv();
-    GereniciadorDeVendas::getInstance().carregar_do_csv();
+    GerenciadorDeVendas::getInstance().carregar_do_csv();
 
     qDebug() << "--- Dados Carregados ---";
 

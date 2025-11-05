@@ -1,6 +1,6 @@
-Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,Documento Cliente,Politica Desconto,Forma Pagamento,Status Venda,Data
-Carro,Manuel Gomes,11122233344,Honda Civic,2020,90000,10000,Preto,N/A,N/A,Sem desconto,Financiamento,Concluída,15/10/2024
-Carro,Ana Souza,55566677788,Toyota Corolla,2023,110000,15000,Branco,N/A,N/A,Sem desconto,À vista,Concluída,20/10/2024
-Carro,João Silva,12345678900,Hyundai Creta,2023,139500,20000,Preto,N/A,N/A,Sem desconto,Financiamento,Concluída,18/10/2024
-Moto,Maria Santos,98765432100,Honda CB 500F,2024,28000,5000,Branco,N/A,N/A,Sem desconto,À vista,Concluída,22/10/2024
-Carro,Manuel Gomes,11122233344,Volkswagen Polo,2023,72250,10000,Cinza,N/A,N/A,Sem desconto,Financiamento,Pendente,25/10/2024
+Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,Documento Cliente,Politica Desconto,Forma Pagamento,Status Venda,Data,Filial
+Carro,Manuel Gomes,11122233344,Honda Civic,2020,90000,10000,Preto,N/A,N/A,Sem desconto,Financiamento,Concluída,15/10/2024,15/10/2024
+Carro,Ana Souza,55566677788,Toyota Corolla,2023,110000,15000,Branco,N/A,N/A,Sem desconto,À vista,Concluída,20/10/2024,20/10/2024
+Carro,João Silva,12345678900,Hyundai Creta,2023,139500,20000,Preto,N/A,N/A,Sem desconto,Financiamento,Concluída,18/10/2024,18/10/2024
+Moto,Maria Santos,98765432100,Honda CB 500F,2024,28000,5000,Branco,N/A,N/A,Sem desconto,À vista,Concluída,22/10/2024,22/10/2024
+Carro,Manuel Gomes,11122233344,Volkswagen Polo,2023,72250,10000,Cinza,N/A,N/A,Sem desconto,Financiamento,Pendente,25/10/2024,25/10/2024
