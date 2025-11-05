@@ -773,6 +773,7 @@ void GereniciadorDeVendas::carregar_do_csv() {
                 float valor_entrada = std::stof(dados[6]);
                 string forma_de_pagamento = dados[11];
                 string status_vendas = dados[12];
+                string filial = dados[13];
 
                 Data data_venda = DataUtils::fromString(dados[13]);
 
@@ -785,7 +786,7 @@ void GereniciadorDeVendas::carregar_do_csv() {
 
                 Vendas *nova_Venda = new Vendas(Vendedor_venda, Cliente_venda, Veiculo_venda,
                                                 valor_final, desconto_venda, valor_entrada,
-                                                forma_de_pagamento, status_vendas, data_venda);
+                                                forma_de_pagamento, status_vendas, data_venda,filial);
                 this->vendas.push_back(nova_Venda);
 
             } catch (const std::exception &e) {
@@ -808,7 +809,7 @@ void GereniciadorDeVendas::salvar_no_csv()
         return;
     }
 
-    arquivo << "Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,Documento Cliente,Politica Desconto,Forma Pagamento,Status Venda,Data\n";
+    arquivo << "Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,Documento Cliente,Politica Desconto,Forma Pagamento,Status Venda,Data,Filial\n";
 
     for (const auto &venda : this->vendas)
     {
@@ -836,7 +837,8 @@ void GereniciadorDeVendas::salvar_no_csv()
                 << nomePolitica << ","
                 << venda->getFormaPagamento() << ","
                 << venda->getStatusVenda() << ","
-                << venda->getDataVendaString() << "\n";
+                << venda->getDataVendaString() << ","
+                << venda->getFilial() << "\n";
     }
 
     arquivo.close();

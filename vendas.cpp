@@ -23,11 +23,11 @@ Vendas::Vendas() : data_venda(Data(0,0,0)), valor_base(0), valor_final(0), valor
 Vendas::Vendas(Vendedor* vendedor, Clientes* cliente, Veiculos* veiculo, 
                float valorBase, PoliticaDesconto* politicaDesconto, 
                float valorEntrada, string formaPagamento, string statusVenda, 
-               Data dataVenda)
+               Data dataVenda,string filial)
     : vendedor_responsavel(vendedor), cliente_comprador(cliente), 
       veiculo_vendido(veiculo), data_venda(dataVenda), valor_base(valorBase), 
       politica_de_desconto(politicaDesconto), valor_entrada(valorEntrada), 
-      forma_pagamento(formaPagamento), status_venda(statusVenda) 
+      forma_pagamento(formaPagamento), status_venda(statusVenda), filial(filial) 
 {
     // Calcular valor final baseado na política de desconto
     this->valor_final = politicaDesconto->calcularDesconto(valorBase);
@@ -43,9 +43,9 @@ float Vendas::getValorEntrada() { return valor_entrada; }
 string Vendas::getFormaPagamento() { return forma_pagamento; }
 string Vendas::getStatusVenda() { return status_venda; }   
 PoliticaDesconto* Vendas::getPoliticaDesconto() { return politica_de_desconto; }
-
 Data Vendas::getDataVenda() { return data_venda; }
 string Vendas::getDataVendaString() { return data_venda.toString(); }
+string Vendas::getFilial() { return filial; }
 
 void Vendas::setVendedor(Vendedor* vendedor) { this->vendedor_responsavel = vendedor; }
 void Vendas::setCliente(Clientes* cliente) { this->cliente_comprador = cliente; }
@@ -63,3 +63,4 @@ void Vendas::setDataVenda(Data data) { this->data_venda = data; }
 void Vendas::setDataVendaFromString(const std::string& dataStr) { 
     this->data_venda = DataUtils::fromString(dataStr); 
 }
+void Vendas::setFilial(string filial) { this->filial = filial; }

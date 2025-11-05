@@ -55,13 +55,15 @@ private:
     float valor_entrada;
     string forma_pagamento;
     string status_venda;
+    string filial;
+
     
 public:
     Vendas();
     Vendas(Vendedor* vendedor, Clientes* cliente, Veiculos* veiculo, 
            float valorBase, PoliticaDesconto* politicaDesconto, 
            float valorEntrada, string formaPagamento, string statusVenda, 
-           Data dataVenda);
+           Data dataVenda, string filial);
     
     // Getters
     Vendedor* getVendedor();
@@ -75,7 +77,7 @@ public:
     PoliticaDesconto* getPoliticaDesconto();
     Data getDataVenda();
     string getDataVendaString();
-    
+    string getFilial();
     // Setters
     void setVendedor(Vendedor* vendedor);
     void setCliente(Clientes* cliente);
@@ -88,6 +90,7 @@ public:
     void setPoliticaDesconto(PoliticaDesconto* politica);
     void setDataVenda(Data data);
     void setDataVendaFromString(const std::string& dataStr);
+    void setFilial(string filial);
 };
 
 #endif // VENDAS_H

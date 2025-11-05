@@ -1,6 +1,6 @@
-Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,CPF Cliente,Politica Desconto,Forma Pagamento,Status Venda,Data
-Carro,Carlos Oliveira,11122233344,Honda Civic,2020,90000,10000,Preto,João Silva,12345678900,Cliente Fidelidade,Financiamento,Concluída,15/10/2024
-Carro,Ana Souza,55566677788,Toyota Corolla,2023,110000,15000,Branco,Maria Oliveira,10987654321,SemDesconto,À vista,Concluída,20/10/2024
-Carro,João Silva,12345678900,Hyundai Creta,2023,155000,20000,Preto,Carlos Souza,11223344556,PromocaoEspecial,Financiamento,Concluída,18/10/2024
-Moto,Maria Santos,98765432100,Honda CB 500F,2024,28000,5000,Branco,Ana Pereira,66554433221,SemDesconto,À vista,Concluída,22/10/2024
-Carro,Carlos Oliveira,11122233344,Volkswagen Polo,2023,85000,10000,Cinza,Marcos Lima,77889966554,VendasCorporativas,Financiamento,Pendente,25/10/2024
+Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,CPF Cliente,Politica Desconto,Forma Pagamento,Status Venda,Data,Filial
+Carro,Carlos Oliveira,11122233344,Honda Civic,2020,90000,10000,Preto,João Silva,12345678900,Cliente Fidelidade,Financiamento,Concluída,15/10/2024,Curitiba
+Carro,Ana Souza,55566677788,Toyota Corolla,2023,110000,15000,Branco,Maria Oliveira,10987654321,SemDesconto,À vista,Concluída,20/10/2024,Maringa
+Carro,João Silva,12345678900,Hyundai Creta,2023,155000,20000,Preto,Carlos Souza,11223344556,PromocaoEspecial,Financiamento,Concluída,18/10/2024,Londrina
+Moto,Maria Santos,98765432100,Honda CB 500F,2024,28000,5000,Branco,Ana Pereira,66554433221,SemDesconto,À vista,Concluída,22/10/2024,Curitiba
+Carro,Carlos Oliveira,11122233344,Volkswagen Polo,2023,85000,10000,Cinza,Marcos Lima,77889966554,VendasCorporativas,Financiamento,Pendente,25/10/2024,Londrina
