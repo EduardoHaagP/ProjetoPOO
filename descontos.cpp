@@ -1,6 +1,7 @@
 #include "descontos.h"
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 PoliticaDesconto::~PoliticaDesconto() = default;
 // Concrete Strategies
@@ -128,19 +129,28 @@ double CalculadoraDesconto::getPercentualDesconto() const
 
 PoliticaDesconto *FabricaPoliticasDesconto::criarPolitica(const std::string &tipo)
 {
-    if (tipo == "SemDesconto" || tipo == "sem desconto")
+    std::string tipo_normalizado = tipo;
+
+    tipo_normalizado.erase(std::remove_if(tipo_normalizado.begin(), tipo_normalizado.end(),
+                                          [](unsigned char c){ return std::isspace(c); }),
+                           tipo_normalizado.end());
+
+    std::transform(tipo_normalizado.begin(), tipo_normalizado.end(), tipo_normalizado.begin(),
+                   [](unsigned char c){ return std::tolower(c); });
+
+    if (tipo_normalizado == "semdesconto")
     {
         return new SemDesconto();
     }
-    else if (tipo == "ClienteFidelidade" || tipo == "cliente fidelidade")
+    else if (tipo_normalizado == "clientefidelidade")
     {
         return new ClienteFidelidade();
     }
-    else if (tipo == "PromocaoEspecial" || tipo == "promoção especial")
+    else if (tipo_normalizado == "promocaoespecial")
     {
         return new PromocaoEspecial();
     }
-    else if (tipo == "VendasCorporativas" || tipo == "vendas corporativas")
+    else if (tipo_normalizado == "vendascorporativas")
     {
         return new VendasCorporativas();
     }

@@ -96,17 +96,18 @@ public:
     bool autenticar(string email, string senha, Vendedor** vendedor_autenticado);
     bool verificarEmailDisponivel(string email);
 };
+//GerenciadorDeVendas
 
-class GereniciadorDeVendas : public Gerenciadores
+class GerenciadorDeVendas : public Gerenciadores
 {
 private:
-    GereniciadorDeVendas(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Vendas.csv"));
-    GereniciadorDeVendas(const GereniciadorDeVendas &) = delete;
-    GereniciadorDeVendas &operator=(const GereniciadorDeVendas &) = delete;
+    GerenciadorDeVendas(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Vendas.csv"));
+    GerenciadorDeVendas(const GerenciadorDeVendas &) = delete;
+    GerenciadorDeVendas &operator=(const GerenciadorDeVendas &) = delete;
     std::vector<Vendas *> vendas;
 
 public:
-    static GereniciadorDeVendas &getInstance(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Vendas.csv"));
+    static GerenciadorDeVendas &getInstance(const string &arquivo = getCaminhoDoProjeto("Trabalho POO - Vendas.csv"));
     void carregar_do_csv() override;
     void salvar_no_csv() override;
     vector<Vendas *> listar();

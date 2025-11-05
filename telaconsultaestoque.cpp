@@ -72,7 +72,7 @@ void TelaConsultaEstoque::popularTabela(const std::vector<Veiculos*>& veiculos)
         ui->tabelaWidget->setItem(linhaAtual, 3, itemValor);
         ui->tabelaWidget->setItem(linhaAtual, 4, itemCor);
     }
-}
+  }
 
 
 

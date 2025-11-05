@@ -151,10 +151,12 @@ void GerenciadorDeVeiculos::salvar_no_csv()
         return;
     }
 
-    arquivo << "Tipo,Modelo,Ano,Valor (R$),Cor\n";
+    arquivo << "Tipo,Modelo,Ano,Valor (R$),Cor,Filial\n";
 
     for (const auto &veiculo : this->veiculos)
     {
+        if (veiculo == nullptr) continue;
+
         std::string tipo = veiculo->motoOuCarro();
         if (tipo == "moto")
             tipo = "Moto";
@@ -165,7 +167,8 @@ void GerenciadorDeVeiculos::salvar_no_csv()
                 << veiculo->getModelo() << ","
                 << veiculo->getAno() << ","
                 << std::fixed << std::setprecision(2) << veiculo->getValorBase() << ","
-                << veiculo->getCor() << "\n";
+                << veiculo->getCor() << ","
+                << veiculo->getFilial() << "\n";
     }
 
     arquivo.close();
@@ -726,18 +729,18 @@ bool GerenciadorDeVendedores::verificarEmailDisponivel(string email)
     return true;
 }
 
-GereniciadorDeVendas::GereniciadorDeVendas(const string &arquivo)
+GerenciadorDeVendas::GerenciadorDeVendas(const string &arquivo)
 {
     this->nome_arquivo = arquivo;
 }
 
-GereniciadorDeVendas &GereniciadorDeVendas::getInstance(const string &arquivo)
+GerenciadorDeVendas &GerenciadorDeVendas::getInstance(const string &arquivo)
 {
-    static GereniciadorDeVendas instancia(arquivo);
+    static GerenciadorDeVendas instancia(arquivo);
     return instancia;
 }
 
-void GereniciadorDeVendas::carregar_do_csv() {
+void GerenciadorDeVendas::carregar_do_csv() {
     std::ifstream arquivo(this->nome_arquivo);
 
     if (!arquivo.is_open()) {
@@ -809,7 +812,7 @@ void GereniciadorDeVendas::carregar_do_csv() {
     qDebug() << "Carregamento de vendas concluído. Total: " << vendas.size() << " vendas";
 }
 
-void GereniciadorDeVendas::salvar_no_csv()
+void GerenciadorDeVendas::salvar_no_csv()
 {
     std::ofstream arquivo(this->nome_arquivo);
     if (!arquivo.is_open())
@@ -854,17 +857,17 @@ void GereniciadorDeVendas::salvar_no_csv()
     qDebug() << "Vendas salvas com sucesso: " << this->nome_arquivo.c_str();
 }
 
-vector<Vendas *> GereniciadorDeVendas::listar()
+vector<Vendas *> GerenciadorDeVendas::listar()
 {
     return this->vendas;
 }
 
-void GereniciadorDeVendas::adicionar(Vendas *nova_venda)
+void GerenciadorDeVendas::adicionar(Vendas *nova_venda)
 {
     this->vendas.push_back(nova_venda);
 }
 
-bool GereniciadorDeVendas::verificarConsistenciaDados() {
+bool GerenciadorDeVendas::verificarConsistenciaDados() {
     GerenciadorDeClientes &gerenciadorClientes = GerenciadorDeClientes::getInstance();
     GerenciadorDeVendedores &gerenciadorVendedores = GerenciadorDeVendedores::getInstance();
 
@@ -904,7 +907,7 @@ bool GereniciadorDeVendas::verificarConsistenciaDados() {
 }
 
 
-int GereniciadorDeVendas::getTotalVendas()
+int GerenciadorDeVendas::getTotalVendas()
 {
     return this->vendas.size();
 }

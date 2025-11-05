@@ -50,7 +50,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     GerenciadorDeClientes::getInstance().salvar_no_csv();
     GerenciadorDeVendedores::getInstance().salvar_no_csv();
     GerenciadorDeVeiculos::getInstance().salvar_no_csv();
-    GereniciadorDeVendas::getInstance().salvar_no_csv();
+    GerenciadorDeVendas::getInstance().salvar_no_csv();
 
     qDebug() << "--- Dados Salvos. Fechando o app. ---";
 
