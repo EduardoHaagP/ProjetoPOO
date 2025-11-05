@@ -74,22 +74,33 @@ void GerenciadorDeVeiculos::carregar_do_csv()
             dados.push_back(trim(campo));
         }
 
-        if (dados.size() >= 5)
+        if (dados.size() >= 6)
         {
             try
             {
+                // trata o valor "80.000"
+                std::string valor_str = dados[3];
+                // Remove todos os '.' da string de valor
+                valor_str.erase(std::remove(valor_str.begin(), valor_str.end(), '.'), valor_str.end());
+                // Agora valor_str é "80000"
+                float valor_corrigido = std::stof(valor_str);
+
+
                 Veiculos *novoVeiculo = nullptr;
                 std::string tipo = dados[0];
+                std::string filial = dados[5];
 
                 if (tipo == "Moto")
                 {
+                    // Passa a filial para o construtor
                     novoVeiculo = new Moto(dados[1], std::stoi(dados[2]),
-                                           std::stof(dados[3]), dados[4]);
+                                           valor_corrigido, dados[4], filial);
                 }
                 else if (tipo == "Carro")
                 {
+                    // Passa a filial para o construtor
                     novoVeiculo = new Carro(dados[1], std::stoi(dados[2]),
-                                            std::stof(dados[3]), dados[4]);
+                                            valor_corrigido, dados[4], filial);
                 }
                 else
                 {
@@ -101,8 +112,6 @@ void GerenciadorDeVeiculos::carregar_do_csv()
                 if (novoVeiculo != nullptr)
                 {
                     veiculos.push_back(novoVeiculo);
-                    qDebug() << "Veículo carregado: " << tipo.c_str() << ", "
-                             << dados[1].c_str() << ", " << dados[2].c_str();
                 }
             }
             catch (const std::invalid_argument &e)
@@ -760,7 +769,7 @@ void GereniciadorDeVendas::carregar_do_csv() {
             dados.push_back(campo);
         }
 
-        if (dados.size() >= 14) {
+        if (dados.size() >= 15) {
             try {
                 GerenciadorDeClientes &gerenciadorClientes = GerenciadorDeClientes::getInstance();
                 GerenciadorDeVendedores &gerenciadorVendedores = GerenciadorDeVendedores::getInstance();
@@ -773,15 +782,15 @@ void GereniciadorDeVendas::carregar_do_csv() {
                 float valor_entrada = std::stof(dados[6]);
                 string forma_de_pagamento = dados[11];
                 string status_vendas = dados[12];
-                string filial = dados[13];
+                string filial = dados[14];
 
                 Data data_venda = DataUtils::fromString(dados[13]);
 
                 Veiculos* Veiculo_venda = nullptr;
                 if (dados[0] == "Moto") {
-                    Veiculo_venda = new Moto(dados[3], std::stoi(dados[4]), valor_final, dados[7]);
+                    Veiculo_venda = new Moto(dados[3], std::stoi(dados[4]), valor_final, dados[7], filial);
                 } else if (dados[0] == "Carro") {
-                    Veiculo_venda = new Carro(dados[3], std::stoi(dados[4]), valor_final, dados[7]);
+                    Veiculo_venda = new Carro(dados[3], std::stoi(dados[4]), valor_final, dados[7], filial);
                 }
 
                 Vendas *nova_Venda = new Vendas(Vendedor_venda, Cliente_venda, Veiculo_venda,
