@@ -23,11 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->inpUsuario, &QLineEdit::textChanged, this, [this](){
         ui->txtErro->setText("");
     });
-
-    // se o texto mudar limpa o txtErro
     connect(ui->inpSenha, &QLineEdit::textChanged, this, [this](){
         ui->txtErro->setText("");
     });
+
 
     setWindowTitle("Drive Tech - Concessionaria");
 
@@ -39,6 +38,24 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+// chama qnd clica no X
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    qDebug() << "--- Salvando dados nos CSVs ---";
+
+    // salva td
+    GerenciadorDeClientes::getInstance().salvar_no_csv();
+    GerenciadorDeVendedores::getInstance().salvar_no_csv();
+    GerenciadorDeVeiculos::getInstance().salvar_no_csv();
+    GereniciadorDeVendas::getInstance().salvar_no_csv();
+
+    qDebug() << "--- Dados Salvos. Fechando o app. ---";
+
+    // continua fechamento normal
+    QMainWindow::closeEvent(event);
 }
 
 void MainWindow::on_botEntrar_clicked()

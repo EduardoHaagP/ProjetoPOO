@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+QApplication::setStyle("Fusion");
     qDebug() << "--- Carregando Dados ---";
 
     GerenciadorDeVendedores::getInstance().carregar_do_csv();
