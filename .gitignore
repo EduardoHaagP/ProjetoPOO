@@ -2,6 +2,7 @@
 # ----------------------------------------------------------------------------
 build/
 *:Zone.Identifier
+CMakeListscopy.txt
 # Qt Creator project files
 *~
 *.autosave
