@@ -151,29 +151,38 @@ void GerenciadorDeVeiculos::salvar_no_csv()
         return;
     }
 
+    // CABEÇALHO CORRETO COM A NOVA COLUNA FILIAL
     arquivo << "Tipo,Modelo,Ano,Valor (R$),Cor,Filial\n";
 
     for (const auto &veiculo : this->veiculos)
     {
-        if (veiculo == nullptr) continue;
+        if (veiculo == nullptr) {
+            qWarning() << "Aviso: Pulando veículo nulo durante o salvamento.";
+            continue;
+        }
 
-        std::string tipo = veiculo->motoOuCarro();
-        if (tipo == "moto")
-            tipo = "Moto";
-        else if (tipo == "carro")
-            tipo = "Carro";
+        try {
+            std::string tipo = veiculo->motoOuCarro();
+            // Normalização de tipo
+            if (tipo == "moto")
+                tipo = "Moto";
+            else if (tipo == "carro")
+                tipo = "Carro";
 
-        arquivo << tipo << ","
-                << veiculo->getModelo() << ","
-                << veiculo->getAno() << ","
-                << std::fixed << std::setprecision(2) << veiculo->getValorBase() << ","
-                << veiculo->getCor() << ","
-                << veiculo->getFilial() << "\n";
+            arquivo << tipo << ","
+                    << veiculo->getModelo() << ","
+                    << veiculo->getAno() << ","
+                    << std::fixed << std::setprecision(2) << veiculo->getValorBase() << ","
+                    << veiculo->getCor() << ","
+                    << veiculo->getFilial() << "\n";
+        } catch (const std::exception& e) {
+            qWarning() << "ERRO NO SALVAMENTO: Falha ao salvar um veículo" << e.what();
+        }
     }
 
     arquivo.close();
     qDebug() << "Arquivo salvo com sucesso: " << this->nome_arquivo.c_str()
-             << ". Total de veículos: " << veiculos.size();
+             << ". Total de veículos salvos: " << this->veiculos.size();
 }
 
 vector<Veiculos *> GerenciadorDeVeiculos::listar()

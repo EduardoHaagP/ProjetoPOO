@@ -1,13 +1,23 @@
 #include "telalistagemvendas.h"
 #include "ui_telalistagemvendas.h"
-
-#include "telaprincipal.h"
+#include "gerenciadores.h"
+#include "vendas.h"
+#include <QTableWidgetItem>
+#include <QHeaderView>
+#include <QBrush>
+#include <QColor>
+#include <algorithm>
+#include <sstream>
+#include <iomanip>
 
 TelaListagemVendas::TelaListagemVendas(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::TelaListagemVendas)
 {
     ui->setupUi(this);
+
+    // CHAMA A FUNÇÃO DE CARREGAMENTO NO CONSTRUTOR
+    carregarVendasNaTabela();
 }
 
 TelaListagemVendas::~TelaListagemVendas()
@@ -69,7 +79,7 @@ void TelaListagemVendas::carregarVendasNaTabela()
         QTableWidgetItem *itemStatus = new QTableWidgetItem(QString::fromStdString(venda->getStatusVenda()));
 
         // cor de fundo para status
-            if (venda->getStatusVenda() == "Concluída") {
+        if (venda->getStatusVenda() == "Concluída") {
             itemStatus->setBackground(QBrush(QColor(144, 238, 144))); // Verde claro
         } else if (venda->getStatusVenda() == "Pendente") {
             itemStatus->setBackground(QBrush(QColor(255, 255, 128))); // Amarelo

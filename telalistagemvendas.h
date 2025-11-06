@@ -20,6 +20,7 @@ private slots:
 
 private:
     Ui::TelaListagemVendas *ui;
+    void carregarVendasNaTabela();
 };
 
 #endif // TELALISTAGEMVENDAS_H
