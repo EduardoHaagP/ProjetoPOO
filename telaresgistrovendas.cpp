@@ -8,6 +8,8 @@ TelaResgistroVendas::TelaResgistroVendas(QWidget *parent)
     , ui(new Ui::TelaResgistroVendas)
 {
     ui->setupUi(this);
+
+
 }
 
 TelaResgistroVendas::~TelaResgistroVendas()
