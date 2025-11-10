@@ -112,7 +112,7 @@
                 <widget class="QWidget" name="widget_2" native="true">
                  <layout class="QHBoxLayout" name="horizontalLayout_4">
                   <item>
-                   <widget class="QLabel" name="label_29">
+                   <widget class="QLabel" name="txtTipoCliente">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                       <horstretch>0</horstretch>
@@ -150,7 +150,7 @@
                 </widget>
                </item>
                <item alignment="Qt::AlignTop">
-                <widget class="QLabel" name="label_2">
+                <widget class="QLabel" name="erroCliente">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -166,7 +166,7 @@
                 <widget class="QWidget" name="widget_4" native="true">
                  <layout class="QHBoxLayout" name="horizontalLayout_6">
                   <item>
-                   <widget class="QPushButton" name="pushButton_2">
+                   <widget class="QPushButton" name="confirmCliente">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -417,7 +417,7 @@
                 <widget class="QWidget" name="widget_7" native="true">
                  <layout class="QHBoxLayout" name="horizontalLayout_11">
                   <item>
-                   <widget class="QLabel" name="label_6">
+                   <widget class="QLabel" name="erroVeiculo">
                     <property name="text">
                      <string>* tratamento de erro/ disponibilidade</string>
                     </property>
@@ -440,7 +440,7 @@
                 <widget class="QWidget" name="widget_9" native="true">
                  <layout class="QHBoxLayout" name="horizontalLayout_7">
                   <item>
-                   <widget class="QPushButton" name="pushButton_3">
+                   <widget class="QPushButton" name="confirmVeiculo">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -568,7 +568,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_9">
+                            <widget class="QLabel" name="txtValor">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                                <horstretch>0</horstretch>
@@ -612,7 +612,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_17">
+                            <widget class="QLabel" name="txtTotalPag">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                                <horstretch>0</horstretch>
@@ -656,7 +656,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="inpFilial_2">
+                            <widget class="QComboBox" name="inpPag">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                                <horstretch>0</horstretch>
@@ -695,44 +695,6 @@
                       <widget class="QWidget" name="widget_14" native="true">
                        <layout class="QVBoxLayout" name="verticalLayout_12">
                         <item>
-                         <widget class="QWidget" name="widget_21" native="true">
-                          <layout class="QHBoxLayout" name="horizontalLayout_18">
-                           <item>
-                            <widget class="QLabel" name="label_33">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
-                             </property>
-                             <property name="text">
-                              <string>Desconto:</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_34">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::StyledPanel</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Sunken</enum>
-                             </property>
-                             <property name="text">
-                              <string>Tipo cliente</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item alignment="Qt::AlignTop">
                          <widget class="QWidget" name="widget_20" native="true">
                           <layout class="QHBoxLayout" name="horizontalLayout_19">
                            <item>
@@ -752,7 +714,29 @@
                             </spacer>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_32">
+                            <widget class="QComboBox" name="inpDesconto"/>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="widget_21" native="true">
+                          <layout class="QHBoxLayout" name="horizontalLayout_18">
+                           <item>
+                            <widget class="QLabel" name="label_33">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="text">
+                              <string>Desconto:</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="txtDesconto">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                                <horstretch>0</horstretch>
@@ -790,7 +774,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLineEdit" name="lineEdit_2">
+                            <widget class="QLineEdit" name="inpEntrada">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                                <horstretch>0</horstretch>
@@ -819,7 +803,7 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="inpFilial_4">
+                            <widget class="QComboBox" name="inpParcelas">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                                <horstretch>0</horstretch>
@@ -871,7 +855,7 @@
                             </spacer>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_30">
+                            <widget class="QLabel" name="txtValorParcela">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                                <horstretch>0</horstretch>
@@ -902,7 +886,7 @@
                    <widget class="QWidget" name="widget_11" native="true">
                     <layout class="QHBoxLayout" name="horizontalLayout_13">
                      <item>
-                      <widget class="QPushButton" name="pushButton_4">
+                      <widget class="QPushButton" name="confirmPagamento">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -1009,7 +993,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="label_21">
+                      <widget class="QLabel" name="txtNomeResumo">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -1047,7 +1031,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="label_22">
+                      <widget class="QLabel" name="txtModeloResumo">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -1085,7 +1069,7 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="label_24">
+                      <widget class="QLabel" name="txtTotalResumo">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -1129,7 +1113,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_5">
+                   <widget class="QPushButton" name="confirmResumo">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                       <horstretch>0</horstretch>
@@ -1183,7 +1167,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="botCancelar">
         <property name="text">
          <string>Cancelar</string>
         </property>

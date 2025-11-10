@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     , telaConsultaEstoque(nullptr)
     , telaListagemVendas(nullptr)
     , telaResgistroVendas(nullptr)
+    , vendedorAutenticado(nullptr) // << Variável da classe inicializada
 {
     ui->setupUi(this);
 
@@ -64,6 +65,7 @@ void MainWindow::on_botEntrar_clicked()
 
 }
 
+// --- ESTA É A FUNÇÃO CORRIGIDA ---
 void MainWindow::on_botOk_clicked()
 {
 
@@ -72,7 +74,8 @@ void MainWindow::on_botOk_clicked()
     std::string inpEmail = ui->inpUsuario->text().toStdString();
     std::string inpSenha = ui->inpSenha->text().toStdString();
 
-    Vendedor *vendedorLogado = nullptr;
+    // Usamos 'vendedorAutenticado' (o membro da classe)
+    vendedorAutenticado = nullptr;
 
     bool emailExiste = !GerenciadorDeVendedores::getInstance().verificarEmailDisponivel(inpEmail);
     bool verifLogin = false;
@@ -86,9 +89,10 @@ void MainWindow::on_botOk_clicked()
     //verifica email
     if (emailExiste){
         ui->txtErro->setText("");
-        Vendedor *vendedorLogado = nullptr;
 
-        verifLogin = GerenciadorDeVendedores::getInstance().autenticar(inpEmail, inpSenha, &vendedorLogado);
+        // AQUI ESTÁ A CORREÇÃO:
+        // Usamos &vendedorAutenticado (a variável da classe)
+        verifLogin = GerenciadorDeVendedores::getInstance().autenticar(inpEmail, inpSenha, &vendedorAutenticado);
 
         if(verifLogin){
             ui->txtErro->setText("");
@@ -111,6 +115,7 @@ void MainWindow::on_botOk_clicked()
 
 void MainWindow::on_botSair_clicked()
 {
+    vendedorAutenticado = nullptr; // Limpa o vendedor no logout
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -131,30 +136,49 @@ void MainWindow::on_botCadastroCliente_clicked()
 
 void MainWindow::on_botVenda_clicked()
 {
+    // Verifica se há um vendedor logado
+    if (vendedorAutenticado == nullptr) {
+        QMessageBox::critical(this, "Erro de Autenticação", "Nenhum vendedor está logado!");
+        ui->stackedWidget->setCurrentIndex(1); // Volta para tela de login
+        return;
+    }
+
+    // Só abre se não houver outra aberta
     if (telaResgistroVendas == nullptr) {
-        telaResgistroVendas = new TelaResgistroVendas(this);
+        // Passa o vendedor logado para a tela de vendas
+        telaResgistroVendas = new TelaResgistroVendas(vendedorAutenticado, this);
         telaResgistroVendas->setWindowTitle("Registro de Vendas");
 
+        // Conecta o sinal 'finished' para limpar o ponteiro quando a tela for fechada
         connect(telaResgistroVendas, &TelaResgistroVendas::finished,
                 this, [this](){
                     this->telaResgistroVendas = nullptr;
+                    // Atualiza a tabela de estoque na tela de consulta, se ela estiver aberta
+                    if (this->telaConsultaEstoque) {
+                        // (telaconsultaestoque.cpp usa 'on_botCadastrar_clicked' para consultar)
+                        this->telaConsultaEstoque->on_botCadastrar_clicked();
+                    }
                 });
     }
     telaResgistroVendas->show();
-    telaResgistroVendas->activateWindow();
+    telaResgistroVendas->activateWindow(); // Traz a tela para frente
 }
 
 void MainWindow::on_botListaVendas_clicked()
 {
-    if (telaListagemVendas == nullptr) {
-        telaListagemVendas = new TelaListagemVendas(this);
-        telaListagemVendas->setWindowTitle("Listagem de Vendas");
-
-        connect(telaListagemVendas, &TelaListagemVendas::finished,
-                this, [this](){
-                    this->telaListagemVendas = nullptr;
-                });
+    // (Recarrega a lista toda vez que abre, para mostrar a venda nova)
+    if (telaListagemVendas != nullptr) {
+        telaListagemVendas->close();
+        delete telaListagemVendas;
     }
+
+    telaListagemVendas = new TelaListagemVendas(this);
+    telaListagemVendas->setWindowTitle("Listagem de Vendas");
+    connect(telaListagemVendas, &TelaListagemVendas::finished,
+            this, [this](){
+                this->telaListagemVendas = nullptr;
+            });
+
     telaListagemVendas->show();
     telaListagemVendas->activateWindow();
 }

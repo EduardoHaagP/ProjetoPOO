@@ -8,6 +8,7 @@
 #include "telaconsultaestoque.h"
 #include "telalistagemvendas.h"
 #include "telaresgistrovendas.h"
+#include "vendedor.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -50,6 +51,8 @@ private:
     TelaConsultaEstoque *telaConsultaEstoque;
     TelaListagemVendas *telaListagemVendas;
     TelaResgistroVendas *telaResgistroVendas;
+
+    Vendedor* vendedorAutenticado;
 
 };
 #endif // MAINWINDOW_H

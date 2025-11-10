@@ -19,10 +19,13 @@ public:
     explicit TelaConsultaEstoque(QWidget *parent = nullptr);
     ~TelaConsultaEstoque();
 
+
+public slots:
+    void on_botCadastrar_clicked(); // Esta função agora é pública
+
 private slots:
     void on_botVoltar_clicked();
-
-    void on_botCadastrar_clicked();
+    // (A linha 'on_botCadastrar_clicked()' foi removida daqui)
 
 private:
     Ui::TelaConsultaEstoque *ui;
