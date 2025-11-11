@@ -1,12 +1,10 @@
 Tipo,Modelo,Ano,Valor (R$),Cor,Filial
 Carro,Elantra,2024,900000.00,Vermelho,Londrina
-Carro,Civic,2022,950000.00,Cinza,Londrina
 Carro,Corolla,2023,1100000.00,Branco,Londrina
 Carro,Fusion,2022,1300000.00,Vermelho,Londrina
 Carro,Tucson,2023,1500000.00,Branco,Londrina
 Carro,Focus,2023,850000.00,Cinza,Londrina
 Carro,Sentra,2023,750000.00,Azul,Londrina
-Carro,HR-V,2023,1200000.00,Preto,Londrina
 Carro,Jetta,2024,1500000.00,Vermelho,Londrina
 Carro,A3,2023,1800000.00,Vermelho,Londrina
 Carro,BMW X1,2024,2100000.00,Azul,Londrina
@@ -37,7 +35,6 @@ Carro,Volkswagen Golf,2024,1200000.00,Cinza,Londrina
 Carro,Audi A4,2023,2500000.00,Cinza,Londrina
 Carro,Volvo XC60,2024,2200000.00,Azul,Londrina
 Carro,Porsche Cayenne,2023,5500000.50,Prata,Londrina
-Moto,Suzuki GSX-S1000F,2024,450000.00,Branco,Londrina
 Moto,BMW G310R,2023,270000.00,Azul,Londrina
 Carro,Chevrolet Tracker,2024,1450000.00,Cinza,Londrina
 Carro,BMW 320i,2023,2100000.00,Vermelho,Londrina

@@ -162,6 +162,12 @@
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>300</width>
+                      <height>300</height>
+                     </size>
+                    </property>
                     <property name="text">
                      <string>Confirmar</string>
                     </property>
@@ -386,7 +392,7 @@
                   <item>
                    <widget class="QLabel" name="erroVeiculo">
                     <property name="text">
-                     <string>* tratamento de erro/ disponibilidade</string>
+                     <string>* </string>
                     </property>
                    </widget>
                   </item>
@@ -413,6 +419,12 @@
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>300</width>
+                      <height>300</height>
+                     </size>
                     </property>
                     <property name="text">
                      <string>Confirmar</string>
@@ -863,6 +875,12 @@
                          <horstretch>0</horstretch>
                          <verstretch>0</verstretch>
                         </sizepolicy>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>300</width>
+                         <height>300</height>
+                        </size>
                        </property>
                        <property name="text">
                         <string>Confirmar</string>
