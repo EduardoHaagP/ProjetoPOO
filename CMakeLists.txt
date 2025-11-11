@@ -41,6 +41,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         telalistagemvendas.h telalistagemvendas.cpp telalistagemvendas.ui
         telaconsultaestoque.h telaconsultaestoque.cpp telaconsultaestoque.ui
         telaresgistrovendas.h telaresgistrovendas.cpp telaresgistrovendas.ui
+        resources.qrc
+        assets/EscritoBemVindo.png assets/login.png assets/LogoClara.png assets/LogoEscura.png assets/pixelartPorche.png assets/SemEscrito.png
+        assets/inicialSemEscrito.png assets/telaInicial.png
 
     )
 # Define target properties for Android with Qt 6 as:

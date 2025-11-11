@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/EscritoBemVindo.png</file>
+        <file>assets/inicialSemEscrito.png</file>
+        <file>assets/login.png</file>
+        <file>assets/LogoClara.png</file>
+        <file>assets/LogoEscura.png</file>
+        <file>assets/pixelartPorche.png</file>
+        <file>assets/SemEscrito.png</file>
+        <file>assets/telaInicial.png</file>
+    </qresource>
+</RCC>

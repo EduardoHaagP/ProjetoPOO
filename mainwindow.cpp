@@ -7,7 +7,8 @@
 #include <iostream>
 #include <QMessageBox>
 #include <QDebug>
-
+#include <QPixmap>
+#include <QIcon>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +20,20 @@ MainWindow::MainWindow(QWidget *parent)
     , vendedorAutenticado(nullptr) // << Variável da classe inicializada
 {
     ui->setupUi(this);
+
+    setWindowIcon(QIcon(":/assets/LogoEscura.png"));
+
+    QPixmap BemVindo(":/assets/EscritoBemVindo.png"); // <-- Mude se o nome da sua imagem for outro
+    ui->imgBemVindo->setPixmap(BemVindo);
+    ui->imgBemVindo->setScaledContents(true);
+
+
+    //QPixmap imginicial(":/assets/telaInicial.png"); // <-- Mude se o nome da sua imagem for outro
+    //ui->imgInicial->setPixmap(imginicial);
+    //ui->imgInicial->setScaledContents(true);
+
+
+
 
     // se o texto mudar, limpa o txtErro
     connect(ui->inpUsuario, &QLineEdit::textChanged, this, [this](){
