@@ -258,6 +258,11 @@ void TelaResgistroVendas::on_confirmPagamento_clicked()
     atualizarResumo();
 }
 
+// ==================================================================
+//
+//               FUNÇÃO CORRIGIDA
+//
+// ==================================================================
 void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
 {
     if (!vendedorLogado || !clienteSelecionado || !veiculoSelecionado || !politicaSelecionada) {
@@ -280,10 +285,40 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
     Data dataVenda(QDate::currentDate().day(), QDate::currentDate().month(), QDate::currentDate().year());
     string filialVenda = veiculoSelecionado->getFilial();
 
+
+    // --- INÍCIO DA CORREÇÃO ---
+    // O GerenciadorDeVeiculos (estoque) vai deletar o veiculoSelecionado.
+    // A Venda precisa ter o seu *próprio* objeto Veiculo, e não
+    // apenas um ponteiro para o objeto do estoque.
+    // Criamos uma cópia dele para ser usada pela Venda.
+
+    Veiculos* veiculoParaVenda = nullptr;
+    string tipoVeiculo = veiculoSelecionado->motoOuCarro();
+
+    if (tipoVeiculo == "Moto") {
+        veiculoParaVenda = new Moto(
+            veiculoSelecionado->getModelo(),
+            veiculoSelecionado->getAno(),
+            veiculoSelecionado->getValorBase(), // Salva o valor original
+            veiculoSelecionado->getCor(),
+            veiculoSelecionado->getFilial()
+        );
+    } else { // "Carro"
+        veiculoParaVenda = new Carro(
+            veiculoSelecionado->getModelo(),
+            veiculoSelecionado->getAno(),
+            veiculoSelecionado->getValorBase(), // Salva o valor original
+            veiculoSelecionado->getCor(),
+            veiculoSelecionado->getFilial()
+        );
+    }
+    // --- FIM DA CORREÇÃO ---
+
+
     Vendas* novaVenda = new Vendas(
         vendedorLogado,
         clienteSelecionado,
-        veiculoSelecionado,
+        veiculoParaVenda, // <-- USANDO A CÓPIA
         valorBase,
         politicaSelecionada,
         valorEntrada,
@@ -296,6 +331,7 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
     novaVenda->setValorFinal(valorFinal);
     GerenciadorDeVendas::getInstance().adicionar(novaVenda);
 
+    // Agora é seguro remover o veículo do estoque
     bool removido = GerenciadorDeVeiculos::getInstance().remover_por_modelo(veiculoSelecionado->getModelo());
     if (!removido) {
         qWarning() << "ATENÇÃO: Venda registrada, mas não foi possível remover o veículo do estoque.";
