@@ -3,14 +3,20 @@
 
 #include <QDialog>
 #include <vector>
-#include <QCompleter> // Para o AutoComplete
+#include <QCompleter>
 
-#include "gerenciadores.h"
-#include "vendedor.h"
-#include "clientes.h"
-#include "veiculos.h"
-#include "descontos.h"
-#include "vendas.h"
+// --- DECLARAÇÕES ANTECIPADAS ---
+class GerenciadorDeVendas;
+class GerenciadorDeClientes;
+class GerenciadorDeVeiculos;
+class Vendedor;
+class Clientes;
+class Veiculos;
+class PoliticaDesconto;
+class Vendas;
+class FabricaPoliticasDesconto;
+class SemDesconto;
+// --- FIM ---
 
 
 namespace Ui {
@@ -22,22 +28,26 @@ class TelaResgistroVendas : public QDialog
     Q_OBJECT
 
 public:
-    // O construtor continua recebendo o vendedor que fez o login
     explicit TelaResgistroVendas(Vendedor* vendedor, QWidget *parent = nullptr);
     ~TelaResgistroVendas();
 
 private slots:
     // --- BOTÕES PRINCIPAIS ---
     void on_botVoltar_clicked();
-    void on_botCancelar_clicked();      // Nome atualizado
-    void on_confirmCliente_clicked();   // Nome atualizado
-    void on_confirmVeiculo_clicked();   // Nome atualizado
-    void on_confirmPagamento_clicked(); // Nome atualizado
-    void on_confirmResumo_clicked();    // Nome atualizado
+    void on_botCancelar_clicked();
+    void on_confirmCliente_clicked();
+    void on_confirmVeiculo_clicked();
+    void on_confirmPagamento_clicked();
+    void on_confirmResumo_clicked();
 
     // --- SLOTS DE ATUALIZAÇÃO ---
     void atualizarTabelaVeiculos();
     void atualizarCalculoPagamento();
+    void atualizarCalculoParcelas();
+
+    // Slots dos bugs
+    void on_inpPag_currentTextChanged(const QString &text);
+    void on_comboBox_2_currentIndexChanged(int index);
 
 private:
     Ui::TelaResgistroVendas *ui;
@@ -61,3 +71,4 @@ private:
 };
 
 #endif // TELARESGISTROVENDAS_H
+

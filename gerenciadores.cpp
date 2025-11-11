@@ -78,12 +78,12 @@ void GerenciadorDeVeiculos::carregar_do_csv()
         {
             try
             {
-                // trata o valor "80.000"
-                std::string valor_str = dados[3];
-                // Remove todos os '.' da string de valor
-                valor_str.erase(std::remove(valor_str.begin(), valor_str.end(), '.'), valor_str.end());
-                // Agora valor_str é "80000"
-                float valor_corrigido = std::stof(valor_str);
+                std::string valor_str = dados[3]; // Ex: "800000000.00"
+
+                // 1. Apenas chame std::stof. Ele sabe ler "800000000.00"
+                float valor_lido = std::stof(valor_str);
+
+
 
 
                 Veiculos *novoVeiculo = nullptr;
@@ -92,15 +92,15 @@ void GerenciadorDeVeiculos::carregar_do_csv()
 
                 if (tipo == "Moto")
                 {
-                    // Passa a filial para o construtor
+                    // Mude de valor_corrigido para valor_lido
                     novoVeiculo = new Moto(dados[1], std::stoi(dados[2]),
-                                           valor_corrigido, dados[4], filial);
+                                           valor_lido, dados[4], filial);
                 }
                 else if (tipo == "Carro")
                 {
-                    // Passa a filial para o construtor
+                    // Mude de valor_corrigido para valor_lido
                     novoVeiculo = new Carro(dados[1], std::stoi(dados[2]),
-                                            valor_corrigido, dados[4], filial);
+                                            valor_lido, dados[4], filial);
                 }
                 else
                 {

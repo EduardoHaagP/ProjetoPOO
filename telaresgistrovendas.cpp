@@ -1,6 +1,14 @@
 #include "telaresgistrovendas.h"
 #include "ui_telaresgistrovendas.h"
 
+// Adicionamos todos os includes que o .cpp precisa
+#include "gerenciadores.h"
+#include "vendedor.h"
+#include "clientes.h"
+#include "veiculos.h"
+#include "descontos.h"
+#include "vendas.h"
+
 #include <QDebug>
 #include <QCompleter>
 #include <QStringListModel>
@@ -20,7 +28,6 @@ TelaResgistroVendas::TelaResgistroVendas(Vendedor* vendedor, QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Registro de Venda");
 
-    // Limpa a memória da política ao fechar
     connect(this, &QDialog::finished, [this](){
         delete politicaSelecionada;
     });
@@ -32,10 +39,14 @@ TelaResgistroVendas::TelaResgistroVendas(Vendedor* vendedor, QWidget *parent)
     connect(ui->inpFilial, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::atualizarTabelaVeiculos);
     connect(ui->inpTipo, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::atualizarTabelaVeiculos);
     connect(ui->inpModelo, &QLineEdit::textChanged, this, &TelaResgistroVendas::atualizarTabelaVeiculos);
-
-    // Conecta os campos de pagamento à atualização de cálculo
     connect(ui->inpDesconto, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::atualizarCalculoPagamento);
     connect(ui->inpEntrada, &QLineEdit::textChanged, this, &TelaResgistroVendas::atualizarCalculoPagamento);
+
+    // --- CONEXÕES DAS NOVAS CORREÇÕES ---
+    connect(ui->comboBox_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TelaResgistroVendas::on_comboBox_2_currentIndexChanged);
+    connect(ui->inpPag, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::on_inpPag_currentTextChanged);
+    connect(ui->inpEntrada, &QLineEdit::textChanged, this, &TelaResgistroVendas::atualizarCalculoParcelas);
+    connect(ui->inpParcelas, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::atualizarCalculoParcelas);
 }
 
 TelaResgistroVendas::~TelaResgistroVendas()
@@ -61,27 +72,27 @@ void TelaResgistroVendas::estadoInicial()
     clienteSelecionado = nullptr;
     veiculoSelecionado = nullptr;
     delete politicaSelecionada;
-    politicaSelecionada = new SemDesconto();
+    politicaSelecionada = new SemDesconto(); // Garante que não é nulo
 
-    // Habilita/Desabilita os blocos
     ui->cliente->setEnabled(true);
     ui->venda->setEnabled(false);
     ui->pagamento->setEnabled(false);
     ui->resumo->setEnabled(false);
 
-    // Reseta textos de status
     ui->erroCliente->setText("* Selecione o cliente");
     ui->erroVeiculo->setText("* Aguardando cliente...");
 
-    // Carrega dados iniciais
     carregarClientes();
     carregarFiltrosVeiculo();
     carregarOpcoesPagamento();
+
+    // (Bug 6) Chama a função para esconder os campos de parcela no início
+    on_inpPag_currentTextChanged(ui->inpPag->currentText());
 }
 
 void TelaResgistroVendas::carregarClientes()
 {
-    QComboBox* comboClientes = ui->comboBox_2; // ComboBox de cliente
+    QComboBox* comboClientes = ui->comboBox_2;
     comboClientes->clear();
     comboClientes->addItem("Selecione um cliente...");
 
@@ -95,7 +106,6 @@ void TelaResgistroVendas::carregarClientes()
         listaNomes << QString::fromStdString(textoItem);
     }
 
-    // --- LÓGICA DO AUTO-COMPLETE ---
     model->setStringList(listaNomes);
     QCompleter* completer = new QCompleter(this);
     completer->setModel(model);
@@ -104,6 +114,8 @@ void TelaResgistroVendas::carregarClientes()
 
     comboClientes->setEditable(true);
     comboClientes->setCompleter(completer);
+
+    comboClientes->lineEdit()->clear();
 }
 
 void TelaResgistroVendas::carregarFiltrosVeiculo()
@@ -115,24 +127,21 @@ void TelaResgistroVendas::carregarFiltrosVeiculo()
 
 void TelaResgistroVendas::carregarOpcoesPagamento()
 {
-    // Forma de Pagamento (inpPag)
     ui->inpPag->clear();
     ui->inpPag->addItem("À vista");
     ui->inpPag->addItem("Parcelado");
 
-    // Parcelas (inpParcelas)
+    ui->inpPag->setCurrentIndex(-1);
+    ui->inpPag->setPlaceholderText("Selecione...");
+
     ui->inpParcelas->clear();
     ui->inpParcelas->addItem("1x");
     for (int i = 2; i <= 24; ++i) {
         ui->inpParcelas->addItem(QString("%1x").arg(i));
     }
 
-    // Popula o ComboBox 'inpDesconto'
     ui->inpDesconto->clear();
     ui->inpDesconto->addItem("Sem desconto");
-    ui->inpDesconto->addItem("Cliente Fidelidade");
-    ui->inpDesconto->addItem("Promoção Especial");
-    ui->inpDesconto->addItem("Vendas Corporativas");
 }
 
 // --- LÓGICA DE DESCONTO AUTOMÁTICO ---
@@ -141,22 +150,12 @@ std::string TelaResgistroVendas::determinarMelhorDesconto(Clientes* cliente)
     if (!cliente) {
         return "Sem desconto";
     }
-
-    // ==========================================================
-    // CORREÇÃO 1 AQUI:
-    // Mudei de 'auto&' para 'const auto&'.
-    // A função listar() retorna uma *cópia* (rvalue), e C++
-    // não permite ligar uma referência não-constante (&) a um
-    // valor temporário. 'const &' resolve isso.
-    // ==========================================================
     const auto& vendas = GerenciadorDeVendas::getInstance().listar();
-
     for (Vendas* v : vendas) {
         if (v->getCliente() && v->getCliente()->getDocumento() == cliente->getDocumento()) {
             return "Cliente Fidelidade";
         }
     }
-
     return "Sem desconto";
 }
 
@@ -170,7 +169,7 @@ void TelaResgistroVendas::on_botVoltar_clicked()
 
 void TelaResgistroVendas::on_botCancelar_clicked()
 {
-    estadoInicial(); // Reseta a tela
+    estadoInicial();
 }
 
 void TelaResgistroVendas::on_confirmCliente_clicked()
@@ -185,12 +184,23 @@ void TelaResgistroVendas::on_confirmCliente_clicked()
     clienteSelecionado = GerenciadorDeClientes::getInstance().listar()[indice - 1];
 
     if (clienteSelecionado) {
-        ui->txtTipoCliente->setText(QString::fromStdString(clienteSelecionado->getTipoCliente()));
+        ui->comboBox_2->setCurrentText(QString::fromStdString(clienteSelecionado->getNome()));
         ui->erroCliente->setText("* Cliente Confirmado!");
 
         ui->cliente->setEnabled(false);
         ui->venda->setEnabled(true);
         ui->erroVeiculo->setText("* Selecione o veículo");
+
+        ui->inpDesconto->clear();
+        ui->inpDesconto->addItem("Sem desconto");
+        ui->inpDesconto->addItem("Promoção Especial");
+
+        if (clienteSelecionado->getTipoCliente() == "PF") {
+            ui->inpDesconto->addItem("Cliente Fidelidade");
+        } else { // "PJ"
+            ui->inpDesconto->addItem("Cliente Fidelidade");
+            ui->inpDesconto->addItem("Vendas Corporativas");
+        }
 
         std::string descontoSugerido = determinarMelhorDesconto(clienteSelecionado);
         ui->inpDesconto->setCurrentText(QString::fromStdString(descontoSugerido));
@@ -212,36 +222,39 @@ void TelaResgistroVendas::on_confirmVeiculo_clicked()
 
     if (veiculoSelecionado) {
         ui->erroVeiculo->setText("* Veículo Confirmado!");
-
         ui->venda->setEnabled(false);
         ui->pagamento->setEnabled(true);
-
         atualizarCalculoPagamento();
     }
 }
 
 void TelaResgistroVendas::on_confirmPagamento_clicked()
 {
-    bool ok;
-    float entrada = ui->inpEntrada->text().toFloat(&ok);
-
-    float valorTotal = 0.0;
-    if (politicaSelecionada && veiculoSelecionado) {
-        valorTotal = politicaSelecionada->calcularDesconto(veiculoSelecionado->getValorBase());
-    }
-
-    if (!ok || entrada < 0) {
-        QMessageBox::warning(this, "Erro", "Valor de entrada inválido.");
+    if (ui->inpPag->currentIndex() == -1) {
+        QMessageBox::warning(this, "Erro", "Selecione uma forma de pagamento.");
         return;
     }
-    if (entrada > valorTotal) {
-        QMessageBox::warning(this, "Erro", "Valor de entrada não pode ser maior que o valor total.");
-        return;
+
+    if (ui->inpPag->currentText() == "Parcelado") {
+        bool ok;
+        float entrada = ui->inpEntrada->text().toFloat(&ok);
+        float valorTotal = 0.0;
+        if (politicaSelecionada && veiculoSelecionado) {
+            valorTotal = politicaSelecionada->calcularDesconto(veiculoSelecionado->getValorBase());
+        }
+
+        if (!ok || entrada < 0) {
+            QMessageBox::warning(this, "Erro", "Valor de entrada inválido.");
+            return;
+        }
+        if (entrada > valorTotal) {
+            QMessageBox::warning(this, "Erro", "Valor de entrada não pode ser maior que o valor total.");
+            return;
+        }
     }
 
     ui->pagamento->setEnabled(false);
     ui->resumo->setEnabled(true);
-
     atualizarResumo();
 }
 
@@ -254,11 +267,16 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
 
     float valorBase = veiculoSelecionado->getValorBase();
     float valorFinal = politicaSelecionada->calcularDesconto(valorBase);
-    float valorEntrada = ui->inpEntrada->text().toFloat();
+    float valorEntrada = 0.0;
     string formaPagamento = ui->inpPag->currentText().toStdString();
 
-    string statusVenda = (valorEntrada >= valorFinal) ? "Concluída" : "Pendente";
+    if (formaPagamento == "Parcelado") {
+        valorEntrada = ui->inpEntrada->text().toFloat();
+    } else {
+        valorEntrada = valorFinal;
+    }
 
+    string statusVenda = (valorEntrada >= valorFinal) ? "Concluída" : "Pendente";
     Data dataVenda(QDate::currentDate().day(), QDate::currentDate().month(), QDate::currentDate().year());
     string filialVenda = veiculoSelecionado->getFilial();
 
@@ -275,8 +293,7 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
         filialVenda
         );
 
-    novaVenda->setValorFinal(valorFinal); // Garante que o valor com desconto seja salvo
-
+    novaVenda->setValorFinal(valorFinal);
     GerenciadorDeVendas::getInstance().adicionar(novaVenda);
 
     bool removido = GerenciadorDeVeiculos::getInstance().remover_por_modelo(veiculoSelecionado->getModelo());
@@ -285,9 +302,7 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
     }
 
     QMessageBox::information(this, "Sucesso", "Venda registrada com sucesso!");
-
     politicaSelecionada = new SemDesconto(); // Evita double-delete
-
     this->close();
 }
 
@@ -299,12 +314,10 @@ void TelaResgistroVendas::atualizarTabelaVeiculos()
     QString filialFiltro = ui->inpFilial->currentText();
     QString tipoFiltro = ui->inpTipo->currentText();
     QString modeloFiltro = ui->inpModelo->text();
-
     std::vector<Veiculos*> todosVeiculos = GerenciadorDeVeiculos::getInstance().listar();
 
     veiculosFiltrados.clear();
     ui->tableWidget->setRowCount(0);
-
     for (Veiculos* veiculo : todosVeiculos) {
         bool verificaFilial = (filialFiltro == "Todas" ||
                                QString::fromStdString(veiculo->getFilial()) == filialFiltro);
@@ -312,26 +325,20 @@ void TelaResgistroVendas::atualizarTabelaVeiculos()
                              QString::fromStdString(veiculo->motoOuCarro()) == tipoFiltro);
         bool verificaModelo = (modeloFiltro.isEmpty() ||
                                QString::fromStdString(veiculo->getModelo()).contains(modeloFiltro, Qt::CaseInsensitive));
-
         if (verificaFilial && verificaTipo && verificaModelo) {
             veiculosFiltrados.push_back(veiculo);
         }
     }
-
     for (Veiculos* veiculo : veiculosFiltrados) {
         int linhaAtual = ui->tableWidget->rowCount();
         ui->tableWidget->insertRow(linhaAtual);
-
         ui->tableWidget->setItem(linhaAtual, 0, new QTableWidgetItem(QString::fromStdString(veiculo->motoOuCarro())));
         ui->tableWidget->setItem(linhaAtual, 1, new QTableWidgetItem(QString::fromStdString(veiculo->getModelo())));
         ui->tableWidget->setItem(linhaAtual, 2, new QTableWidgetItem(QString::number(veiculo->getAno())));
-
         QString valorFormatado = QString("R$ %1").arg(veiculo->getValorBase(), 0, 'f', 2);
         ui->tableWidget->setItem(linhaAtual, 3, new QTableWidgetItem(valorFormatado));
-
         ui->tableWidget->setItem(linhaAtual, 4, new QTableWidgetItem(QString::fromStdString(veiculo->getCor())));
     }
-
     ui->erroVeiculo->setText(QString("%1 veículo(s) encontrado(s)").arg(veiculosFiltrados.size()));
 }
 
@@ -350,22 +357,75 @@ void TelaResgistroVendas::atualizarCalculoPagamento()
 
     float valorFinal = politicaSelecionada->calcularDesconto(valorBase);
 
-    // ==========================================================
-    // CORREÇÃO 2 AQUI:
-    // O compilador sugeriu que o nome do objeto era 'txtDesconto'.
-    // Mudei 'txtTipoDesconto' para 'txtDesconto' para bater
-    // com o que o seu compilador espera.
-    // ==========================================================
     ui->txtDesconto->setText(QString::number(politicaSelecionada->getPercentual(), 'f', 1) + "%");
-
     ui->txtTotalPag->setText(QString("R$ %1").arg(valorFinal, 0, 'f', 2));
+
+    atualizarCalculoParcelas();
 }
 
 void TelaResgistroVendas::atualizarResumo()
 {
     if (!clienteSelecionado || !veiculoSelecionado) return;
-
     ui->txtNomeResumo->setText(QString::fromStdString(clienteSelecionado->getNome()));
     ui->txtModeloResumo->setText(QString::fromStdString(veiculoSelecionado->getModelo()));
-    ui->txtTotalResumo->setText(ui->txtTotalPag->text()); // Pega o valor do label "Total"
+    ui->txtTotalResumo->setText(ui->txtTotalPag->text());
+}
+
+// --- NOVOS SLOTS IMPLEMENTADOS ---
+
+void TelaResgistroVendas::on_inpPag_currentTextChanged(const QString &text)
+{
+    bool visible = (text == "Parcelado");
+    ui->label_35->setVisible(visible);
+    ui->inpEntrada->setVisible(visible);
+    ui->label_31->setVisible(visible);
+    ui->inpParcelas->setVisible(visible);
+    ui->txtValorParcela->setVisible(visible); // Placeholder para "Valor Parcela"
+}
+
+void TelaResgistroVendas::on_comboBox_2_currentIndexChanged(int index)
+{
+    if (index <= 0) {
+        ui->txtTipoCliente->clear();
+        ui->txtTipoCliente->setText("Tipo cliente");
+    } else {
+        Clientes* c = GerenciadorDeClientes::getInstance().listar()[index - 1];
+        if (c) {
+            ui->txtTipoCliente->setText(QString::fromStdString(c->getTipoCliente()));
+        }
+    }
+}
+
+
+void TelaResgistroVendas::atualizarCalculoParcelas()
+{
+    // Só calcula se tivermos os dados
+    if (!veiculoSelecionado || !politicaSelecionada) {
+        ui->txtValorParcela->setText("R$ 0.00"); // 'txtValorParcela' é o seu txtValorParcela
+        return;
+    }
+
+    // 1. Pega o valor total
+    float valorFinal = politicaSelecionada->calcularDesconto(veiculoSelecionado->getValorBase());
+
+    // 2. Pega a entrada (se for parcelado)
+    float entrada = 0.0;
+    if (ui->inpPag->currentText() == "Parcelado") {
+        // .toFloat() retorna 0.0 se o texto for inválido, o que é seguro
+        entrada = ui->inpEntrada->text().toFloat();
+    }
+
+    // 3. Pega o número de parcelas (ex: "11x")
+    QString textoParcela = ui->inpParcelas->currentText();
+    textoParcela.remove("x"); // Remove o "x" -> "11"
+    int numParcelas = textoParcela.toInt();
+    if (numParcelas == 0) numParcelas = 1; // Evita divisão por zero
+
+    // 4. Calcula e atualiza o label
+    float valorAPrazo = valorFinal - entrada;
+    if (valorAPrazo < 0) valorAPrazo = 0; // Não pode ser negativo
+
+    float valorParcela = valorAPrazo / numParcelas;
+
+    ui->txtValorParcela->setText(QString("R$ %1").arg(valorParcela, 0, 'f', 2));
 }

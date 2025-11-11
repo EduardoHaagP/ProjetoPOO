@@ -161,19 +161,24 @@ void MainWindow::on_botVenda_clicked()
                 });
     }
     telaResgistroVendas->show();
+
     telaResgistroVendas->activateWindow(); // Traz a tela para frente
 }
 
 void MainWindow::on_botListaVendas_clicked()
 {
-    // (Recarrega a lista toda vez que abre, para mostrar a venda nova)
+    // Se a tela já existe, fecha e destrói ela
     if (telaListagemVendas != nullptr) {
         telaListagemVendas->close();
         delete telaListagemVendas;
+        this->telaListagemVendas = nullptr; // <-- ESSA LINHA CORRIGE O CRASH
     }
 
+    // Cria uma instância *nova*
     telaListagemVendas = new TelaListagemVendas(this);
     telaListagemVendas->setWindowTitle("Listagem de Vendas");
+
+    // Conecta o 'finished' para limpar o ponteiro quando o *usuário* fechar
     connect(telaListagemVendas, &TelaListagemVendas::finished,
             this, [this](){
                 this->telaListagemVendas = nullptr;

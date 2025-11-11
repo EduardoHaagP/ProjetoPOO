@@ -1,270 +1,268 @@
 Tipo,Modelo,Ano,Valor (R$),Cor,Filial
-Carro,Vectra,2023,800000000.00,Preto,Londrina
-Carro,Elantra,2024,900000000.00,Vermelho,Londrina
-Carro,Civic,2022,950000000.00,Cinza,Londrina
-Carro,Corolla,2023,1100000000.00,Branco,Londrina
-Carro,Fusion,2022,1300000000.00,Vermelho,Londrina
-Carro,Tucson,2023,1500000000.00,Branco,Londrina
-Carro,Focus,2023,850000000.00,Cinza,Londrina
-Carro,Sentra,2023,750000000.00,Azul,Londrina
-Carro,HR-V,2023,1200000000.00,Preto,Londrina
-Carro,Jetta,2024,1500000000.00,Vermelho,Londrina
-Carro,A3,2023,1800000000.00,Vermelho,Londrina
-Carro,BMW X1,2024,2100000000.00,Azul,Londrina
-Carro,Mercedes-Benz GLA,2023,2200000000.00,Branco,Londrina
-Moto,XRE 300,2023,220000000.00,Cinza,Londrina
-Moto,CB 500X,2024,280000000.00,Prata,Londrina
-Moto,NXR 160,2023,150000000.00,Vermelho,Londrina
-Moto,Bros 160,2023,180000000.00,Vermelho,Londrina
-Moto,CB 500F,2023,300000000.00,Branco,Londrina
-Moto,Yamaha MT-03,2024,300000000.00,Cinza,Londrina
-Carro,Compass,2024,1600000000.00,Cinza,Londrina
-Carro,Ford Kuga,2023,1350000000.00,Preto,Londrina
-Carro,Chery Tiggo 5X,2023,1250000000.00,Prata,Londrina
-Carro,Jeep Renegade,2024,1700000000.00,Cinza,Londrina
-Carro,Mitsubishi ASX,2023,1450000000.00,Azul,Londrina
-Moto,Harley-Davidson Iron 883,2024,400000000.00,Prata,Londrina
-Moto,Ducati Monster 1200,2023,600000000.00,Azul,Londrina
-Moto,KTM 390 Duke,2023,240000000.00,Branco,Londrina
-Carro,Nissan Kicks,2024,1300000000.00,Branco,Londrina
-Carro,Honda WR-V,2023,1000000000.00,Prata,Londrina
-Carro,Renault Kwid,2024,500000000.00,Prata,Londrina
-Carro,Chevrolet Onix,2023,700000000.00,Prata,Londrina
-Carro,Hyundai HB20,2024,800000000.00,Prata,Londrina
-Carro,Ford Fiesta,2023,600000000.00,Azul,Londrina
-Carro,Volkswagen Polo,2023,850000000.00,Preto,Londrina
-Carro,Fiat Argo,2024,650000000.00,Branco,Londrina
-Carro,Toyota Etios,2023,550000000.00,Preto,Londrina
-Carro,Volkswagen Golf,2024,1200000000.00,Cinza,Londrina
-Carro,Audi A4,2023,2500000000.00,Cinza,Londrina
-Carro,Volvo XC60,2024,2200000000.00,Azul,Londrina
-Carro,Porsche Cayenne,2023,5500000256.00,Prata,Londrina
-Moto,Suzuki GSX-S1000F,2024,450000000.00,Branco,Londrina
-Moto,BMW G310R,2023,270000000.00,Azul,Londrina
-Carro,Chevrolet Tracker,2024,1450000000.00,Cinza,Londrina
-Carro,BMW 320i,2023,2100000000.00,Vermelho,Londrina
-Carro,Audi Q3,2024,2300000000.00,Prata,Londrina
-Carro,Honda Civic Hatch,2023,1150000000.00,Prata,Londrina
-Carro,Kia Seltos,2024,1600000000.00,Cinza,Londrina
-Carro,Fiat Toro,2023,1300000000.00,Prata,Londrina
-Moto,Kawasaki Ninja 400,2023,300000000.00,Prata,Londrina
-Moto,Yamaha R1,2024,800000000.00,Cinza,Londrina
-Moto,Suzuki Bandit 650,2023,350000000.00,Prata,Londrina
-Carro,Land Rover Defender,2024,4499999744.00,Prata,Londrina
-Carro,Jeep Grand Cherokee,2024,3500000000.00,Preto,Londrina
-Carro,Chevrolet Prisma,2023,950000000.00,Vermelho,Londrina
-Carro,Volkswagen Jetta,2024,1300000000.00,Branco,Londrina
-Carro,Renault Duster,2022,1100000000.00,Azul,Londrina
-Carro,Fiat Mobi,2023,400000000.00,Cinza,Londrina
-Carro,Toyota Corolla Cross,2023,1800000000.00,Branco,Londrina
-Carro,Honda CR-V,2024,2000000000.00,Prata,Londrina
-Carro,Nissan Versa,2023,850000000.00,Branco,Londrina
-Carro,Honda Fit,2023,750000000.00,Preto,Londrina
-Carro,Ford EcoSport,2024,1000000000.00,Preto,Londrina
-Carro,Kia Sportage,2023,1500000000.00,Preto,Londrina
-Carro,Hyundai Creta,2023,1550000000.00,Preto,Londrina
-Carro,Jeep Compass,2023,1450000000.00,Branco,Londrina
-Moto,Yamaha Lander 250,2023,200000000.00,Cinza,Londrina
-Moto,Honda XRE 300,2024,250000000.00,Prata,Londrina
-Moto,BMW F 800 GS,2023,350000000.00,Branco,Londrina
-Moto,Honda CB 500R,2023,300000000.00,Branco,Londrina
-Moto,Suzuki V-Strom 650,2024,400000000.00,Prata,Londrina
-Moto,Harley-Davidson Sportster,2023,500000000.00,Azul,Londrina
-Moto,Kawasaki Versys 300,2023,230000000.00,Azul,Londrina
-Carro,BMW 320i,2024,2500000000.00,Azul,Londrina
-Carro,Audi Q5,2023,3000000000.00,Preto,Londrina
-Carro,Mercedes-Benz C-Class,2024,2500000000.00,Vermelho,Londrina
-Carro,Subaru Outback,2023,2000000000.00,Azul,Londrina
-Carro,Peugeot 3008,2024,1600000000.00,Preto,Londrina
-Carro,Renault Kwid,2023,500000000.00,Prata,Londrina
-Carro,Fiat Toro,2023,1250000000.00,Prata,Londrina
-Carro,Volkswagen T-Cross,2024,1400000000.00,Azul,Londrina
-Carro,Toyota Hilux,2023,2300000000.00,Vermelho,Londrina
-Moto,Honda CB 1000R,2024,450000000.00,Preto,Londrina
-Moto,Ducati Panigale V2,2023,750000000.00,Cinza,Londrina
-Moto,KTM Duke 200,2023,150000000.00,Branco,Londrina
-Carro,Nissan Frontier,2023,1700000000.00,Azul,Londrina
-Carro,Jeep Renegade,2024,1600000000.00,Preto,Londrina
-Carro,Ford Ranger,2023,1800000000.00,Branco,Londrina
-Carro,Chevrolet S10,2024,1900000000.00,Prata,Londrina
-Carro,Toyota RAV4,2024,2200000000.00,Cinza,Londrina
-Carro,Volkswagen Amarok,2023,2100000000.00,Azul,Londrina
-Carro,Mitsubishi L200,2023,2000000000.00,Vermelho,Londrina
-Moto,BMW G 310 GS,2023,250000000.00,Vermelho,Londrina
-Moto,Kawasaki Ninja 650,2024,450000000.00,Vermelho,Londrina
-Moto,Suzuki Intruder 1800,2023,500000000.00,Branco,Londrina
-Moto,Ducati Scrambler 800,2024,450000000.00,Azul,Londrina
-Carro,Volkswagen Passat,2023,1700000000.00,Azul,Londrina
-Carro,Honda HR-V,2023,1300000000.00,Preto,Londrina
-Carro,Peugeot 208,2024,850000000.00,Vermelho,Londrina
-Carro,Chevrolet Tracker,2023,1250000000.00,Vermelho,Londrina
-Carro,Toyota Etios,2023,550000000.00,Preto,Londrina
-Carro,Hyundai HB20,2023,650000000.00,Azul,Maringá
-Carro,Fiat Argo,2024,700000000.00,Cinza,Maringá
-Carro,Ford Fiesta,2024,600000000.00,Vermelho,Maringá
-Carro,Volkswagen Polo,2023,800000000.00,Cinza,Maringá
-Carro,Renault Logan,2023,500000000.00,Preto,Maringá
-Carro,Fiat Uno,2023,400000000.00,Azul,Maringá
-Carro,Nissan March,2023,450000000.00,Prata,Maringá
-Moto,Honda NC 750X,2023,450000000.00,Prata,Maringá
-Moto,Yamaha Fazer 250,2023,180000000.00,Cinza,Maringá
-Moto,Honda CB 500F,2024,280000000.00,Cinza,Maringá
-Carro,Volkswagen Gol,2023,500000000.00,Prata,Maringá
-Carro,Chevrolet Onix,2023,600000000.00,Azul,Maringá
-Carro,Toyota Yaris,2023,850000000.00,Preto,Maringá
-Carro,Ford Ka,2024,400000000.00,Cinza,Maringá
-Carro,Renault Sandero,2023,550000000.00,Preto,Maringá
-Moto,Kawasaki Ninja 300,2024,300000000.00,Vermelho,Maringá
-Moto,BMW G 310 R,2023,270000000.00,Preto,Maringá
-Carro,Audi A3,2024,1500000000.00,Azul,Maringá
-Carro,Mercedes-Benz A-Class,2023,2000000000.00,Preto,Maringá
-Carro,Volvo XC60,2024,2500000000.00,Azul,Maringá
-Carro,BMW X1,2023,2200000000.00,Preto,Maringá
-Carro,Peugeot 208,2024,800000000.00,Azul,Maringá
-Moto,Triumph Tiger 800,2024,550000000.00,Azul,Maringá
-Carro,Toyota Land Cruiser,2024,4000000000.00,Cinza,Maringá
-Carro,Chevrolet Tracker,2023,1350000000.00,Azul,Maringá
-Carro,Honda HR-V,2023,1200000000.00,Branco,Maringá
-Carro,Hyundai i30,2024,1100000000.00,Vermelho,Maringá
-Carro,Ford Fusion,2023,1700000000.00,Preto,Maringá
-Carro,Audi Q3,2024,2300000000.00,Preto,Maringá
-Carro,BMW 320i,2023,2200000000.00,Vermelho,Maringá
-Carro,Toyota Hilux,2024,2300000000.00,Branco,Maringá
-Carro,Kia Seltos,2023,1600000000.00,Branco,Maringá
-Carro,Jeep Grand Cherokee,2023,3500000000.00,Azul,Maringá
-Carro,Nissan Kicks,2023,1400000000.00,Vermelho,Maringá
-Carro,Volkswagen Golf,2024,1400000000.00,Vermelho,Maringá
-Carro,Ford EcoSport,2023,1050000000.00,Cinza,Maringá
-Carro,Mitsubishi Outlander,2024,1850000000.00,Preto,Maringá
-Carro,Peugeot 3008,2023,1750000000.00,Cinza,Maringá
-Carro,Mercedes-Benz GLA,2024,2500000000.00,Azul,Maringá
-Carro,Chery Tiggo 2 Pro,2023,1000000000.00,Prata,Maringá
-Moto,Yamaha XT 660,2023,280000000.00,Cinza,Maringá
-Moto,Honda CB 500F,2024,290000000.00,Branco,Maringá
-Moto,Ducati Scrambler,2024,600000000.00,Azul,Maringá
-Moto,Harley-Davidson Street,2023,350000000.00,Branco,Maringá
-Moto,Kawasaki Z900,2023,450000000.00,Preto,Maringá
-Moto,BMW G310R,2023,280000000.00,Cinza,Maringá
-Moto,Suzuki Bandit 650,2024,330000000.00,Azul,Maringá
-Moto,Honda XRE 300,2024,250000000.00,Prata,Maringá
-Moto,Suzuki V-Strom 1000,2023,480000000.00,Azul,Maringá
-Moto,KTM Duke 390,2024,320000000.00,Branco,Maringá
-Carro,Volvo XC40,2023,2700000000.00,Preto,Maringá
-Carro,Audi A4,2023,2200000000.00,Preto,Maringá
-Carro,Ford Ranger,2024,1800000000.00,Branco,Maringá
-Carro,Jeep Renegade,2024,1700000000.00,Branco,Maringá
-Carro,Volkswagen Amarok,2024,2100000000.00,Prata,Maringá
-Carro,Toyota Corolla,2023,1200000000.00,Prata,Maringá
-Carro,Honda Civic,2024,1400000000.00,Azul,Maringá
-Carro,BMW X5,2023,5000000000.00,Cinza,Maringá
-Carro,Land Rover Discovery,2023,4499999744.00,Cinza,Maringá
-Carro,Mercedes-Benz GLC,2024,3500000000.00,Cinza,Maringá
-Carro,Fiat Toro,2023,1300000000.00,Vermelho,Maringá
-Carro,Renault Kwid,2023,500000000.00,Preto,Maringá
-Carro,Hyundai HB20,2023,750000000.00,Vermelho,Maringá
-Carro,Volkswagen Polo,2023,850000000.00,Azul,Maringá
-Carro,Toyota Etios,2024,650000000.00,Vermelho,Maringá
-Carro,Nissan Versa,2023,800000000.00,Branco,Maringá
-Carro,Ford Fiesta,2024,700000000.00,Azul,Maringá
-Carro,Chevrolet Onix,2024,850000000.00,Cinza,Maringá
-Carro,Kia Picanto,2024,550000000.00,Vermelho,Maringá
-Moto,Kawasaki Ninja 400,2023,280000000.00,Preto,Maringá
-Moto,Ducati Panigale V4,2023,1200000000.00,Vermelho,Maringá
-Moto,Yamaha YZF-R3,2024,250000000.00,Preto,Maringá
-Moto,Harley-Davidson Roadster,2023,550000000.00,Cinza,Maringá
-Moto,Honda CBR 1000RR,2024,1000000000.00,Preto,Maringá
-Moto,KTM RC 390,2023,280000000.00,Vermelho,Maringá
-Moto,Triumph Bonneville,2024,550000000.00,Vermelho,Maringá
-Moto,Suzuki GSX-R750,2024,600000000.00,Prata,Maringá
-Carro,Nissan Frontier,2024,2000000000.00,Azul,Maringá
-Carro,Toyota RAV4,2023,2100000000.00,Azul,Maringá
-Carro,BMW 118i,2023,1600000000.00,Azul,Maringá
-Carro,Renault Duster,2023,1100000000.00,Vermelho,Maringá
-Carro,Peugeot 208,2024,700000000.00,Prata,Maringá
-Carro,Mitsubishi L200,2023,1900000000.00,Azul,Maringá
-Carro,Chevrolet Cruze,2023,1050000000.00,Preto,Maringá
-Carro,Volkswagen Tiguan,2023,1750000000.00,Azul,Maringá
-Carro,Honda Fit,2023,700000000.00,Preto,Maringá
-Moto,Honda CB 650R,2024,400000000.00,Preto,Maringá
-Moto,Yamaha FZ6,2023,250000000.00,Vermelho,Maringá
-Moto,BMW R1250GS,2023,750000000.00,Azul,Maringá
-Moto,Kawasaki Ninja 650,2023,350000000.00,Vermelho,Maringá
-Moto,Honda Africa Twin,2023,750000000.00,Branco,Maringá
-Moto,Harley-Davidson Electra Glide,2024,850000000.00,Azul,Maringá
-Carro,Audi Q7,2024,3500000000.00,Preto,Maringá
-Carro,BMW X3,2023,3300000000.00,Vermelho,Maringá
-Carro,Volkswagen Tiguan,2023,1700000000.00,Prata,Maringá
-Carro,Honda CR-V,2024,2000000000.00,Branco,Maringá
-Carro,Mercedes-Benz A-Class,2024,2200000000.00,Branco,Maringá
-Carro,Ford Mustang,2023,2400000000.00,Prata,Maringá
-Carro,Renault Kwid,2023,450000000.00,Prata,Maringá
-Carro,Toyota SW4,2023,3000000000.00,Azul,Maringá
-Carro,Kia Soul,2024,1150000000.00,Prata,Curitiba
-Carro,Hyundai Tucson,2023,1550000000.00,Preto,Curitiba
-Carro,Mitsubishi Eclipse Cross,2023,1400000000.00,Branco,Curitiba
-Carro,Chevrolet Onix Plus,2023,750000000.00,Vermelho,Curitiba
-Carro,Peugeot 208,2024,800000000.00,Vermelho,Curitiba
-Carro,Fiat Argo,2024,680000000.00,Vermelho,Curitiba
-Carro,Volkswagen Nivus,2024,1200000000.00,Preto,Curitiba
-Carro,Nissan March,2023,500000000.00,Prata,Curitiba
-Moto,Yamaha R6,2024,700000000.00,Preto,Curitiba
-Moto,Kawasaki Ninja 1000,2023,850000000.00,Preto,Curitiba
-Moto,Harley-Davidson Fat Boy,2024,1200000000.00,Azul,Curitiba
-Moto,BMW S1000RR,2023,1100000000.00,Branco,Curitiba
-Moto,Suzuki Hayabusa,2024,1500000000.00,Branco,Curitiba
-Moto,Ducati Multistrada V4,2023,1200000000.00,Preto,Curitiba
-Moto,Honda CBR 500R,2024,300000000.00,Preto,Curitiba
-Moto,Triumph Street Triple,2023,550000000.00,Branco,Curitiba
-Moto,KTM 1290 Super Duke R,2024,800000000.00,Prata,Curitiba
-Carro,Land Rover Defender,2024,4499999744.00,Preto,Curitiba
-Carro,BMW 330i,2024,2500000000.00,Preto,Curitiba
-Carro,Ford Ranger,2023,1800000000.00,Preto,Curitiba
-Carro,Jeep Cherokee,2024,2200000000.00,Vermelho,Curitiba
-Carro,Honda Civic,2023,1100000000.00,Preto,Curitiba
-Carro,Volkswagen Passat,2023,1600000000.00,Cinza,Curitiba
-Carro,Chevrolet Tracker,2024,1450000000.00,Azul,Curitiba
-Carro,Mercedes-Benz GLA,2024,2400000000.00,Cinza,Curitiba
-Carro,Toyota Corolla,2023,1200000000.00,Preto,Curitiba
-Carro,Hyundai Creta,2023,1600000000.00,Vermelho,Curitiba
-Carro,BMW X1,2023,2200000000.00,Vermelho,Curitiba
-Carro,Fiat Toro,2024,1300000000.00,Vermelho,Curitiba
-Moto,BMW F 900 R,2024,450000000.00,Preto,Curitiba
-Moto,Ducati Panigale V2,2023,850000000.00,Preto,Curitiba
-Moto,KTM 390 Duke,2023,270000000.00,Branco,Curitiba
-Moto,Yamaha MT-07,2024,350000000.00,Cinza,Curitiba
-Moto,Suzuki GSX-R1000,2023,900000000.00,Prata,Curitiba
-Moto,Harley-Davidson Street 500,2023,400000000.00,Azul,Curitiba
-Moto,Honda NC 750X,2024,450000000.00,Cinza,Curitiba
-Moto,Kawasaki Z800,2023,400000000.00,Prata,Curitiba
-Carro,Toyota RAV4,2024,2100000000.00,Vermelho,Curitiba
-Carro,Nissan Kicks,2024,1300000000.00,Preto,Curitiba
-Carro,Renault Duster,2023,1200000000.00,Cinza,Curitiba
-Carro,Peugeot 3008,2023,1900000000.00,Branco,Curitiba
-Carro,Chevrolet Tracker,2023,1450000000.00,Branco,Curitiba
-Carro,Volvo XC60,2024,2600000000.00,Branco,Curitiba
-Carro,Honda HR-V,2023,1350000000.00,Prata,Curitiba
-Carro,BMW X6,2024,4000000000.00,Preto,Curitiba
-Carro,Jeep Renegade,2023,1600000000.00,Branco,Curitiba
-Carro,Hyundai HB20,2024,800000000.00,Branco,Curitiba
-Carro,Fiat Argo,2023,700000000.00,Preto,Curitiba
-Carro,Ford Ecosport,2024,1000000000.00,Vermelho,Curitiba
-Carro,Nissan Versa,2024,950000000.00,Azul,Curitiba
-Carro,Volkswagen Gol,2023,500000000.00,Azul,Curitiba
-Moto,Kawasaki Ninja 400,2024,300000000.00,Prata,Curitiba
-Moto,Yamaha XTZ 250,2023,180000000.00,Prata,Curitiba
-Moto,Honda XRE 300,2023,250000000.00,Branco,Curitiba
-Moto,BMW G 310 GS,2023,280000000.00,Cinza,Curitiba
-Moto,Yamaha Fazer 250,2023,200000000.00,Cinza,Curitiba
-Moto,Suzuki V-Strom 650,2023,350000000.00,Preto,Curitiba
-Moto,Ducati Scrambler 800,2024,400000000.00,Vermelho,Curitiba
-Moto,Harley-Davidson Iron 883,2024,450000000.00,Vermelho,Curitiba
-Carro,Volkswagen T-Cross,2023,1300000000.00,Branco,Curitiba
-Carro,Chevrolet Onix,2023,700000000.00,Prata,Curitiba
-Carro,Toyota Etios,2023,600000000.00,Branco,Curitiba
-Carro,Fiat Uno,2023,400000000.00,Cinza,Curitiba
-Carro,Hyundai i30,2024,1000000000.00,Preto,Curitiba
-Carro,Audi A3,2023,1700000000.00,Preto,Curitiba
-Carro,Nissan Frontier,2023,1950000000.00,Vermelho,Curitiba
-Carro,Land Rover Range Rover,2024,6499999744.00,Vermelho,Curitiba
-Carro,Porsche Macan,2023,5000000000.00,Preto,Curitiba
-Carro,Mercedes-Benz E-Class,2023,3800000000.00,Cinza,Curitiba
+Carro,Elantra,2024,900000.00,Vermelho,Londrina
+Carro,Civic,2022,950000.00,Cinza,Londrina
+Carro,Corolla,2023,1100000.00,Branco,Londrina
+Carro,Fusion,2022,1300000.00,Vermelho,Londrina
+Carro,Tucson,2023,1500000.00,Branco,Londrina
+Carro,Focus,2023,850000.00,Cinza,Londrina
+Carro,Sentra,2023,750000.00,Azul,Londrina
+Carro,HR-V,2023,1200000.00,Preto,Londrina
+Carro,Jetta,2024,1500000.00,Vermelho,Londrina
+Carro,A3,2023,1800000.00,Vermelho,Londrina
+Carro,BMW X1,2024,2100000.00,Azul,Londrina
+Carro,Mercedes-Benz GLA,2023,2200000.00,Branco,Londrina
+Moto,XRE 300,2023,220000.00,Cinza,Londrina
+Moto,CB 500X,2024,280000.00,Prata,Londrina
+Moto,NXR 160,2023,150000.00,Vermelho,Londrina
+Moto,Bros 160,2023,180000.00,Vermelho,Londrina
+Moto,CB 500F,2023,300000.00,Branco,Londrina
+Moto,Yamaha MT-03,2024,300000.00,Cinza,Londrina
+Carro,Compass,2024,1600000.00,Cinza,Londrina
+Carro,Chery Tiggo 5X,2023,1250000.00,Prata,Londrina
+Carro,Jeep Renegade,2024,1700000.00,Cinza,Londrina
+Carro,Mitsubishi ASX,2023,1450000.00,Azul,Londrina
+Moto,Harley-Davidson Iron 883,2024,400000.00,Prata,Londrina
+Moto,Ducati Monster 1200,2023,600000.00,Azul,Londrina
+Moto,KTM 390 Duke,2023,240000.00,Branco,Londrina
+Carro,Nissan Kicks,2024,1300000.00,Branco,Londrina
+Carro,Honda WR-V,2023,1000000.00,Prata,Londrina
+Carro,Renault Kwid,2024,500000.00,Prata,Londrina
+Carro,Chevrolet Onix,2023,700000.00,Prata,Londrina
+Carro,Hyundai HB20,2024,800000.00,Prata,Londrina
+Carro,Ford Fiesta,2023,600000.00,Azul,Londrina
+Carro,Volkswagen Polo,2023,850000.00,Preto,Londrina
+Carro,Fiat Argo,2024,650000.00,Branco,Londrina
+Carro,Toyota Etios,2023,550000.00,Preto,Londrina
+Carro,Volkswagen Golf,2024,1200000.00,Cinza,Londrina
+Carro,Audi A4,2023,2500000.00,Cinza,Londrina
+Carro,Volvo XC60,2024,2200000.00,Azul,Londrina
+Carro,Porsche Cayenne,2023,5500000.50,Prata,Londrina
+Moto,Suzuki GSX-S1000F,2024,450000.00,Branco,Londrina
+Moto,BMW G310R,2023,270000.00,Azul,Londrina
+Carro,Chevrolet Tracker,2024,1450000.00,Cinza,Londrina
+Carro,BMW 320i,2023,2100000.00,Vermelho,Londrina
+Carro,Audi Q3,2024,2300000.00,Prata,Londrina
+Carro,Honda Civic Hatch,2023,1150000.00,Prata,Londrina
+Carro,Kia Seltos,2024,1600000.00,Cinza,Londrina
+Carro,Fiat Toro,2023,1300000.00,Prata,Londrina
+Moto,Kawasaki Ninja 400,2023,300000.00,Prata,Londrina
+Moto,Yamaha R1,2024,800000.00,Cinza,Londrina
+Moto,Suzuki Bandit 650,2023,350000.00,Prata,Londrina
+Carro,Land Rover Defender,2024,4499999.50,Prata,Londrina
+Carro,Jeep Grand Cherokee,2024,3500000.00,Preto,Londrina
+Carro,Chevrolet Prisma,2023,950000.00,Vermelho,Londrina
+Carro,Volkswagen Jetta,2024,1300000.00,Branco,Londrina
+Carro,Renault Duster,2022,1100000.00,Azul,Londrina
+Carro,Fiat Mobi,2023,400000.00,Cinza,Londrina
+Carro,Toyota Corolla Cross,2023,1800000.00,Branco,Londrina
+Carro,Honda CR-V,2024,2000000.00,Prata,Londrina
+Carro,Nissan Versa,2023,850000.00,Branco,Londrina
+Carro,Honda Fit,2023,750000.00,Preto,Londrina
+Carro,Ford EcoSport,2024,1000000.00,Preto,Londrina
+Carro,Kia Sportage,2023,1500000.00,Preto,Londrina
+Carro,Hyundai Creta,2023,1550000.00,Preto,Londrina
+Carro,Jeep Compass,2023,1450000.00,Branco,Londrina
+Moto,Yamaha Lander 250,2023,200000.00,Cinza,Londrina
+Moto,Honda XRE 300,2024,250000.00,Prata,Londrina
+Moto,BMW F 800 GS,2023,350000.00,Branco,Londrina
+Moto,Honda CB 500R,2023,300000.00,Branco,Londrina
+Moto,Suzuki V-Strom 650,2024,400000.00,Prata,Londrina
+Moto,Harley-Davidson Sportster,2023,500000.00,Azul,Londrina
+Moto,Kawasaki Versys 300,2023,230000.00,Azul,Londrina
+Carro,BMW 320i,2024,2500000.00,Azul,Londrina
+Carro,Audi Q5,2023,3000000.00,Preto,Londrina
+Carro,Mercedes-Benz C-Class,2024,2500000.00,Vermelho,Londrina
+Carro,Subaru Outback,2023,2000000.00,Azul,Londrina
+Carro,Peugeot 3008,2024,1600000.00,Preto,Londrina
+Carro,Renault Kwid,2023,500000.00,Prata,Londrina
+Carro,Fiat Toro,2023,1250000.00,Prata,Londrina
+Carro,Volkswagen T-Cross,2024,1400000.00,Azul,Londrina
+Carro,Toyota Hilux,2023,2300000.00,Vermelho,Londrina
+Moto,Honda CB 1000R,2024,450000.00,Preto,Londrina
+Moto,Ducati Panigale V2,2023,750000.00,Cinza,Londrina
+Moto,KTM Duke 200,2023,150000.00,Branco,Londrina
+Carro,Nissan Frontier,2023,1700000.00,Azul,Londrina
+Carro,Jeep Renegade,2024,1600000.00,Preto,Londrina
+Carro,Ford Ranger,2023,1800000.00,Branco,Londrina
+Carro,Chevrolet S10,2024,1900000.00,Prata,Londrina
+Carro,Toyota RAV4,2024,2200000.00,Cinza,Londrina
+Carro,Volkswagen Amarok,2023,2100000.00,Azul,Londrina
+Carro,Mitsubishi L200,2023,2000000.00,Vermelho,Londrina
+Moto,BMW G 310 GS,2023,250000.00,Vermelho,Londrina
+Moto,Kawasaki Ninja 650,2024,450000.00,Vermelho,Londrina
+Moto,Suzuki Intruder 1800,2023,500000.00,Branco,Londrina
+Moto,Ducati Scrambler 800,2024,450000.00,Azul,Londrina
+Carro,Volkswagen Passat,2023,1700000.00,Azul,Londrina
+Carro,Honda HR-V,2023,1300000.00,Preto,Londrina
+Carro,Peugeot 208,2024,850000.00,Vermelho,Londrina
+Carro,Chevrolet Tracker,2023,1250000.00,Vermelho,Londrina
+Carro,Toyota Etios,2023,550000.00,Preto,Londrina
+Carro,Hyundai HB20,2023,650000.00,Azul,Maringá
+Carro,Fiat Argo,2024,700000.00,Cinza,Maringá
+Carro,Ford Fiesta,2024,600000.00,Vermelho,Maringá
+Carro,Volkswagen Polo,2023,800000.00,Cinza,Maringá
+Carro,Renault Logan,2023,500000.00,Preto,Maringá
+Carro,Fiat Uno,2023,400000.00,Azul,Maringá
+Carro,Nissan March,2023,450000.00,Prata,Maringá
+Moto,Honda NC 750X,2023,450000.00,Prata,Maringá
+Moto,Yamaha Fazer 250,2023,180000.00,Cinza,Maringá
+Moto,Honda CB 500F,2024,280000.00,Cinza,Maringá
+Carro,Volkswagen Gol,2023,500000.00,Prata,Maringá
+Carro,Chevrolet Onix,2023,600000.00,Azul,Maringá
+Carro,Toyota Yaris,2023,850000.00,Preto,Maringá
+Carro,Ford Ka,2024,400000.00,Cinza,Maringá
+Carro,Renault Sandero,2023,550000.00,Preto,Maringá
+Moto,Kawasaki Ninja 300,2024,300000.00,Vermelho,Maringá
+Moto,BMW G 310 R,2023,270000.00,Preto,Maringá
+Carro,Audi A3,2024,1500000.00,Azul,Maringá
+Carro,Mercedes-Benz A-Class,2023,2000000.00,Preto,Maringá
+Carro,Volvo XC60,2024,2500000.00,Azul,Maringá
+Carro,BMW X1,2023,2200000.00,Preto,Maringá
+Carro,Peugeot 208,2024,800000.00,Azul,Maringá
+Moto,Triumph Tiger 800,2024,550000.00,Azul,Maringá
+Carro,Toyota Land Cruiser,2024,4000000.00,Cinza,Maringá
+Carro,Chevrolet Tracker,2023,1350000.00,Azul,Maringá
+Carro,Honda HR-V,2023,1200000.00,Branco,Maringá
+Carro,Hyundai i30,2024,1100000.00,Vermelho,Maringá
+Carro,Ford Fusion,2023,1700000.00,Preto,Maringá
+Carro,Audi Q3,2024,2300000.00,Preto,Maringá
+Carro,BMW 320i,2023,2200000.00,Vermelho,Maringá
+Carro,Toyota Hilux,2024,2300000.00,Branco,Maringá
+Carro,Kia Seltos,2023,1600000.00,Branco,Maringá
+Carro,Jeep Grand Cherokee,2023,3500000.00,Azul,Maringá
+Carro,Nissan Kicks,2023,1400000.00,Vermelho,Maringá
+Carro,Volkswagen Golf,2024,1400000.00,Vermelho,Maringá
+Carro,Ford EcoSport,2023,1050000.00,Cinza,Maringá
+Carro,Mitsubishi Outlander,2024,1850000.00,Preto,Maringá
+Carro,Peugeot 3008,2023,1750000.00,Cinza,Maringá
+Carro,Mercedes-Benz GLA,2024,2500000.00,Azul,Maringá
+Carro,Chery Tiggo 2 Pro,2023,1000000.00,Prata,Maringá
+Moto,Yamaha XT 660,2023,280000.00,Cinza,Maringá
+Moto,Honda CB 500F,2024,290000.00,Branco,Maringá
+Moto,Ducati Scrambler,2024,600000.00,Azul,Maringá
+Moto,Harley-Davidson Street,2023,350000.00,Branco,Maringá
+Moto,Kawasaki Z900,2023,450000.00,Preto,Maringá
+Moto,BMW G310R,2023,280000.00,Cinza,Maringá
+Moto,Suzuki Bandit 650,2024,330000.00,Azul,Maringá
+Moto,Honda XRE 300,2024,250000.00,Prata,Maringá
+Moto,Suzuki V-Strom 1000,2023,480000.00,Azul,Maringá
+Moto,KTM Duke 390,2024,320000.00,Branco,Maringá
+Carro,Volvo XC40,2023,2700000.00,Preto,Maringá
+Carro,Audi A4,2023,2200000.00,Preto,Maringá
+Carro,Ford Ranger,2024,1800000.00,Branco,Maringá
+Carro,Jeep Renegade,2024,1700000.00,Branco,Maringá
+Carro,Volkswagen Amarok,2024,2100000.00,Prata,Maringá
+Carro,Toyota Corolla,2023,1200000.00,Prata,Maringá
+Carro,Honda Civic,2024,1400000.00,Azul,Maringá
+Carro,BMW X5,2023,5000000.00,Cinza,Maringá
+Carro,Land Rover Discovery,2023,4499999.50,Cinza,Maringá
+Carro,Mercedes-Benz GLC,2024,3500000.00,Cinza,Maringá
+Carro,Fiat Toro,2023,1300000.00,Vermelho,Maringá
+Carro,Renault Kwid,2023,500000.00,Preto,Maringá
+Carro,Hyundai HB20,2023,750000.00,Vermelho,Maringá
+Carro,Volkswagen Polo,2023,850000.00,Azul,Maringá
+Carro,Toyota Etios,2024,650000.00,Vermelho,Maringá
+Carro,Nissan Versa,2023,800000.00,Branco,Maringá
+Carro,Ford Fiesta,2024,700000.00,Azul,Maringá
+Carro,Chevrolet Onix,2024,850000.00,Cinza,Maringá
+Carro,Kia Picanto,2024,550000.00,Vermelho,Maringá
+Moto,Kawasaki Ninja 400,2023,280000.00,Preto,Maringá
+Moto,Ducati Panigale V4,2023,1200000.00,Vermelho,Maringá
+Moto,Yamaha YZF-R3,2024,250000.00,Preto,Maringá
+Moto,Harley-Davidson Roadster,2023,550000.00,Cinza,Maringá
+Moto,Honda CBR 1000RR,2024,1000000.00,Preto,Maringá
+Moto,KTM RC 390,2023,280000.00,Vermelho,Maringá
+Moto,Triumph Bonneville,2024,550000.00,Vermelho,Maringá
+Moto,Suzuki GSX-R750,2024,600000.00,Prata,Maringá
+Carro,Nissan Frontier,2024,2000000.00,Azul,Maringá
+Carro,Toyota RAV4,2023,2100000.00,Azul,Maringá
+Carro,BMW 118i,2023,1600000.00,Azul,Maringá
+Carro,Renault Duster,2023,1100000.00,Vermelho,Maringá
+Carro,Peugeot 208,2024,700000.00,Prata,Maringá
+Carro,Mitsubishi L200,2023,1900000.00,Azul,Maringá
+Carro,Chevrolet Cruze,2023,1050000.00,Preto,Maringá
+Carro,Volkswagen Tiguan,2023,1750000.00,Azul,Maringá
+Carro,Honda Fit,2023,700000.00,Preto,Maringá
+Moto,Honda CB 650R,2024,400000.00,Preto,Maringá
+Moto,Yamaha FZ6,2023,250000.00,Vermelho,Maringá
+Moto,BMW R1250GS,2023,750000.00,Azul,Maringá
+Moto,Kawasaki Ninja 650,2023,350000.00,Vermelho,Maringá
+Moto,Honda Africa Twin,2023,750000.00,Branco,Maringá
+Moto,Harley-Davidson Electra Glide,2024,850000.00,Azul,Maringá
+Carro,Audi Q7,2024,3500000.00,Preto,Maringá
+Carro,BMW X3,2023,3300000.00,Vermelho,Maringá
+Carro,Volkswagen Tiguan,2023,1700000.00,Prata,Maringá
+Carro,Honda CR-V,2024,2000000.00,Branco,Maringá
+Carro,Mercedes-Benz A-Class,2024,2200000.00,Branco,Maringá
+Carro,Ford Mustang,2023,2400000.00,Prata,Maringá
+Carro,Renault Kwid,2023,450000.00,Prata,Maringá
+Carro,Toyota SW4,2023,3000000.00,Azul,Maringá
+Carro,Kia Soul,2024,1150000.00,Prata,Curitiba
+Carro,Hyundai Tucson,2023,1550000.00,Preto,Curitiba
+Carro,Mitsubishi Eclipse Cross,2023,1400000.00,Branco,Curitiba
+Carro,Chevrolet Onix Plus,2023,750000.00,Vermelho,Curitiba
+Carro,Peugeot 208,2024,800000.00,Vermelho,Curitiba
+Carro,Fiat Argo,2024,680000.00,Vermelho,Curitiba
+Carro,Volkswagen Nivus,2024,1200000.00,Preto,Curitiba
+Carro,Nissan March,2023,500000.00,Prata,Curitiba
+Moto,Yamaha R6,2024,700000.00,Preto,Curitiba
+Moto,Kawasaki Ninja 1000,2023,850000.00,Preto,Curitiba
+Moto,Harley-Davidson Fat Boy,2024,1200000.00,Azul,Curitiba
+Moto,BMW S1000RR,2023,1100000.00,Branco,Curitiba
+Moto,Suzuki Hayabusa,2024,1500000.00,Branco,Curitiba
+Moto,Ducati Multistrada V4,2023,1200000.00,Preto,Curitiba
+Moto,Honda CBR 500R,2024,300000.00,Preto,Curitiba
+Moto,Triumph Street Triple,2023,550000.00,Branco,Curitiba
+Moto,KTM 1290 Super Duke R,2024,800000.00,Prata,Curitiba
+Carro,Land Rover Defender,2024,4499999.50,Preto,Curitiba
+Carro,BMW 330i,2024,2500000.00,Preto,Curitiba
+Carro,Ford Ranger,2023,1800000.00,Preto,Curitiba
+Carro,Jeep Cherokee,2024,2200000.00,Vermelho,Curitiba
+Carro,Honda Civic,2023,1100000.00,Preto,Curitiba
+Carro,Volkswagen Passat,2023,1600000.00,Cinza,Curitiba
+Carro,Chevrolet Tracker,2024,1450000.00,Azul,Curitiba
+Carro,Mercedes-Benz GLA,2024,2400000.00,Cinza,Curitiba
+Carro,Toyota Corolla,2023,1200000.00,Preto,Curitiba
+Carro,Hyundai Creta,2023,1600000.00,Vermelho,Curitiba
+Carro,BMW X1,2023,2200000.00,Vermelho,Curitiba
+Carro,Fiat Toro,2024,1300000.00,Vermelho,Curitiba
+Moto,BMW F 900 R,2024,450000.00,Preto,Curitiba
+Moto,Ducati Panigale V2,2023,850000.00,Preto,Curitiba
+Moto,KTM 390 Duke,2023,270000.00,Branco,Curitiba
+Moto,Yamaha MT-07,2024,350000.00,Cinza,Curitiba
+Moto,Suzuki GSX-R1000,2023,900000.00,Prata,Curitiba
+Moto,Harley-Davidson Street 500,2023,400000.00,Azul,Curitiba
+Moto,Honda NC 750X,2024,450000.00,Cinza,Curitiba
+Moto,Kawasaki Z800,2023,400000.00,Prata,Curitiba
+Carro,Toyota RAV4,2024,2100000.00,Vermelho,Curitiba
+Carro,Nissan Kicks,2024,1300000.00,Preto,Curitiba
+Carro,Renault Duster,2023,1200000.00,Cinza,Curitiba
+Carro,Peugeot 3008,2023,1900000.00,Branco,Curitiba
+Carro,Chevrolet Tracker,2023,1450000.00,Branco,Curitiba
+Carro,Volvo XC60,2024,2600000.00,Branco,Curitiba
+Carro,Honda HR-V,2023,1350000.00,Prata,Curitiba
+Carro,BMW X6,2024,4000000.00,Preto,Curitiba
+Carro,Jeep Renegade,2023,1600000.00,Branco,Curitiba
+Carro,Hyundai HB20,2024,800000.00,Branco,Curitiba
+Carro,Fiat Argo,2023,700000.00,Preto,Curitiba
+Carro,Ford Ecosport,2024,1000000.00,Vermelho,Curitiba
+Carro,Nissan Versa,2024,950000.00,Azul,Curitiba
+Carro,Volkswagen Gol,2023,500000.00,Azul,Curitiba
+Moto,Kawasaki Ninja 400,2024,300000.00,Prata,Curitiba
+Moto,Yamaha XTZ 250,2023,180000.00,Prata,Curitiba
+Moto,Honda XRE 300,2023,250000.00,Branco,Curitiba
+Moto,BMW G 310 GS,2023,280000.00,Cinza,Curitiba
+Moto,Yamaha Fazer 250,2023,200000.00,Cinza,Curitiba
+Moto,Suzuki V-Strom 650,2023,350000.00,Preto,Curitiba
+Moto,Ducati Scrambler 800,2024,400000.00,Vermelho,Curitiba
+Moto,Harley-Davidson Iron 883,2024,450000.00,Vermelho,Curitiba
+Carro,Volkswagen T-Cross,2023,1300000.00,Branco,Curitiba
+Carro,Chevrolet Onix,2023,700000.00,Prata,Curitiba
+Carro,Toyota Etios,2023,600000.00,Branco,Curitiba
+Carro,Fiat Uno,2023,400000.00,Cinza,Curitiba
+Carro,Hyundai i30,2024,1000000.00,Preto,Curitiba
+Carro,Audi A3,2023,1700000.00,Preto,Curitiba
+Carro,Nissan Frontier,2023,1950000.00,Vermelho,Curitiba
+Carro,Land Rover Range Rover,2024,6499999.50,Vermelho,Curitiba
+Carro,Porsche Macan,2023,5000000.00,Preto,Curitiba
+Carro,Mercedes-Benz E-Class,2023,3800000.00,Cinza,Curitiba
