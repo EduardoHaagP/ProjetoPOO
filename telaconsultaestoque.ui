@@ -14,79 +14,87 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">/* === FUNDO DAS TELAS === */
+   <string notr="true">/* === FUNDO DA TELA E SEÇÕES === */
 QDialog[objectName=&quot;TelaConsultaEstoque&quot;] {
-    background-color: #252525;
+    background-color: #252525; /* Fundo secundário (mais claro) */
+}
+
+/* Aplica o fundo dos frames internos, onde ficam os filtros (widget, widget_3, etc.) */
+QWidget#widget, QWidget#widget_2, QWidget#widget_3, QWidget#widget_4, QWidget#widget_5, QWidget#widget_6 {
+    background-color: transparent; /* Usa o fundo da tela ou do QDialog principal */
 }
 
 /* === TEXTOS (LABELS) === */
 QLabel {
-    color: #F0F0F0; /* Texto claro (quase branco) */
+    color: #F0F0F0;
+    background-color: transparent;
 }
-/* Título principal da tela */
+/* Título principal */
 QLabel[objectName=&quot;txt&quot;] {
     font-size: 26pt;
     font-weight: bold;
 }
 
-/* === CAIXAS DE INPUT E SELEÇÃO (QLineEdit, QComboBox) === */
+/* === INPUTS &amp; COMBOBOX (Ativos - Visual Muted) === */
 QLineEdit, QComboBox {
-    background-color: #444444; /* Fundo do input */
-    color: #F0F0F0;           /* Texto do input */
+    background-color: #3A3A3A; /* Fundo cinza muted para o input */
+    color: #F0F0F0;
     border: 1px solid #555555;
     border-radius: 5px;
     padding: 5px;
 }
 QLineEdit:focus, QComboBox:focus {
-    border: 1px solid #E67E22; /* Laranja ao focar */
+    border: 1px solid #E67E22; /* Destaque laranja ao focar */
 }
-QComboBox::drop-down { border: none; }
+QComboBox::drop-down {
+    border-left: 1px solid #555555;
+    width: 15px;
+}
 
-/* === TABELAS === */
+/* 🟢 CORREÇÃO CRÍTICA: VISIBILIDADE DO TEXTO NA LISTA DROP-DOWN */
+QComboBox QAbstractItemView {
+    background-color: #444444; /* Fundo escuro para a lista flutuante */
+    color: #F0F0F0;           /* Texto claro e legível */
+    selection-background-color: #E67E22; /* Laranja para o item selecionado */
+    selection-color: white;             /* Texto branco no item selecionado */
+    border: 1px solid #555555;
+}
+
+/* === TABELA === */
 QTableWidget {
     background-color: #444444;
     color: #F0F0F0;
     gridline-color: #555555;
-    alternate-background-color: #3A3A3A; /* Cor para linhas alternadas */
+    alternate-background-color: #3A3A3A;
+    border: 1px solid #555555;
 }
 QHeaderView::section {
-    background-color: #555555; /* Fundo do cabeçalho */
+    background-color: #555555;
     color: white;
     padding: 4px;
     border: 1px solid #333333;
 }
 
-/* === 1. BOTAO DE ACAO (VERMELHO) === */
-/* Usado para &quot;Voltar&quot; */
-QPushButton#botVoltar {
-    background-color: #DC3545; /* Vermelho &quot;perigo&quot; */
+/* === BOTÃO DE AÇÃO PRINCIPAL (Consultar - VERDE) === */
+QPushButton#botCadastrar { /* Este é o botão &quot;Consultar&quot; */
+    background-color: #28A745;
     color: white;
-    border-radius: 10px; /* Bordas arredondadas */
+    border-radius: 10px;
     padding: 8px;
     font-weight: bold;
+    border: none;
 }
-QPushButton#botVoltar:hover {
-    background-color: #C82333;
-}
-QPushButton#botVoltar:pressed {
-    background-color: #A71D2A;
-}
+QPushButton#botCadastrar:hover { background-color: #218838; }
 
-/* === 2. BOTAO DE CONFIRMACAO (VERDE) === */
-/* Usado para &quot;Consultar&quot; (botCadastrar no .ui) */
-QPushButton#botCadastrar {
-    background-color: #28A745; /* Verde &quot;sucesso&quot; */
+/* === BOTÃO DE NAVEGAÇÃO (Voltar - VERMELHO) === */
+QPushButton#botVoltar {
+    background-color: #DC3545;
     color: white;
     border-radius: 10px;
     padding: 8px;
     font-weight: bold;
 }
-QPushButton#botCadastrar:hover {
-    background-color: #218838;
-}
-QPushButton#botCadastrar:pressed {
-    background-color: #1E7E34;
-}</string>
+QPushButton#botVoltar:hover { background-color: #C82333; }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

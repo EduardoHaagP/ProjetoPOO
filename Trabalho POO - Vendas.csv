@@ -1,7 +1,7 @@
 Tipo,Vendedor,CPF Vendedor,Modelo,Ano,Valor Pago,Valor Entrada,Cor,Cliente,Documento Cliente,Politica Desconto,Forma Pagamento,Status Venda,Data,Filial
 Carro,Manuel Gomes,11122233344,Civic,2022,950000,950000,Cinza,tatu e cia,11111111111234,Sem desconto,À vista,Concluída,11/11/2025,Londrina
-Carro,Manuel Gomes,11122233344,HR-V,2023,585210,34444,Preto,teste,11111111111,Cliente Fidelidade,Parcelado,Pendente,11/11/2025,Londrina
+Carro,Manuel Gomes,11122233344,HR-V,2023,555950,34444,Preto,teste,11111111111,Cliente Fidelidade,Parcelado,Pendente,11/11/2025,Londrina
 Moto,Manuel Gomes,11122233344,Suzuki GSX-S1000F,2024,450000,450000,Branco,HACKER PERIGOSO,66666666666,Sem desconto,À vista,Concluída,11/11/2025,Londrina
-Carro,Manuel Gomes,11122233344,Corolla,2023,254779,223,Branco,tatu e cia,11111111111234,Vendas Corporativas,Parcelado,Pendente,11/11/2025,Londrina
-Carro,Manuel Gomes,11122233344,Hyundai HB20,2023,586625,617500,Azul,teste,11111111111,Cliente Fidelidade,À vista,Concluída,11/11/2025,Maringá
+Carro,Manuel Gomes,11122233344,Corolla,2023,216562,223,Branco,tatu e cia,11111111111234,Vendas Corporativas,Parcelado,Pendente,11/11/2025,Londrina
+Carro,Manuel Gomes,11122233344,Hyundai HB20,2023,557294,617500,Azul,teste,11111111111,Cliente Fidelidade,À vista,Concluída,11/11/2025,Maringá
 Carro,Manuel Gomes,11122233344,Fusion,2022,1.3e+06,4545,Vermelho,teste,11111111111,Sem desconto,Parcelado,Pendente,11/11/2025,Londrina
