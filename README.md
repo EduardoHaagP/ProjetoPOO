@@ -60,6 +60,6 @@ O sistema foi projetado com foco em uma interface intuitiva e na aplicação pr�
   
  - Projeto acadêmico desenvolvido para fins de aprendizado e aplicação prática dos conceitos de Programação Orientada a Objetos.
 
-##🏁 Conclusão
+## 🏁 Conclusão
 
 O **DriveTech** representa a integração entre teoria e prática no desenvolvimento de sistemas orientados a objetos, demonstrando o uso do Qt como ferramenta poderosa para construção de interfaces gráficas modernas em C++.
