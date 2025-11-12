@@ -13,6 +13,81 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* === FUNDO DAS TELAS === */
+QDialog[objectName=&quot;TelaConsultaEstoque&quot;] {
+    background-color: #252525;
+}
+
+/* === TEXTOS (LABELS) === */
+QLabel {
+    color: #F0F0F0; /* Texto claro (quase branco) */
+}
+/* Título principal da tela */
+QLabel[objectName=&quot;txt&quot;] {
+    font-size: 26pt;
+    font-weight: bold;
+}
+
+/* === CAIXAS DE INPUT E SELEÇÃO (QLineEdit, QComboBox) === */
+QLineEdit, QComboBox {
+    background-color: #444444; /* Fundo do input */
+    color: #F0F0F0;           /* Texto do input */
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+}
+QLineEdit:focus, QComboBox:focus {
+    border: 1px solid #E67E22; /* Laranja ao focar */
+}
+QComboBox::drop-down { border: none; }
+
+/* === TABELAS === */
+QTableWidget {
+    background-color: #444444;
+    color: #F0F0F0;
+    gridline-color: #555555;
+    alternate-background-color: #3A3A3A; /* Cor para linhas alternadas */
+}
+QHeaderView::section {
+    background-color: #555555; /* Fundo do cabeçalho */
+    color: white;
+    padding: 4px;
+    border: 1px solid #333333;
+}
+
+/* === 1. BOTAO DE ACAO (VERMELHO) === */
+/* Usado para &quot;Voltar&quot; */
+QPushButton#botVoltar {
+    background-color: #DC3545; /* Vermelho &quot;perigo&quot; */
+    color: white;
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 8px;
+    font-weight: bold;
+}
+QPushButton#botVoltar:hover {
+    background-color: #C82333;
+}
+QPushButton#botVoltar:pressed {
+    background-color: #A71D2A;
+}
+
+/* === 2. BOTAO DE CONFIRMACAO (VERDE) === */
+/* Usado para &quot;Consultar&quot; (botCadastrar no .ui) */
+QPushButton#botCadastrar {
+    background-color: #28A745; /* Verde &quot;sucesso&quot; */
+    color: white;
+    border-radius: 10px;
+    padding: 8px;
+    font-weight: bold;
+}
+QPushButton#botCadastrar:hover {
+    background-color: #218838;
+}
+QPushButton#botCadastrar:pressed {
+    background-color: #1E7E34;
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="txt">

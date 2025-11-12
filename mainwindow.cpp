@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->imgBemVindo->setPixmap(BemVindo);
     ui->imgBemVindo->setScaledContents(true);
 
-    QPixmap logo(":/assets/LogoClara.png"); // <-- Mude se o nome da sua imagem for outro
+    QPixmap logo(":/assets/LogoEscura.png"); // <-- Mude se o nome da sua imagem for outro
     ui->imgLogo->setPixmap(logo);
     ui->imgLogo->setScaledContents(true);
 

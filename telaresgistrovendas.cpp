@@ -79,8 +79,16 @@ void TelaResgistroVendas::estadoInicial()
     ui->pagamento->setEnabled(false);
     ui->resumo->setEnabled(false);
 
+    // --- INICIALIZAÇÃO CINZA (INSTRUÇÃO) ---
     ui->erroCliente->setText("* Selecione o cliente");
+    ui->erroCliente->setStyleSheet("color: #AAAAAA;"); // Cinza Neutro (Instrução)
     ui->erroVeiculo->setText("* Aguardando cliente...");
+    ui->erroVeiculo->setStyleSheet("color: #AAAAAA;"); // Cinza Neutro (Instrução)
+
+    // Inicialização do novo erroPagamento
+    ui->erroPagamento->setText("* Selecione a forma de pagamento e valores");
+    ui->erroPagamento->setStyleSheet("color: #AAAAAA;"); // Cinza Neutro (Instrução)
+    // --- FIM DA MUDANÇA ---
 
     carregarClientes();
     carregarFiltrosVeiculo();
@@ -142,6 +150,10 @@ void TelaResgistroVendas::carregarOpcoesPagamento()
 
     ui->inpDesconto->clear();
     ui->inpDesconto->addItem("Sem desconto");
+
+    // Zera o status de pagamento ao carregar opções
+    ui->erroPagamento->setText("");
+    ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
 }
 
 // --- LÓGICA DE DESCONTO AUTOMÁTICO ---
@@ -177,7 +189,9 @@ void TelaResgistroVendas::on_confirmCliente_clicked()
     int indice = ui->comboBox_2->currentIndex();
 
     if (indice <= 0) {
+        // --- ERRO (VERMELHO) ---
         ui->erroCliente->setText("* ERRO: Cliente inválido!");
+        ui->erroCliente->setStyleSheet("color: #FF5050;"); // Vermelho brilhante
         return;
     }
 
@@ -185,11 +199,17 @@ void TelaResgistroVendas::on_confirmCliente_clicked()
 
     if (clienteSelecionado) {
         ui->comboBox_2->setCurrentText(QString::fromStdString(clienteSelecionado->getNome()));
+
+        // --- SUCESSO (VERDE) ---
         ui->erroCliente->setText("* Cliente Confirmado!");
+        ui->erroCliente->setStyleSheet("color: #28A745;"); // Verde
 
         ui->cliente->setEnabled(false);
         ui->venda->setEnabled(true);
+
+        // --- PRÓXIMA INSTRUÇÃO (CINZA) ---
         ui->erroVeiculo->setText("* Selecione o veículo");
+        ui->erroVeiculo->setStyleSheet("color: #AAAAAA;"); // Cinza (Instrução)
 
         ui->inpDesconto->clear();
         ui->inpDesconto->addItem("Sem desconto");
@@ -214,24 +234,40 @@ void TelaResgistroVendas::on_confirmVeiculo_clicked()
     int linha = ui->tableWidget->currentRow();
 
     if (linha < 0 || linha >= (int)veiculosFiltrados.size()) {
+        // --- ERRO (VERMELHO) ---
         ui->erroVeiculo->setText("* ERRO: Selecione um veículo na tabela!");
+        ui->erroVeiculo->setStyleSheet("color: #FF5050;"); // Vermelho brilhante
         return;
     }
 
     veiculoSelecionado = veiculosFiltrados[linha];
 
     if (veiculoSelecionado) {
+        // --- SUCESSO (VERDE) ---
         ui->erroVeiculo->setText("* Veículo Confirmado!");
+        ui->erroVeiculo->setStyleSheet("color: #28A745;"); // Verde
+
         ui->venda->setEnabled(false);
         ui->pagamento->setEnabled(true);
+
+        // Limpa o status de pagamento para instrução Cinza
+        ui->erroPagamento->setText("* Verifique os valores e confirme.");
+        ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
+
         atualizarCalculoPagamento();
     }
 }
 
 void TelaResgistroVendas::on_confirmPagamento_clicked()
 {
+    // 1. Limpa a mensagem para Cinza (Instrução/Verificação)
+    ui->erroPagamento->setText("* Verificando...");
+    ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
+
     if (ui->inpPag->currentIndex() == -1) {
-        QMessageBox::warning(this, "Erro", "Selecione uma forma de pagamento.");
+        // --- ERRO PAGAMENTO (VERMELHO) ---
+        ui->erroPagamento->setText("* ERRO: Selecione uma forma de pagamento.");
+        ui->erroPagamento->setStyleSheet("color: #FF5050;"); // Vermelho
         return;
     }
 
@@ -244,14 +280,22 @@ void TelaResgistroVendas::on_confirmPagamento_clicked()
         }
 
         if (!ok || entrada < 0) {
-            QMessageBox::warning(this, "Erro", "Valor de entrada inválido.");
+            // --- ERRO PAGAMENTO (VERMELHO) ---
+            ui->erroPagamento->setText("* ERRO: Valor de entrada inválido.");
+            ui->erroPagamento->setStyleSheet("color: #FF5050;"); // Vermelho
             return;
         }
         if (entrada > valorTotal) {
-            QMessageBox::warning(this, "Erro", "Valor de entrada não pode ser maior que o valor total.");
+            // --- ERRO PAGAMENTO (VERMELHO) ---
+            ui->erroPagamento->setText("* ERRO: Entrada não pode ser maior que o total.");
+            ui->erroPagamento->setStyleSheet("color: #FF5050;"); // Vermelho
             return;
         }
     }
+
+    // --- SUCESSO PAGAMENTO (VERDE) ---
+    ui->erroPagamento->setText("* Pagamento Confirmado!");
+    ui->erroPagamento->setStyleSheet("color: #28A745;"); // Verde
 
     ui->pagamento->setEnabled(false);
     ui->resumo->setEnabled(true);
@@ -302,7 +346,7 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
             veiculoSelecionado->getValorBase(), // Salva o valor original
             veiculoSelecionado->getCor(),
             veiculoSelecionado->getFilial()
-        );
+            );
     } else { // "Carro"
         veiculoParaVenda = new Carro(
             veiculoSelecionado->getModelo(),
@@ -310,7 +354,7 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
             veiculoSelecionado->getValorBase(), // Salva o valor original
             veiculoSelecionado->getCor(),
             veiculoSelecionado->getFilial()
-        );
+            );
     }
     // --- FIM DA CORREÇÃO ---
 
@@ -337,7 +381,9 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
         qWarning() << "ATENÇÃO: Venda registrada, mas não foi possível remover o veículo do estoque.";
     }
 
+    // Mantém o QMessageBox de sucesso, mas corrige o texto para preto via QSS (ver próxima seção).
     QMessageBox::information(this, "Sucesso", "Venda registrada com sucesso!");
+
     politicaSelecionada = new SemDesconto(); // Evita double-delete
     this->close();
 }
@@ -375,7 +421,10 @@ void TelaResgistroVendas::atualizarTabelaVeiculos()
         ui->tableWidget->setItem(linhaAtual, 3, new QTableWidgetItem(valorFormatado));
         ui->tableWidget->setItem(linhaAtual, 4, new QTableWidgetItem(QString::fromStdString(veiculo->getCor())));
     }
+
+    // --- MENSAGEM DE CONTAGEM (NEUTRO) ---
     ui->erroVeiculo->setText(QString("%1 veículo(s) encontrado(s)").arg(veiculosFiltrados.size()));
+    ui->erroVeiculo->setStyleSheet("color: #F0F0F0;"); // Branco Neutro
 }
 
 
@@ -395,6 +444,12 @@ void TelaResgistroVendas::atualizarCalculoPagamento()
 
     ui->txtDesconto->setText(QString::number(politicaSelecionada->getPercentual(), 'f', 1) + "%");
     ui->txtTotalPag->setText(QString("R$ %1").arg(valorFinal, 0, 'f', 2));
+
+    // Zera o status de pagamento para instrução Cinza (se não estiver em erro)
+    if (ui->pagamento->isEnabled()) {
+        ui->erroPagamento->setText("* Verifique os valores e confirme.");
+        ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
+    }
 
     atualizarCalculoParcelas();
 }
@@ -417,6 +472,10 @@ void TelaResgistroVendas::on_inpPag_currentTextChanged(const QString &text)
     ui->label_31->setVisible(visible);
     ui->inpParcelas->setVisible(visible);
     ui->txtValorParcela->setVisible(visible); // Placeholder para "Valor Parcela"
+
+    // Limpa erro de pagamento ao mudar a forma
+    ui->erroPagamento->setText("* Verifique os valores e confirme.");
+    ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
 }
 
 void TelaResgistroVendas::on_comboBox_2_currentIndexChanged(int index)

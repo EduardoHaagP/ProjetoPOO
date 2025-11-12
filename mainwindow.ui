@@ -19,6 +19,347 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* === FUNDO DAS TELAS (MENOS A INICIAL) === */
+
+QWidget#pagLogin, QWidget#pagPrincipal {
+
+background-color: #1c1b1b;
+
+}
+
+
+
+/* === TEXTOS (LABELS) === */
+
+QLabel {
+
+color: #F0F0F0; /* Texto claro (quase branco) */
+
+}
+
+
+
+/* === CAIXAS DE INPUT E SELEÇÃO (QLineEdit, QComboBox) === */
+
+QLineEdit, QComboBox {
+
+background-color: #444444; /* Fundo do input */
+
+color: #F0F0F0; /* Texto do input */
+
+border: 1px solid #555555;
+
+border-radius: 5px;
+
+padding: 5px;
+
+}
+
+QLineEdit:focus {
+
+border: 1px solid #E67E22;
+
+}
+
+
+
+/* === TABELAS === */
+
+QTableWidget {
+
+background-color: #444444;
+
+color: #F0F0F0;
+
+gridline-color: #555555;
+
+alternate-background-color: #3A3A3A;
+
+}
+
+QHeaderView::section {
+
+background-color: #555555; /* Fundo do cabeçalho */
+
+color: white;
+
+padding: 4px;
+
+border: 1px solid #333333;
+
+}
+
+
+
+/* === 1. BOTOES DE ACAO (VERMELHO) === */
+
+QPushButton#botSair, QPushButton#botVoltar {
+
+background-color: #DC3545; /* Vermelho &quot;perigo&quot; */
+
+color: white;
+
+border-radius: 10px; /* Bordas arredondadas */
+
+padding: 8px;
+
+font-weight: bold;
+
+}
+
+QPushButton#botSair:hover, QPushButton#botVoltar:hover {
+
+background-color: #C82333;
+
+}
+
+QPushButton#botSair:pressed, QPushButton#botVoltar:pressed {
+
+background-color: #A71D2A;
+
+}
+
+
+
+/* === 2. BOTAO DE ALERTA (AMARELO) === */
+
+QPushButton#botCancelar {
+
+background-color: #FFC107; /* Amarelo &quot;alerta&quot; */
+
+color: #212121; /* Texto escuro */
+
+border-radius: 10px;
+
+padding: 8px;
+
+font-weight: bold;
+
+}
+
+QPushButton#botCancelar:hover {
+
+background-color: #E0A800;
+
+}
+
+QPushButton#botCancelar:pressed {
+
+background-color: #C69500;
+
+}
+
+
+
+/* === 3. BOTOES DE NAVEGACAO (TELA PRINCIPAL) === */
+
+QWidget#pagPrincipal QPushButton {
+
+border-radius: 15px;
+
+font-size: 14px;
+
+font-weight: bold;
+
+}
+
+
+
+/* Cor 1: Cadastro Cliente (AMARELO NOVO) */
+
+QPushButton#botCadastroCliente {
+
+background-color: #ffc400;
+
+color: #212121; /* Texto escuro (ESSENCIAL para leitura) */
+
+}
+
+QPushButton#botCadastroCliente:hover {
+
+background-color: #E6B000; /* Tom mais escuro para hover */
+
+}
+
+QPushButton#botCadastroCliente:pressed {
+
+background-color: #CC9E00; /* Tom mais escuro para clique */
+
+}
+
+
+
+/* Cor 2: Registrar Venda (Laranja Cenoura) */
+
+QPushButton#botVenda {
+
+background-color: #E67E22;
+
+color: #212121;
+
+}
+
+QPushButton#botVenda:hover {
+
+background-color: #D35400;
+
+}
+
+QPushButton#botVenda:pressed {
+
+background-color: #B84A00;
+
+}
+
+
+
+/* Cor 3: Listar Vendas (Vermelho Tomate) */
+
+QPushButton#botListaVendas {
+
+background-color: #FF6347;
+
+color: #212121;
+
+}
+
+QPushButton#botListaVendas:hover {
+
+background-color: #E55A40;
+
+}
+
+QPushButton#botListaVendas:pressed {
+
+background-color: #D94F38;
+
+}
+
+
+
+/* Cor 4: Consultar Estoque (Laranja Queimado) */
+
+QPushButton#botEstoque {
+
+background-color: #BF360C;
+
+color: #212121;
+
+}
+
+QPushButton#botEstoque:hover {
+
+background-color: #A9310A;
+
+}
+
+QPushButton#botEstoque:pressed {
+
+background-color: #932B09;
+
+}
+
+
+
+/* === 4. TELA DE LOGIN === */
+
+QPushButton#botOk {
+
+background-color: #E67E22; /* Laranja (como estava antes) */
+
+color: white;
+
+border-radius: 10px;
+
+padding: 8px;
+
+/* --- REGRA DE FONTE CORRIGIDA --- */
+
+font-family: Segoe UI;
+
+font-size: 12pt;
+
+font-weight: 900;
+
+}
+
+QPushButton#botOk:hover {
+
+background-color: #D35400;
+
+}
+
+QPushButton#botOk:pressed {
+
+background-color: #B84A00;
+
+}
+
+
+
+/* Label &quot;Esqueceu sua senha?&quot; (Laranja agora) */
+
+QLabel#txtEsqueceuSenha {
+
+color: #E67E22; /* Laranja (combina com o botão de login) */
+
+text-decoration: underline;
+
+}
+
+QLabel#txtEsqueceuSenha:hover {
+
+color: #FFC107;
+
+}
+
+
+
+/* === 5. BOTAO DA TELA INICIAL === */
+
+QPushButton#botEntrar {
+
+background-color: #ffd900;
+
+color: #212121; /* ATUALIZADO: Cor do texto */
+
+border-radius: 30px;
+
+padding: 8px;
+
+/* --- REGRA DE FONTE CORRIGIDA --- */
+
+font-family: Segoe UI;
+
+font-size: 25pt;
+
+font-weight: 900;
+
+}
+
+QPushButton#botEntrar:hover {
+
+background-color: #E6C300;
+
+}
+
+QPushButton#botEntrar:pressed {
+
+background-color: #CCA000;
+
+}
+
+
+
+/* === 6. REGRA DA IMAGEM DE FUNDO (MOVIDA PARA CÁ) === */
+
+QWidget#pagInicial {
+
+border-image: url(:/assets/telaInicial.png);
+
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_10">
     <property name="spacing">
@@ -59,7 +400,7 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="pagInicial">
        <property name="styleSheet">
@@ -287,18 +628,36 @@ background-image: url(:/assets/telainicial.png);</string>
                             <colorrole role="WindowText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>198</red>
-                               <green>0</green>
-                               <blue>3</blue>
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
                               </color>
                              </brush>
                             </colorrole>
                             <colorrole role="Text">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>204</red>
-                               <green>0</green>
-                               <blue>3</blue>
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="ButtonText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
                               </color>
                              </brush>
                             </colorrole>
@@ -307,23 +666,78 @@ background-image: url(:/assets/telainicial.png);</string>
                             <colorrole role="WindowText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>198</red>
-                               <green>0</green>
-                               <blue>3</blue>
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
                               </color>
                              </brush>
                             </colorrole>
                             <colorrole role="Text">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>204</red>
-                               <green>0</green>
-                               <blue>3</blue>
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="ButtonText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
                               </color>
                              </brush>
                             </colorrole>
                            </inactive>
-                           <disabled/>
+                           <disabled>
+                            <colorrole role="WindowText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Text">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="ButtonText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                           </disabled>
                           </palette>
                          </property>
                          <property name="font">
@@ -347,12 +761,57 @@ background-image: url(:/assets/telainicial.png);</string>
                          <property name="palette">
                           <palette>
                            <active>
+                            <colorrole role="WindowText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Button">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Text">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
                             <colorrole role="ButtonText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>200</red>
-                               <green>45</green>
-                               <blue>45</blue>
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Base">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Window">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
                               </color>
                              </brush>
                             </colorrole>
@@ -362,17 +821,71 @@ background-image: url(:/assets/telainicial.png);</string>
                                <red>177</red>
                                <green>17</green>
                                <blue>17</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
                               </color>
                              </brush>
                             </colorrole>
                            </active>
                            <inactive>
+                            <colorrole role="WindowText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Button">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Text">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
                             <colorrole role="ButtonText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>200</red>
-                               <green>45</green>
-                               <blue>45</blue>
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Base">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Window">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
                               </color>
                              </brush>
                             </colorrole>
@@ -382,17 +895,89 @@ background-image: url(:/assets/telainicial.png);</string>
                                <red>177</red>
                                <green>17</green>
                                <blue>17</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
                               </color>
                              </brush>
                             </colorrole>
                            </inactive>
                            <disabled>
+                            <colorrole role="WindowText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Button">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Text">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="ButtonText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Base">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Window">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>68</red>
+                               <green>68</green>
+                               <blue>68</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
                             <colorrole role="ToolTipText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
                                <red>177</red>
                                <green>17</green>
                                <blue>17</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>240</red>
+                               <green>240</green>
+                               <blue>240</blue>
                               </color>
                              </brush>
                             </colorrole>
@@ -461,27 +1046,36 @@ background-image: url(:/assets/telainicial.png);</string>
                             <colorrole role="WindowText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>111</red>
-                               <green>111</green>
-                               <blue>111</blue>
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
                               </color>
                              </brush>
                             </colorrole>
                             <colorrole role="Text">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>168</red>
-                               <green>168</green>
-                               <blue>168</blue>
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
                               </color>
                              </brush>
                             </colorrole>
                             <colorrole role="ButtonText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>125</red>
-                               <green>125</green>
-                               <blue>125</blue>
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
                               </color>
                              </brush>
                             </colorrole>
@@ -490,32 +1084,78 @@ background-image: url(:/assets/telainicial.png);</string>
                             <colorrole role="WindowText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>111</red>
-                               <green>111</green>
-                               <blue>111</blue>
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
                               </color>
                              </brush>
                             </colorrole>
                             <colorrole role="Text">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>168</red>
-                               <green>168</green>
-                               <blue>168</blue>
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
                               </color>
                              </brush>
                             </colorrole>
                             <colorrole role="ButtonText">
                              <brush brushstyle="SolidPattern">
                               <color alpha="255">
-                               <red>125</red>
-                               <green>125</green>
-                               <blue>125</blue>
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
                               </color>
                              </brush>
                             </colorrole>
                            </inactive>
-                           <disabled/>
+                           <disabled>
+                            <colorrole role="WindowText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="Text">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="ButtonText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="255">
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="SolidPattern">
+                              <color alpha="128">
+                               <red>230</red>
+                               <green>126</green>
+                               <blue>34</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                           </disabled>
                           </palette>
                          </property>
                          <property name="font">

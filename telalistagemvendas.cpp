@@ -56,11 +56,9 @@ void TelaListagemVendas::carregarVendasNaTabela()
     QStringList headers = {"Data", "Status", "Filial", "Vendedor (CPF)", "Cliente (Doc)", "Veículo", "Valor Final", "Desconto (%)"};
     ui->tabelaVendas->setHorizontalHeaderLabels(headers);
 
-    // --- CORREÇÃO AQUI ---
     // Em vez de 'ResizeToContents', usamos 'Stretch' para todas as colunas
     // e 'Interactive' para o cabeçalho horizontal
     ui->tabelaVendas->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // --- FIM DA CORREÇÃO ---
 
 
     for (int i = 0; i < (int)listaVendas.size(); ++i) {
@@ -73,13 +71,17 @@ void TelaListagemVendas::carregarVendasNaTabela()
         ui->tabelaVendas->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(venda->getDataVendaString())));
 
         QTableWidgetItem *itemStatus = new QTableWidgetItem(QString::fromStdString(venda->getStatusVenda()));
+
+        // --- CORES ESCURAS PARA O TEMA ---
         if (venda->getStatusVenda() == "Concluída") {
-            itemStatus->setBackground(QBrush(QColor(144, 238, 144))); // Verde
+            itemStatus->setBackground(QBrush(QColor("#38761D"))); // Verde Escuro (Sucesso)
         } else if (venda->getStatusVenda() == "Pendente") {
-            itemStatus->setBackground(QBrush(QColor(255, 255, 128))); // Amarelo
+            itemStatus->setBackground(QBrush(QColor("#B4A000"))); // Amarelo Escuro/Âmbar (Atenção)
         } else {
-            itemStatus->setBackground(QBrush(QColor(255, 180, 180))); // Vermelho
+            itemStatus->setBackground(QBrush(QColor("#800000"))); // Vermelho Escuro/Marrom (Cancelado/Erro)
         }
+        // --- FIM CORES ESCURAS ---
+
         ui->tabelaVendas->setItem(i, 1, itemStatus);
 
         ui->tabelaVendas->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(venda->getFilial())));

@@ -1,7 +1,5 @@
 Tipo,Modelo,Ano,Valor (R$),Cor,Filial
 Carro,Elantra,2024,900000.00,Vermelho,Londrina
-Carro,Corolla,2023,1100000.00,Branco,Londrina
-Carro,Fusion,2022,1300000.00,Vermelho,Londrina
 Carro,Tucson,2023,1500000.00,Branco,Londrina
 Carro,Focus,2023,850000.00,Cinza,Londrina
 Carro,Sentra,2023,750000.00,Azul,Londrina
@@ -26,7 +24,6 @@ Carro,Nissan Kicks,2024,1300000.00,Branco,Londrina
 Carro,Honda WR-V,2023,1000000.00,Prata,Londrina
 Carro,Renault Kwid,2024,500000.00,Prata,Londrina
 Carro,Chevrolet Onix,2023,700000.00,Prata,Londrina
-Carro,Hyundai HB20,2024,800000.00,Prata,Londrina
 Carro,Ford Fiesta,2023,600000.00,Azul,Londrina
 Carro,Volkswagen Polo,2023,850000.00,Preto,Londrina
 Carro,Fiat Argo,2024,650000.00,Branco,Londrina

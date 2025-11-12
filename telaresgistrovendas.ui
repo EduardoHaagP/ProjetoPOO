@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1189</width>
-    <height>683</height>
+    <width>1200</width>
+    <height>741</height>
    </rect>
   </property>
   <property name="font">
@@ -17,6 +17,161 @@
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* === FUNDO DA TELA E SEÇÕES === */
+QDialog[objectName=&quot;TelaResgistroVendas&quot;] {
+    background-color: #252525;
+}
+
+QFrame#frame, 
+QFrame#frame_2, 
+QFrame#frame_3, 
+QFrame#frame_4 {
+    background-color: #303030;
+    border-radius: 8px;
+}
+
+/* === TEXTOS (LABELS) === */
+QLabel {
+    color: #F0F0F0;
+    background-color: transparent;
+}
+
+/* Labels de DADOS (visual &quot;sunken&quot;) */
+QLabel#txtTipoCliente, 
+QLabel#txtValor, 
+QLabel#txtDesconto,
+QLabel#txtTotalPag, 
+QLabel#txtValorParcela, 
+QLabel#txtNomeResumo,
+QLabel#txtModeloResumo, 
+QLabel#txtTotalResumo {
+    background-color: #444444;
+    color: #F0F0F0;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px; 
+}
+
+/* === INPUTS &amp; COMBOBOX (Ativos) === */
+QLineEdit, QComboBox {
+    background-color: #444444;
+    color: #F0F0F0;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+}
+QLineEdit:focus, QComboBox:focus {
+    border: 1px solid #E67E22;
+}
+
+QComboBox::drop-down {
+    border-left: 1px solid #555555;
+    width: 15px;
+}
+QComboBox QAbstractItemView {
+    background-color: #444444;
+    color: #F0F0F0;
+    selection-background-color: #E67E22;
+    selection-color: #212121;
+    border: 1px solid #555555;
+}
+
+/* === TABELA === */
+QTableWidget {
+    background-color: #444444;
+    color: #F0F0F0;
+    gridline-color: #555555;
+    alternate-background-color: #3A3A3A;
+    border: 1px solid #555555;
+}
+QHeaderView::section {
+    background-color: #555555;
+    color: white;
+    padding: 4px;
+    border: 1px solid #333333;
+}
+
+
+/* === ESTILOS DESABILITADOS (ENABLE MAIS CINZA) === */
+
+/* Inputs desabilitados ficam mais claros e opacos */
+QLineEdit:disabled, 
+QComboBox:disabled, 
+QLabel[objectName=&quot;txtTipoCliente&quot;]:disabled,
+QLabel[objectName=&quot;txtValor&quot;]:disabled,
+QLabel[objectName=&quot;txtDesconto&quot;]:disabled,
+QLabel[objectName=&quot;txtTotalPag&quot;]:disabled,
+QLabel[objectName=&quot;txtValorParcela&quot;]:disabled,
+QLabel[objectName=&quot;txtNomeResumo&quot;]:disabled,
+QLabel[objectName=&quot;txtModeloResumo&quot;]:disabled,
+QLabel[objectName=&quot;txtTotalResumo&quot;]:disabled {
+    background-color: #3A3A3A; /* Um cinza mais escuro (menos ativo) */
+    color: #777777;           /* Texto bem apagado */
+    border: 1px solid #4A4A4A;
+}
+
+/* BOTOES DE CONFIRMAÇÃO (Verde/Cinza) */
+QPushButton#confirmCliente, 
+QPushButton#confirmVeiculo, 
+QPushButton#confirmPagamento, 
+QPushButton#confirmResumo {
+    background-color: #28A745;
+    color: white;
+    border-radius: 10px;
+    padding: 8px;
+    font-weight: bold;
+}
+QPushButton:enabled:hover {
+    background-color: #218838;
+}
+
+/* DESABILITADO (Botão fica mais cinza e opaco, como os inputs) */
+QPushButton#confirmCliente:disabled, 
+QPushButton#confirmVeiculo:disabled, 
+QPushButton#confirmPagamento:disabled, 
+QPushButton#confirmResumo:disabled {
+    background-color: #555555;
+    color: #999999;
+}
+
+
+/* === LABELS DE STATUS/ERRO (Corrigido para melhor leitura) === */
+
+/* CORREÇÃO: Vermelho mais claro para o padrão de erro */
+QLabel[objectName^=&quot;erro&quot;] { 
+    color: #FF5050; /* Vermelho vibrante (Fácil de ler no fundo escuro) */
+    background-color: transparent;
+}
+
+/* BOTOES DE NAVEGAÇÃO (Voltar/Cancelar) - Mantidos para consistência */
+QPushButton#botVoltar {
+    background-color: #DC3545;
+    color: white;
+    border-radius: 10px;
+    padding: 8px;
+    font-weight: bold;
+}
+QPushButton#botVoltar:hover { background-color: #C82333; }
+QPushButton#botVoltar:pressed { background-color: #A71D2A; }
+
+QPushButton#botCancelar {
+    background-color: #FFC107;
+    color: #212121;
+    border-radius: 10px;
+    padding: 8px;
+    font-weight: bold;
+}
+QPushButton#botCancelar:hover { background-color: #E0A800; }
+QPushButton#botCancelar:pressed { background-color: #C69500; }
+
+
+
+QMessageBox, QMessageBox QLabel {
+    background-color: white; /* Garante o fundo branco */
+    color: black;            /* Garante o texto preto */
+}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -865,7 +1020,14 @@
                     </layout>
                    </widget>
                   </item>
-                  <item alignment="Qt::AlignBottom">
+                  <item>
+                   <widget class="QLabel" name="erroPagamento">
+                    <property name="text">
+                     <string>* </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QWidget" name="widget_11" native="true">
                     <layout class="QHBoxLayout" name="horizontalLayout_13">
                      <item>
