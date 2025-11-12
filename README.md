@@ -52,6 +52,78 @@ O sistema foi projetado com foco em uma interface intuitiva e na aplicação pr�
 
     - Clique em Build → Run dentro do Qt Creator.
 ---
+## 🧱 Estrutura de Classes e Padrões de Projeto
+
+O sistema **DriveTech** foi desenvolvido com base nos princípios da **Programação Orientada a Objetos (POO)**, aplicando conceitos como **encapsulamento**, **modularização** e **reutilização de código**.  
+Além disso, foram utilizados **padrões de projeto (Design Patterns)** para garantir um código mais organizado, flexível e de fácil manutenção.
+
+---
+
+### 🧩 Classes Principais
+
+- **`Veiculo`**  
+  Representa os veículos disponíveis na concessionária, armazenando informações como modelo, marca, ano, valor e status (disponível ou vendido).  
+  Essa classe serve de base para o gerenciamento de estoque e para o registro das vendas.
+
+- **`Cliente`**  
+  Armazena os dados dos compradores, incluindo nome, CPF e informações de contato.  
+  É utilizada tanto no cadastro de novos clientes quanto na associação com as vendas realizadas.
+
+- **`Vendedor`**  
+  Representa os funcionários responsáveis pelas vendas.  
+  Cada vendedor possui informações como nome, ID e comissão, e está vinculado às transações registradas no sistema.
+
+- **`Venda`**  
+  Registra as transações realizadas entre clientes e vendedores, vinculando os veículos vendidos e aplicando possíveis estratégias de desconto.  
+  É a classe central do processo comercial dentro do sistema.
+
+---
+
+### 🧠 Gerenciadores (Singleton)
+
+Cada entidade principal do sistema — **Veículos**, **Clientes**, **Vendedores** e **Vendas** — possui uma classe gerenciadora dedicada ao controle das suas instâncias.  
+Esses gerenciadores seguem o **padrão de projeto Singleton**, garantindo que exista **apenas uma instância global** de cada um durante toda a execução do programa.
+
+**Exemplo de Gerenciadores Singleton:**
+- `GerenciadorVeiculos`
+- `GerenciadorClientes`
+- `GerenciadorVendedores`
+- `GerenciadorVendas`
+
+**Responsabilidades:**
+- Centralizar o acesso e a manipulação dos dados.  
+- Garantir a integridade das informações entre diferentes partes do sistema.  
+- Facilitar a persistência e o carregamento dos registros em arquivos.  
+
+O uso de Singletons evita inconsistências e simplifica o gerenciamento das entidades, já que todos os módulos interagem com uma única instância compartilhada.
+
+---
+
+### 🎯 Estratégia de Descontos (Strategy)
+
+Dentro da classe `Venda`, foi implementado o **padrão Strategy** para gerenciar as diferentes formas de aplicação de descontos.  
+Essa abordagem permite alterar a lógica de cálculo de desconto **sem modificar a estrutura da classe principal**, tornando o código mais flexível e aderente ao princípio do **Open/Closed** (aberto para extensão, fechado para modificação).
+
+**Estrutura do Strategy:**
+- Interface base: `DescontoStrategy`  
+  - Define o método `calcularDesconto(Venda venda)`.
+
+- Implementações concretas:
+  - `DescontoPadrao` — aplica um desconto fixo ou percentual comum.  
+  - `DescontoPromocional` — usado em períodos específicos ou campanhas.  
+  - `SemDesconto` — opção padrão quando nenhuma promoção está ativa.
+
+Essa arquitetura permite que novas estratégias de desconto sejam adicionadas facilmente, sem alterar o restante do código.
+
+---
+
+### ⚙️ Relações entre as Classes
+
+O diagrama conceitual pode ser descrito da seguinte forma:
+
+
+
+---
 ## 👨‍💻 Desenvolvido por
 
  - Eduardo Haag
