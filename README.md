@@ -206,7 +206,7 @@ classDiagram
     GerenciadorClientes --> Cliente
     GerenciadorVendedores --> Vendedor
     GerenciadorVendas --> Venda
-
+```
 ---
 ## 👨‍💻 Desenvolvido por
 
