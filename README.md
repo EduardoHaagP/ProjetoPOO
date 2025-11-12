@@ -84,7 +84,7 @@ Além disso, foram utilizados **padrões de projeto (Design Patterns)** para gar
 Cada entidade principal do sistema — **Veículos**, **Clientes**, **Vendedores** e **Vendas** — possui uma classe gerenciadora dedicada ao controle das suas instâncias.  
 Esses gerenciadores seguem o **padrão de projeto Singleton**, garantindo que exista **apenas uma instância global** de cada um durante toda a execução do programa.
 
-**Exemplo de Gerenciadores Singleton:**
+**Gerenciadores Singleton:**
 - `GerenciadorVeiculos`
 - `GerenciadorClientes`
 - `GerenciadorVendedores`
@@ -117,11 +117,95 @@ Essa arquitetura permite que novas estratégias de desconto sejam adicionadas fa
 
 ---
 
-### ⚙️ Relações entre as Classes
+### 🧭 Diagrama de Classes (UML)
 
-O diagrama conceitual pode ser descrito da seguinte forma:
+```mermaid
+classDiagram
+    class Veiculo {
+        - string modelo
+        - string marca
+        - int ano
+        - double preco
+        - bool vendido
+    }
 
+    class Cliente {
+        - string nome
+        - string cpf
+        - string contato
+    }
 
+    class Vendedor {
+        - string nome
+        - int id
+        - double comissao
+    }
+
+    class Venda {
+        - Cliente cliente
+        - Vendedor vendedor
+        - Veiculo veiculo
+        - DescontoStrategy estrategia
+        + calcularTotal()
+    }
+
+    class DescontoStrategy {
+        <<interface>>
+        + calcularDesconto(Venda venda)
+    }
+
+    class DescontoPadrao {
+        + calcularDesconto(Venda venda)
+    }
+
+    class DescontoPromocional {
+        + calcularDesconto(Venda venda)
+    }
+
+    class SemDesconto {
+        + calcularDesconto(Venda venda)
+    }
+
+    class GerenciadorVeiculos {
+        - static GerenciadorVeiculos* instancia
+        + getInstancia()
+        + adicionarVeiculo()
+        + listarVeiculos()
+    }
+
+    class GerenciadorClientes {
+        - static GerenciadorClientes* instancia
+        + getInstancia()
+        + adicionarCliente()
+        + listarClientes()
+    }
+
+    class GerenciadorVendedores {
+        - static GerenciadorVendedores* instancia
+        + getInstancia()
+        + adicionarVendedor()
+        + listarVendedores()
+    }
+
+    class GerenciadorVendas {
+        - static GerenciadorVendas* instancia
+        + getInstancia()
+        + registrarVenda()
+        + listarVendas()
+    }
+
+    %% Relações
+    Venda --> Cliente
+    Venda --> Vendedor
+    Venda --> Veiculo
+    Venda --> DescontoStrategy
+    DescontoStrategy <|.. DescontoPadrao
+    DescontoStrategy <|.. DescontoPromocional
+    DescontoStrategy <|.. SemDesconto
+    GerenciadorVeiculos --> Veiculo
+    GerenciadorClientes --> Cliente
+    GerenciadorVendedores --> Vendedor
+    GerenciadorVendas --> Venda
 
 ---
 ## 👨‍💻 Desenvolvido por
