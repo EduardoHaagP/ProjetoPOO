@@ -4,7 +4,6 @@
 #include <string>
 using namespace std;
 
-
 class Veiculos
 {
 protected:
@@ -13,8 +12,9 @@ protected:
     float valor_base;
     int ano;
     string filial;
+
 public:
-    Veiculos(string n_modelo, int n_ano , float n_valor_base, string n_cor, string n_filial);
+    Veiculos(string n_modelo, int n_ano, float n_valor_base, string n_cor, string n_filial);
     string getModelo();
     string getCor();
     float getValorBase();
@@ -25,17 +25,19 @@ public:
     void setValorBase(int n_valor_base);
     void setAno(int n_ano);
     void setFilial(string n_filial);
-    virtual string motoOuCarro () = 0;
+    virtual string motoOuCarro() = 0;
 };
 
-class Moto: public Veiculos{
-    public:
-    Moto(string n_modelo, int n_ano , float n_valor_base, string n_cor, string n_filial);
+class Moto : public Veiculos
+{
+public:
+    Moto(string n_modelo, int n_ano, float n_valor_base, string n_cor, string n_filial);
     string motoOuCarro() override;
 };
-class Carro: public Veiculos{
-    public:
-    Carro(string n_modelo, int n_ano , float n_valor_base, string n_cor, string n_filial);
+class Carro : public Veiculos
+{
+public:
+    Carro(string n_modelo, int n_ano, float n_valor_base, string n_cor, string n_filial);
     string motoOuCarro() override;
 };
 

@@ -1,10 +1,10 @@
 #include "telaconsultaestoque.h"
 #include "ui_telaconsultaestoque.h"
-#include "gerenciadores.h" // p/ buscar veiculos
+#include "gerenciadores.h" 
 #include <QDialog>
 #include <QTableWidget>
 #include <QString>
-#include <QDebug> // Útil para testes
+#include <QDebug> 
 
 
 TelaConsultaEstoque::TelaConsultaEstoque(QWidget *parent)

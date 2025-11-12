@@ -11,7 +11,6 @@ TelaCadastroCliente::TelaCadastroCliente(QWidget *parent)
 
     ui->botCadastro->setEnabled(true);
 
-    // se o texto mudar, limpa o txtErro
     connect(ui->inpDocumento, &QLineEdit::textChanged, this, [this](){
         ui->erroDocumento->setText("");
     });

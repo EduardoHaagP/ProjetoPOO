@@ -2,8 +2,8 @@
 #define TELACONSULTAESTOQUE_H
 
 #include <QDialog>
-#include <vector> // Para usar std::vector
-#include "veiculos.h" // Para saber o que é a classe Veiculos
+#include <vector> 
+#include "veiculos.h" 
 class QTableWidget;
 
 
@@ -21,11 +21,10 @@ public:
 
 
 public slots:
-    void on_botCadastrar_clicked(); // Esta função agora é pública
+    void on_botCadastrar_clicked();
 
 private slots:
     void on_botVoltar_clicked();
-    // (A linha 'on_botCadastrar_clicked()' foi removida daqui)
 
 private:
     Ui::TelaConsultaEstoque *ui;

@@ -9,13 +9,12 @@
 #include "vendas.h"
 using namespace std;
 
-// adiciona a definição para pegar o caminho do CMake
-// PROJECT_SOURCE_DIR é definido em CMakeLists.txt
+
 #ifndef PROJECT_SOURCE_DIR
-#define PROJECT_SOURCE_DIR "." // fallback caso não seja definido
+#define PROJECT_SOURCE_DIR "." 
 #endif
 
-// func auxiliar pra construir o caminho completo
+
 inline std::string getCaminhoDoProjeto(const std::string& relativePath) {
     return std::string(PROJECT_SOURCE_DIR) + "/" + relativePath;
 }
@@ -67,7 +66,7 @@ public:
     vector<Clientes *> listar();
     vector<Clientes *> buscar(string termo_busca);
     Clientes* buscarPorDocumento(string doc_busca);
-    void adicionar(Clientes *novo_cliente); // recebe ponteiro
+    void adicionar(Clientes *novo_cliente); 
     bool remover(int indice);
     bool remover_por_documento(string doc_procurado);
     int getTotalCliente();

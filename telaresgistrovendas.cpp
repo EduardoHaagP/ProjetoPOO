@@ -1,7 +1,6 @@
 #include "telaresgistrovendas.h"
 #include "ui_telaresgistrovendas.h"
 
-// Adicionamos todos os includes que o .cpp precisa
 #include "gerenciadores.h"
 #include "vendedor.h"
 #include "clientes.h"
@@ -35,14 +34,12 @@ TelaResgistroVendas::TelaResgistroVendas(Vendedor* vendedor, QWidget *parent)
     configurarTabela();
     estadoInicial();
 
-    // --- CONECTA OS SINAIS AOS SLOTS ---
     connect(ui->inpFilial, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::atualizarTabelaVeiculos);
     connect(ui->inpTipo, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::atualizarTabelaVeiculos);
     connect(ui->inpModelo, &QLineEdit::textChanged, this, &TelaResgistroVendas::atualizarTabelaVeiculos);
     connect(ui->inpDesconto, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::atualizarCalculoPagamento);
     connect(ui->inpEntrada, &QLineEdit::textChanged, this, &TelaResgistroVendas::atualizarCalculoPagamento);
 
-    // --- CONEXÕES DAS NOVAS CORREÇÕES ---
     connect(ui->comboBox_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &TelaResgistroVendas::on_comboBox_2_currentIndexChanged);
     connect(ui->inpPag, &QComboBox::currentTextChanged, this, &TelaResgistroVendas::on_inpPag_currentTextChanged);
     connect(ui->inpEntrada, &QLineEdit::textChanged, this, &TelaResgistroVendas::atualizarCalculoParcelas);
@@ -53,8 +50,6 @@ TelaResgistroVendas::~TelaResgistroVendas()
 {
     delete ui;
 }
-
-// --- FUNÇÕES DE SETUP ---
 
 void TelaResgistroVendas::configurarTabela()
 {
@@ -72,29 +67,25 @@ void TelaResgistroVendas::estadoInicial()
     clienteSelecionado = nullptr;
     veiculoSelecionado = nullptr;
     delete politicaSelecionada;
-    politicaSelecionada = new SemDesconto(); // Garante que não é nulo
+    politicaSelecionada = new SemDesconto(); 
 
     ui->cliente->setEnabled(true);
     ui->venda->setEnabled(false);
     ui->pagamento->setEnabled(false);
     ui->resumo->setEnabled(false);
 
-    // --- INICIALIZAÇÃO CINZA (INSTRUÇÃO) ---
     ui->erroCliente->setText("* Selecione o cliente");
-    ui->erroCliente->setStyleSheet("color: #AAAAAA;"); // Cinza Neutro (Instrução)
+    ui->erroCliente->setStyleSheet("color: #AAAAAA;"); 
     ui->erroVeiculo->setText("* Aguardando cliente...");
-    ui->erroVeiculo->setStyleSheet("color: #AAAAAA;"); // Cinza Neutro (Instrução)
+    ui->erroVeiculo->setStyleSheet("color: #AAAAAA;"); 
 
-    // Inicialização do novo erroPagamento
     ui->erroPagamento->setText("* Selecione a forma de pagamento e valores");
-    ui->erroPagamento->setStyleSheet("color: #AAAAAA;"); // Cinza Neutro (Instrução)
-    // --- FIM DA MUDANÇA ---
+    ui->erroPagamento->setStyleSheet("color: #AAAAAA;"); 
 
     carregarClientes();
     carregarFiltrosVeiculo();
     carregarOpcoesPagamento();
 
-    // (Bug 6) Chama a função para esconder os campos de parcela no início
     on_inpPag_currentTextChanged(ui->inpPag->currentText());
 }
 
@@ -151,12 +142,10 @@ void TelaResgistroVendas::carregarOpcoesPagamento()
     ui->inpDesconto->clear();
     ui->inpDesconto->addItem("Sem desconto");
 
-    // Zera o status de pagamento ao carregar opções
     ui->erroPagamento->setText("");
     ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
 }
 
-// --- LÓGICA DE DESCONTO AUTOMÁTICO ---
 std::string TelaResgistroVendas::determinarMelhorDesconto(Clientes* cliente)
 {
     if (!cliente) {
@@ -172,7 +161,6 @@ std::string TelaResgistroVendas::determinarMelhorDesconto(Clientes* cliente)
 }
 
 
-// --- SLOTS DE AÇÃO (BOTÕES) ---
 
 void TelaResgistroVendas::on_botVoltar_clicked()
 {
@@ -189,9 +177,8 @@ void TelaResgistroVendas::on_confirmCliente_clicked()
     int indice = ui->comboBox_2->currentIndex();
 
     if (indice <= 0) {
-        // --- ERRO (VERMELHO) ---
         ui->erroCliente->setText("* ERRO: Cliente inválido!");
-        ui->erroCliente->setStyleSheet("color: #FF5050;"); // Vermelho brilhante
+        ui->erroCliente->setStyleSheet("color: #FF5050;"); 
         return;
     }
 
@@ -200,16 +187,14 @@ void TelaResgistroVendas::on_confirmCliente_clicked()
     if (clienteSelecionado) {
         ui->comboBox_2->setCurrentText(QString::fromStdString(clienteSelecionado->getNome()));
 
-        // --- SUCESSO (VERDE) ---
         ui->erroCliente->setText("* Cliente Confirmado!");
-        ui->erroCliente->setStyleSheet("color: #28A745;"); // Verde
+        ui->erroCliente->setStyleSheet("color: #28A745;"); 
 
         ui->cliente->setEnabled(false);
         ui->venda->setEnabled(true);
 
-        // --- PRÓXIMA INSTRUÇÃO (CINZA) ---
         ui->erroVeiculo->setText("* Selecione o veículo");
-        ui->erroVeiculo->setStyleSheet("color: #AAAAAA;"); // Cinza (Instrução)
+        ui->erroVeiculo->setStyleSheet("color: #AAAAAA;"); 
 
         ui->inpDesconto->clear();
         ui->inpDesconto->addItem("Sem desconto");
@@ -234,23 +219,22 @@ void TelaResgistroVendas::on_confirmVeiculo_clicked()
     int linha = ui->tableWidget->currentRow();
 
     if (linha < 0 || linha >= (int)veiculosFiltrados.size()) {
-        // --- ERRO (VERMELHO) ---
+        
         ui->erroVeiculo->setText("* ERRO: Selecione um veículo na tabela!");
-        ui->erroVeiculo->setStyleSheet("color: #FF5050;"); // Vermelho brilhante
+        ui->erroVeiculo->setStyleSheet("color: #FF5050;"); 
         return;
     }
 
     veiculoSelecionado = veiculosFiltrados[linha];
 
     if (veiculoSelecionado) {
-        // --- SUCESSO (VERDE) ---
+
         ui->erroVeiculo->setText("* Veículo Confirmado!");
-        ui->erroVeiculo->setStyleSheet("color: #28A745;"); // Verde
+        ui->erroVeiculo->setStyleSheet("color: #28A745;"); 
 
         ui->venda->setEnabled(false);
         ui->pagamento->setEnabled(true);
 
-        // Limpa o status de pagamento para instrução Cinza
         ui->erroPagamento->setText("* Verifique os valores e confirme.");
         ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
 
@@ -260,14 +244,12 @@ void TelaResgistroVendas::on_confirmVeiculo_clicked()
 
 void TelaResgistroVendas::on_confirmPagamento_clicked()
 {
-    // 1. Limpa a mensagem para Cinza (Instrução/Verificação)
     ui->erroPagamento->setText("* Verificando...");
     ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
 
     if (ui->inpPag->currentIndex() == -1) {
-        // --- ERRO PAGAMENTO (VERMELHO) ---
         ui->erroPagamento->setText("* ERRO: Selecione uma forma de pagamento.");
-        ui->erroPagamento->setStyleSheet("color: #FF5050;"); // Vermelho
+        ui->erroPagamento->setStyleSheet("color: #FF5050;"); 
         return;
     }
 
@@ -280,34 +262,26 @@ void TelaResgistroVendas::on_confirmPagamento_clicked()
         }
 
         if (!ok || entrada < 0) {
-            // --- ERRO PAGAMENTO (VERMELHO) ---
             ui->erroPagamento->setText("* ERRO: Valor de entrada inválido.");
-            ui->erroPagamento->setStyleSheet("color: #FF5050;"); // Vermelho
+            ui->erroPagamento->setStyleSheet("color: #FF5050;"); 
             return;
         }
         if (entrada > valorTotal) {
-            // --- ERRO PAGAMENTO (VERMELHO) ---
             ui->erroPagamento->setText("* ERRO: Entrada não pode ser maior que o total.");
-            ui->erroPagamento->setStyleSheet("color: #FF5050;"); // Vermelho
+            ui->erroPagamento->setStyleSheet("color: #FF5050;"); 
             return;
         }
     }
 
-    // --- SUCESSO PAGAMENTO (VERDE) ---
     ui->erroPagamento->setText("* Pagamento Confirmado!");
-    ui->erroPagamento->setStyleSheet("color: #28A745;"); // Verde
+    ui->erroPagamento->setStyleSheet("color: #28A745;"); 
 
     ui->pagamento->setEnabled(false);
     ui->resumo->setEnabled(true);
     atualizarResumo();
 }
 
-// ==================================================================
-//
-//               FUNÇÃO CORRIGIDA
-//
-// ==================================================================
-void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
+void TelaResgistroVendas::on_confirmResumo_clicked() 
 {
     if (!vendedorLogado || !clienteSelecionado || !veiculoSelecionado || !politicaSelecionada) {
         QMessageBox::critical(this, "Erro", "Dados da venda incompletos. Não foi possível registrar.");
@@ -329,13 +303,6 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
     Data dataVenda(QDate::currentDate().day(), QDate::currentDate().month(), QDate::currentDate().year());
     string filialVenda = veiculoSelecionado->getFilial();
 
-
-    // --- INÍCIO DA CORREÇÃO ---
-    // O GerenciadorDeVeiculos (estoque) vai deletar o veiculoSelecionado.
-    // A Venda precisa ter o seu *próprio* objeto Veiculo, e não
-    // apenas um ponteiro para o objeto do estoque.
-    // Criamos uma cópia dele para ser usada pela Venda.
-
     Veiculos* veiculoParaVenda = nullptr;
     string tipoVeiculo = veiculoSelecionado->motoOuCarro();
 
@@ -343,26 +310,25 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
         veiculoParaVenda = new Moto(
             veiculoSelecionado->getModelo(),
             veiculoSelecionado->getAno(),
-            veiculoSelecionado->getValorBase(), // Salva o valor original
+            veiculoSelecionado->getValorBase(), 
             veiculoSelecionado->getCor(),
             veiculoSelecionado->getFilial()
             );
-    } else { // "Carro"
+    } else { 
         veiculoParaVenda = new Carro(
             veiculoSelecionado->getModelo(),
             veiculoSelecionado->getAno(),
-            veiculoSelecionado->getValorBase(), // Salva o valor original
+            veiculoSelecionado->getValorBase(), 
             veiculoSelecionado->getCor(),
             veiculoSelecionado->getFilial()
             );
     }
-    // --- FIM DA CORREÇÃO ---
 
 
     Vendas* novaVenda = new Vendas(
         vendedorLogado,
         clienteSelecionado,
-        veiculoParaVenda, // <-- USANDO A CÓPIA
+        veiculoParaVenda,
         valorBase,
         politicaSelecionada,
         valorEntrada,
@@ -375,21 +341,18 @@ void TelaResgistroVendas::on_confirmResumo_clicked() // REGISTRAR VENDA
     novaVenda->setValorFinal(valorFinal);
     GerenciadorDeVendas::getInstance().adicionar(novaVenda);
 
-    // Agora é seguro remover o veículo do estoque
     bool removido = GerenciadorDeVeiculos::getInstance().remover_por_modelo(veiculoSelecionado->getModelo());
     if (!removido) {
         qWarning() << "ATENÇÃO: Venda registrada, mas não foi possível remover o veículo do estoque.";
     }
 
-    // Mantém o QMessageBox de sucesso, mas corrige o texto para preto via QSS (ver próxima seção).
     QMessageBox::information(this, "Sucesso", "Venda registrada com sucesso!");
 
-    politicaSelecionada = new SemDesconto(); // Evita double-delete
+    politicaSelecionada = new SemDesconto(); 
     this->close();
 }
 
 
-// --- SLOTS DE ATUALIZAÇÃO (LOGICA INTERNA) ---
 
 void TelaResgistroVendas::atualizarTabelaVeiculos()
 {
@@ -422,9 +385,8 @@ void TelaResgistroVendas::atualizarTabelaVeiculos()
         ui->tableWidget->setItem(linhaAtual, 4, new QTableWidgetItem(QString::fromStdString(veiculo->getCor())));
     }
 
-    // --- MENSAGEM DE CONTAGEM (NEUTRO) ---
     ui->erroVeiculo->setText(QString("%1 veículo(s) encontrado(s)").arg(veiculosFiltrados.size()));
-    ui->erroVeiculo->setStyleSheet("color: #F0F0F0;"); // Branco Neutro
+    ui->erroVeiculo->setStyleSheet("color: #F0F0F0;"); 
 }
 
 
@@ -445,7 +407,6 @@ void TelaResgistroVendas::atualizarCalculoPagamento()
     ui->txtDesconto->setText(QString::number(politicaSelecionada->getPercentual(), 'f', 1) + "%");
     ui->txtTotalPag->setText(QString("R$ %1").arg(valorFinal, 0, 'f', 2));
 
-    // Zera o status de pagamento para instrução Cinza (se não estiver em erro)
     if (ui->pagamento->isEnabled()) {
         ui->erroPagamento->setText("* Verifique os valores e confirme.");
         ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
@@ -462,7 +423,6 @@ void TelaResgistroVendas::atualizarResumo()
     ui->txtTotalResumo->setText(ui->txtTotalPag->text());
 }
 
-// --- NOVOS SLOTS IMPLEMENTADOS ---
 
 void TelaResgistroVendas::on_inpPag_currentTextChanged(const QString &text)
 {
@@ -471,9 +431,8 @@ void TelaResgistroVendas::on_inpPag_currentTextChanged(const QString &text)
     ui->inpEntrada->setVisible(visible);
     ui->label_31->setVisible(visible);
     ui->inpParcelas->setVisible(visible);
-    ui->txtValorParcela->setVisible(visible); // Placeholder para "Valor Parcela"
+    ui->txtValorParcela->setVisible(visible); 
 
-    // Limpa erro de pagamento ao mudar a forma
     ui->erroPagamento->setText("* Verifique os valores e confirme.");
     ui->erroPagamento->setStyleSheet("color: #AAAAAA;");
 }
@@ -494,31 +453,25 @@ void TelaResgistroVendas::on_comboBox_2_currentIndexChanged(int index)
 
 void TelaResgistroVendas::atualizarCalculoParcelas()
 {
-    // Só calcula se tivermos os dados
     if (!veiculoSelecionado || !politicaSelecionada) {
-        ui->txtValorParcela->setText("R$ 0.00"); // 'txtValorParcela' é o seu txtValorParcela
+        ui->txtValorParcela->setText("R$ 0.00"); 
         return;
     }
 
-    // 1. Pega o valor total
     float valorFinal = politicaSelecionada->calcularDesconto(veiculoSelecionado->getValorBase());
 
-    // 2. Pega a entrada (se for parcelado)
     float entrada = 0.0;
     if (ui->inpPag->currentText() == "Parcelado") {
-        // .toFloat() retorna 0.0 se o texto for inválido, o que é seguro
         entrada = ui->inpEntrada->text().toFloat();
     }
 
-    // 3. Pega o número de parcelas (ex: "11x")
     QString textoParcela = ui->inpParcelas->currentText();
-    textoParcela.remove("x"); // Remove o "x" -> "11"
+    textoParcela.remove("x"); 
     int numParcelas = textoParcela.toInt();
-    if (numParcelas == 0) numParcelas = 1; // Evita divisão por zero
+    if (numParcelas == 0) numParcelas = 1; 
 
-    // 4. Calcula e atualiza o label
     float valorAPrazo = valorFinal - entrada;
-    if (valorAPrazo < 0) valorAPrazo = 0; // Não pode ser negativo
+    if (valorAPrazo < 0) valorAPrazo = 0; 
 
     float valorParcela = valorAPrazo / numParcelas;
 

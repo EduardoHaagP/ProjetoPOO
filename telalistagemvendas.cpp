@@ -16,7 +16,6 @@ TelaListagemVendas::TelaListagemVendas(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // CHAMA A FUNÇÃO DE CARREGAMENTO NO CONSTRUTOR
     carregarVendasNaTabela();
 }
 
@@ -38,7 +37,6 @@ void TelaListagemVendas::carregarVendasNaTabela()
     ui->tabelaVendas->clearContents();
     ui->tabelaVendas->setRowCount(0);
 
-    // Ordena por data (mais recente primeiro)
     std::sort(listaVendas.begin(), listaVendas.end(), [](Vendas* a, Vendas* b) {
         if (a->getDataVenda().getAno() != b->getDataVenda().getAno()) {
             return a->getDataVenda().getAno() > b->getDataVenda().getAno();
@@ -56,8 +54,6 @@ void TelaListagemVendas::carregarVendasNaTabela()
     QStringList headers = {"Data", "Status", "Filial", "Vendedor (CPF)", "Cliente (Doc)", "Veículo", "Valor Final", "Desconto (%)"};
     ui->tabelaVendas->setHorizontalHeaderLabels(headers);
 
-    // Em vez de 'ResizeToContents', usamos 'Stretch' para todas as colunas
-    // e 'Interactive' para o cabeçalho horizontal
     ui->tabelaVendas->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 

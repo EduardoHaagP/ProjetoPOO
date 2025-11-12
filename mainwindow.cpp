@@ -17,27 +17,21 @@ MainWindow::MainWindow(QWidget *parent)
     , telaConsultaEstoque(nullptr)
     , telaListagemVendas(nullptr)
     , telaResgistroVendas(nullptr)
-    , vendedorAutenticado(nullptr) // << Variável da classe inicializada
+    , vendedorAutenticado(nullptr) 
 {
     ui->setupUi(this);
 
     setWindowIcon(QIcon(":/assets/LogoEscura.png"));
 
-    QPixmap BemVindo(":/assets/EscritoBemVindo.png"); // <-- Mude se o nome da sua imagem for outro
+    QPixmap BemVindo(":/assets/EscritoBemVindo.png"); 
     ui->imgBemVindo->setPixmap(BemVindo);
     ui->imgBemVindo->setScaledContents(true);
 
-    QPixmap logo(":/assets/LogoEscura.png"); // <-- Mude se o nome da sua imagem for outro
+    QPixmap logo(":/assets/LogoEscura.png"); 
     ui->imgLogo->setPixmap(logo);
     ui->imgLogo->setScaledContents(true);
 
 
-
-
-
-
-
-    // se o texto mudar, limpa o txtErro
     connect(ui->inpUsuario, &QLineEdit::textChanged, this, [this](){
         ui->txtErro->setText("");
     });
@@ -59,12 +53,10 @@ MainWindow::~MainWindow()
 }
 
 
-// chama qnd clica no X
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     qDebug() << "--- Salvando dados nos CSVs ---";
 
-    // salva td
     GerenciadorDeClientes::getInstance().salvar_no_csv();
     GerenciadorDeVendedores::getInstance().salvar_no_csv();
     GerenciadorDeVeiculos::getInstance().salvar_no_csv();
@@ -72,7 +64,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
     qDebug() << "--- Dados Salvos. Fechando o app. ---";
 
-    // continua fechamento normal
     QMainWindow::closeEvent(event);
 }
 
@@ -82,7 +73,6 @@ void MainWindow::on_botEntrar_clicked()
 
 }
 
-// --- ESTA É A FUNÇÃO CORRIGIDA ---
 void MainWindow::on_botOk_clicked()
 {
 
@@ -91,31 +81,25 @@ void MainWindow::on_botOk_clicked()
     std::string inpEmail = ui->inpUsuario->text().toStdString();
     std::string inpSenha = ui->inpSenha->text().toStdString();
 
-    // Usamos 'vendedorAutenticado' (o membro da classe)
     vendedorAutenticado = nullptr;
 
     bool emailExiste = !GerenciadorDeVendedores::getInstance().verificarEmailDisponivel(inpEmail);
     bool verifLogin = false;
 
-    //campos vazios
     if (inpEmail.empty() || inpSenha.empty()) {
         ui->txtErro->setText("Email e senha devem ser preenchidos");
-        return; // Para a execução aqui
+        return; 
     }
 
-    //verifica email
     if (emailExiste){
         ui->txtErro->setText("");
 
-        // AQUI ESTÁ A CORREÇÃO:
-        // Usamos &vendedorAutenticado (a variável da classe)
         verifLogin = GerenciadorDeVendedores::getInstance().autenticar(inpEmail, inpSenha, &vendedorAutenticado);
 
         if(verifLogin){
             ui->txtErro->setText("");
             ui->stackedWidget->setCurrentIndex(2);
 
-            //limpa os inputs
             ui->inpUsuario->clear();
             ui->inpSenha->clear();
             return;
@@ -132,7 +116,7 @@ void MainWindow::on_botOk_clicked()
 
 void MainWindow::on_botSair_clicked()
 {
-    vendedorAutenticado = nullptr; // Limpa o vendedor no logout
+    vendedorAutenticado = nullptr; 
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -153,49 +137,41 @@ void MainWindow::on_botCadastroCliente_clicked()
 
 void MainWindow::on_botVenda_clicked()
 {
-    // Verifica se há um vendedor logado
     if (vendedorAutenticado == nullptr) {
         QMessageBox::critical(this, "Erro de Autenticação", "Nenhum vendedor está logado!");
-        ui->stackedWidget->setCurrentIndex(1); // Volta para tela de login
+        ui->stackedWidget->setCurrentIndex(1); 
         return;
     }
 
-    // Só abre se não houver outra aberta
     if (telaResgistroVendas == nullptr) {
-        // Passa o vendedor logado para a tela de vendas
         telaResgistroVendas = new TelaResgistroVendas(vendedorAutenticado, this);
         telaResgistroVendas->setWindowTitle("Registro de Vendas");
 
-        // Conecta o sinal 'finished' para limpar o ponteiro quando a tela for fechada
         connect(telaResgistroVendas, &TelaResgistroVendas::finished,
                 this, [this](){
                     this->telaResgistroVendas = nullptr;
-                    // Atualiza a tabela de estoque na tela de consulta, se ela estiver aberta
                     if (this->telaConsultaEstoque) {
-                        // (telaconsultaestoque.cpp usa 'on_botCadastrar_clicked' para consultar)
+                       
                         this->telaConsultaEstoque->on_botCadastrar_clicked();
                     }
                 });
     }
     telaResgistroVendas->show();
 
-    telaResgistroVendas->activateWindow(); // Traz a tela para frente
+    telaResgistroVendas->activateWindow(); 
 }
 
 void MainWindow::on_botListaVendas_clicked()
 {
-    // Se a tela já existe, fecha e destrói ela
     if (telaListagemVendas != nullptr) {
         telaListagemVendas->close();
         delete telaListagemVendas;
-        this->telaListagemVendas = nullptr; // <-- ESSA LINHA CORRIGE O CRASH
+        this->telaListagemVendas = nullptr;
     }
 
-    // Cria uma instância *nova*
     telaListagemVendas = new TelaListagemVendas(this);
     telaListagemVendas->setWindowTitle("Listagem de Vendas");
 
-    // Conecta o 'finished' para limpar o ponteiro quando o *usuário* fechar
     connect(telaListagemVendas, &TelaListagemVendas::finished,
             this, [this](){
                 this->telaListagemVendas = nullptr;

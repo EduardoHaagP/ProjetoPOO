@@ -99,7 +99,6 @@ class FabricaPoliticasDesconto
 public:
     static PoliticaDesconto *criarPolitica(const std::string &tipo);
 
-    static void listarPoliticasDisponiveis();
 };
 
 #endif // DESCONTOS_H

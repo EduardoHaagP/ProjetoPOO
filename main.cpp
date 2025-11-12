@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     qputenv("QT_QPA_PLATAFORM","xcb");
     QApplication a(argc, argv);
-QApplication::setStyle("Fusion");
+    QApplication::setStyle("Fusion");
     qDebug() << "--- Carregando Dados ---";
 
     GerenciadorDeVendedores::getInstance().carregar_do_csv();

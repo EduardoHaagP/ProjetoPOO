@@ -106,7 +106,7 @@ QPushButton#botVoltar:hover { background-color: #C82333; }</string>
       </font>
      </property>
      <property name="text">
-      <string>Histórico de Vendas</string>
+      <string>Estoque</string>
      </property>
     </widget>
    </item>

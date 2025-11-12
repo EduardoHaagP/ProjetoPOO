@@ -1,6 +1,5 @@
 #include "vendas.h"
 
-// IMPLEMENTAÇÃO da função DataUtils::fromString (no .cpp)
 namespace DataUtils {
     Data fromString(const std::string& dataStr) {
         Data data;
@@ -33,7 +32,6 @@ Vendas::Vendas(Vendedor* vendedor, Clientes* cliente, Veiculos* veiculo,
     this->valor_final = politicaDesconto->calcularDesconto(valorBase);
 }
 
-// Resto das implementações permanecem iguais...
 Vendedor* Vendas::getVendedor() { return vendedor_responsavel; }
 Clientes* Vendas::getCliente() { return cliente_comprador; }
 Veiculos* Vendas::getVeiculo() { return veiculo_vendido; }

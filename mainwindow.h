@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QCloseEvent> // sobreescrever fehcar janela pra att os csv's
+#include <QCloseEvent> 
 
 #include "telacadastrocliente.h"
 #include "telaconsultaestoque.h"
@@ -24,7 +24,7 @@ public:
     ~MainWindow();
 
 protected:
-    void closeEvent(QCloseEvent *event) override; // dev lida com o fechamento n o Qt
+    void closeEvent(QCloseEvent *event) override; 
 private slots:
     // tela inicial botoes
     void on_botEntrar_clicked();

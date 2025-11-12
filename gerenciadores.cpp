@@ -78,13 +78,9 @@ void GerenciadorDeVeiculos::carregar_do_csv()
         {
             try
             {
-                std::string valor_str = dados[3]; // Ex: "800000000.00"
+                std::string valor_str = dados[3]; 
 
-                // 1. Apenas chame std::stof. Ele sabe ler "800000000.00"
                 float valor_lido = std::stof(valor_str);
-
-
-
 
                 Veiculos *novoVeiculo = nullptr;
                 std::string tipo = dados[0];
@@ -92,13 +88,11 @@ void GerenciadorDeVeiculos::carregar_do_csv()
 
                 if (tipo == "Moto")
                 {
-                    // Mude de valor_corrigido para valor_lido
                     novoVeiculo = new Moto(dados[1], std::stoi(dados[2]),
                                            valor_lido, dados[4], filial);
                 }
                 else if (tipo == "Carro")
                 {
-                    // Mude de valor_corrigido para valor_lido
                     novoVeiculo = new Carro(dados[1], std::stoi(dados[2]),
                                             valor_lido, dados[4], filial);
                 }
@@ -151,7 +145,6 @@ void GerenciadorDeVeiculos::salvar_no_csv()
         return;
     }
 
-    // CABEÇALHO CORRETO COM A NOVA COLUNA FILIAL
     arquivo << "Tipo,Modelo,Ano,Valor (R$),Cor,Filial\n";
 
     for (const auto &veiculo : this->veiculos)
@@ -163,7 +156,6 @@ void GerenciadorDeVeiculos::salvar_no_csv()
 
         try {
             std::string tipo = veiculo->motoOuCarro();
-            // Normalização de tipo
             if (tipo == "moto")
                 tipo = "Moto";
             else if (tipo == "carro")
@@ -834,7 +826,6 @@ void GerenciadorDeVendas::salvar_no_csv()
 
     for (const auto &venda : this->vendas)
     {
-        //ponteiros não são nulos antes de usar
         string nomeCliente = (venda->getCliente()) ? venda->getCliente()->getNome() : "N/A";
         string docCliente = (venda->getCliente()) ? venda->getCliente()->getDocumento() : "N/A";
         string nomeVendedor = (venda->getVendedor()) ? venda->getVendedor()->getNome() : "N/A";
@@ -854,7 +845,7 @@ void GerenciadorDeVendas::salvar_no_csv()
                 << venda->getValorEntrada() << ","
                 << corVeiculo << ","
                 << nomeCliente << ","
-                << docCliente << "," // <-- ATUALIZADO
+                << docCliente << "," 
                 << nomePolitica << ","
                 << venda->getFormaPagamento() << ","
                 << venda->getStatusVenda() << ","

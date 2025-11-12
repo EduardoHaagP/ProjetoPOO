@@ -161,25 +161,4 @@ PoliticaDesconto *FabricaPoliticasDesconto::criarPolitica(const std::string &tip
     }
 }
 
-void FabricaPoliticasDesconto::listarPoliticasDisponiveis()
-{
-    std::cout << "=== POLÍTICAS DE DESCONTO DISPONÍVEIS ===" << std::endl;
 
-    SemDesconto sem;
-    std::cout << "1. " << sem.getNome() << " (" << sem.getPercentual() << "%) - "
-              << sem.getDescricao() << std::endl;
-
-    ClienteFidelidade fidelidade;
-    std::cout << "2. " << fidelidade.getNome() << " (" << fidelidade.getPercentual() << "%) - "
-              << fidelidade.getDescricao() << std::endl;
-
-    PromocaoEspecial promocao;
-    std::cout << "3. " << promocao.getNome() << " (" << promocao.getPercentual() << "%) - "
-              << promocao.getDescricao() << std::endl;
-
-    VendasCorporativas corporativas;
-    std::cout << "4. " << corporativas.getNome() << " (" << corporativas.getPercentual() << "%) - "
-              << corporativas.getDescricao() << std::endl;
-
-    std::cout << "========================================" << std::endl;
-}
