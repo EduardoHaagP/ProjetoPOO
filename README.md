@@ -52,7 +52,7 @@ O sistema foi projetado com foco em uma interface intuitiva e na aplicação pr�
 
     - Clique em Build → Run dentro do Qt Creator.
 ---
-##👨‍💻 Desenvolvido por
+## 👨‍💻 Desenvolvido por
 
  - Eduardo Haag
 
